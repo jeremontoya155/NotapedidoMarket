@@ -6,36 +6,36 @@ const PDFDocument = require('pdfkit');
 // Obtener todas las notas de pedido para la vista del admin, con filtro por proveedor
 exports.getAdminDashboard = async (req, res) => {
   try {
-    const proveedorSeleccionado = req.query.proveedor || ''; // Obtener proveedor desde la query
-    let query = 'SELECT * FROM nota_de_pedido';
-    const params = [];
+    const proveedorSeleccionado = req.query.proveedor || '';
 
-    // Si se selecciona un proveedor, agregar la condición al query
-    if (proveedorSeleccionado) {
-      query += ' WHERE proveedor = $1';
-      params.push(proveedorSeleccionado);
-    }
-
-    // Consultar las notas de pedido con el filtro de proveedor
-    const result = await pool.query(query, params);
-    const notas = result.rows;
-
-    // Consultar todos los proveedores para el filtro
+    // Consultar todos los proveedores
     const proveedoresResult = await pool.query('SELECT DISTINCT proveedor FROM nota_de_pedido');
     const proveedores = proveedoresResult.rows.map(row => row.proveedor);
 
-    // Renderizar la vista y pasar las notas y los proveedores
+    // Si hay un proveedor seleccionado, filtrar las notas de pedido por ese proveedor
+    let query = 'SELECT * FROM nota_de_pedido';
+    const queryParams = [];
+
+    if (proveedorSeleccionado) {
+      query += ' WHERE proveedor = $1';
+      queryParams.push(proveedorSeleccionado);
+    }
+
+    // Consultar las notas de pedido con el filtro aplicado
+    const result = await pool.query(query, queryParams);
+    const notas = result.rows;
+
+    // Renderizar la vista y pasar los datos
     res.render('admin', {
       notas,
       proveedores,
-      proveedorSeleccionado
+      proveedorSeleccionado // Enviar el proveedor seleccionado a la vista para mantener el filtro
     });
   } catch (error) {
     console.error('Error al obtener las notas de pedido:', error);
     res.status(500).send('Error al obtener las notas de pedido');
   }
 };
-
   
 // Obtener los detalles de la nota de pedido
 exports.getNotaDetalles = async (req, res) => {
