@@ -18,7 +18,7 @@
     width:100%;
     padding: 0.3em;
     margin:0;
-    max-height:55px;
+    height:55px;
 }
 .filtroDetalle{
     display:flex;

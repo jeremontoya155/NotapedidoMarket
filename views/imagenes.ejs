@@ -4,37 +4,95 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Imágenes de la Nota de Pedido</title>
+  <link rel="stylesheet" href="/css/imagenes.css">
 </head>
 <body>
-  <h1>Imágenes de la Nota de Pedido #<%= nota.id %></h1>
+  <div class="imgContainer">
+    <h1>Imágenes de la Nota de Pedido #<%= nota.id %></h1>
+    <% if (imagenes && imagenes.length > 0) { %>
+      <div class="carrusel-container">
+        <div class="carrusel">
+          <% imagenes.forEach(function(imagen, index) { %>
+            <div class="carrusel-item <%= index === 0 ? 'active' : '' %>">
+              <img src="<%= imagen.ruta %>" alt="Imagen de la nota <%= index + 1 %>" class="carrusel-img">
+              <p class="aclaracion"><strong>Aclaración:</strong> <%= imagen.aclaracion %></p>
+            </div>
+          <% }); %>
+        </div>
+        <button class="carrusel-control prev">&lt;</button>
+        <button class="carrusel-control next">&gt;</button>
+        
+        <!-- Contenedor para pantalla completa -->
+        <div class="fullscreen-view">
+          <button class="fullscreen-close">&times;</button>
+          <img class="fullscreen-img" src="" alt="Imagen en pantalla completa">
+        </div>
+      </div>
+      
+    <% } else { %>
+      <p>No hay imágenes para esta nota de pedido.</p>
+    <% } %>
+  
+    <!-- Formulario para subir nuevas imágenes -->
+    <div class="nuevaImagen">
+      <h2>Subir Nueva Imagen</h2>
+      <form action="/admin/nota/<%= nota.id %>/imagenes" method="POST" enctype="multipart/form-data">
+        <label for="imagen">Seleccionar Imagen:</label>
+        <input type="file" name="imagen" accept="image/*" required>
+        <br><br>
+        <label for="aclaracion">Aclaración:</label>
+        <textarea name="aclaracion" rows="3" cols="40" placeholder="Añadir una aclaración (opcional)"></textarea>
+        <br><br>
+        <button type="submit">Subir Imagen</button>
+      </form>
+    
+    </div>
+    <a href="/admin" class="botonVolver"> < Volver a la lista de notas</a>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  const carrusel = document.querySelector('.carrusel');
+  const items = carrusel.querySelectorAll('.carrusel-item');
+  const prevBtn = document.querySelector('.prev');
+  const nextBtn = document.querySelector('.next');
+  const images = document.querySelectorAll('.carrusel-img');  // Selecciona todas las imágenes
+  let currentIndex = 0;
 
-  <!-- Mostrar las imágenes existentes -->
-  <% if (imagenes && imagenes.length > 0) { %>
-    <h2>Imágenes Existentes</h2>
-    <ul>
-      <% imagenes.forEach(function(imagen) { %>
-        <li>
-          <img src="<%= imagen.ruta %>" alt="Imagen de la nota" width="100">
-          <p><strong>Aclaración:</strong> <%= imagen.aclaracion %></p>
-        </li>
-      <% }); %>
-    </ul>
-  <% } else { %>
-    <p>No hay imágenes para esta nota de pedido.</p>
-  <% } %>
+  function showItem(index) {
+    if (index < 0) index = items.length - 1;
+    if (index >= items.length) index = 0;
+    carrusel.style.transform = `translateX(-${index * 100}%)`;
+    currentIndex = index;
+  }
 
-  <!-- Formulario para subir nuevas imágenes -->
-  <h2>Subir Nueva Imagen</h2>
-  <form action="/admin/nota/<%= nota.id %>/imagenes" method="POST" enctype="multipart/form-data">
-    <label for="imagen">Seleccionar Imagen:</label>
-    <input type="file" name="imagen" accept="image/*" required>
-    <br><br>
-    <label for="aclaracion">Aclaración:</label>
-    <textarea name="aclaracion" rows="3" cols="40" placeholder="Añadir una aclaración (opcional)"></textarea>
-    <br><br>
-    <button type="submit">Subir Imagen</button>
-  </form>
+  // Evento para cambiar de imagen
+  prevBtn.addEventListener('click', () => showItem(currentIndex - 1));
+  nextBtn.addEventListener('click', () => showItem(currentIndex + 1));
 
-  <a href="/admin">Volver a la lista de notas</a>
+  // Función para abrir en fullscreen
+  function openFullscreen(img) {
+    if (img.requestFullscreen) {
+      img.requestFullscreen();
+    } else if (img.webkitRequestFullscreen) { // Safari
+      img.webkitRequestFullscreen();
+    } else if (img.msRequestFullscreen) { // IE11
+      img.msRequestFullscreen();
+    }
+  }
+
+  // Añadir eventos a cada imagen para abrir en fullscreen
+  images.forEach(img => {
+    img.addEventListener('click', () => openFullscreen(img));
+  });
+
+  // Permitir que el usuario salga del modo fullscreen con "Esc"
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      console.log('Saliste del fullscreen');
+    }
+  });
+});
+
+    </script>
 </body>
 </html>

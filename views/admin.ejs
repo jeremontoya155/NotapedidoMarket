@@ -22,14 +22,16 @@
 
     <!-- Formulario para filtrar por proveedor -->
     <form method="GET" action="/admin">
-      <label for="proveedor">Filtrar por Proveedor:</label>
-      <select name="proveedor" id="proveedor">
-        <option value="">Todos</option>
-        <% proveedores.forEach(function(proveedor) { %>
-          <option value="<%= proveedor %>" <%= (proveedorSeleccionado === proveedor) ? 'selected' : '' %>><%= proveedor %></option>
-        <% }); %>
-      </select>
-      <button type="submit">Filtrar</button>
+      <div class="filtroAdmin">
+        <label for="proveedor"><strong>Filtrar</strong> por Proveedor:</label>
+        <select name="proveedor" id="proveedor">
+          <option value="">Todos</option>
+          <% proveedores.forEach(function(proveedor) { %>
+            <option value="<%= proveedor %>" <%= (proveedorSeleccionado === proveedor) ? 'selected' : '' %>><%= proveedor %></option>
+          <% }); %>
+        </select>
+        <button type="submit">Filtrar</button>
+      </div>
     </form>
 
     <% if (notas && notas.length > 0) { %>
@@ -59,15 +61,18 @@
               </td>
               <td><%= nota.proveedor %></td>
               <td>
-                <!-- Checkbox para marcar como recibido solo si no está marcado aún -->
-                <form action="/admin/nota/<%= nota.id %>/estado" method="POST">
-                  <input type="checkbox" name="estado" value="recibido" 
+                <form action="/admin/nota/<%= nota.id %>/estado" method="POST" class="estado-form">
+                  <input type="checkbox" id="estado-<%= nota.id %>" name="estado" value="recibido" 
+                         class="estado-toggle"
                          <%= nota.estado === 'recibido' ? 'checked disabled' : '' %> 
                          <%= nota.total_imagenes === 0 ? 'disabled' : '' %> 
                          onchange="this.form.submit()">
-                  <label for="estado"><%= nota.estado %></label>
+                  <label for="estado-<%= nota.id %>" class="estado-btn" data-hover="Marcar como recibido">
+                    <span class="estado-text"><%= nota.estado %></span>
+                  </label>
                 </form>
               </td>
+              
               <td>
                 <% if (nota.total_imagenes > 0) { %>
                   <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: green;">Ver Imágenes (Cargadas)</a>
