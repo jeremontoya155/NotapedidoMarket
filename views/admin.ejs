@@ -49,7 +49,16 @@
                 }) %>
               </td>
               <td><%= nota.proveedor %></td>
-              <td><%= nota.estado %></td>
+              <td>
+                <!-- Checkbox para marcar como recibido solo si no está marcado aún -->
+                <form action="/admin/nota/<%= nota.id %>/estado" method="POST">
+                  <input type="checkbox" name="estado" value="recibido" 
+                         <%= nota.estado === 'recibido' ? 'checked disabled' : '' %> 
+                         <%= nota.total_imagenes === 0 ? 'disabled' : '' %> 
+                         onchange="this.form.submit()">
+                  <label for="estado"><%= nota.estado %></label>
+                </form>
+              </td>
               <td>
                 <% if (nota.total_imagenes > 0) { %>
                   <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: green;">Ver Imágenes (Cargadas)</a>
@@ -60,14 +69,6 @@
               <td>
                 <a class="detalles" href="/admin/nota/<%= nota.id %>">Ver Detalles</a> |
                 <a class="descargar" href="/admin/nota/<%= nota.id %>/pdf" target="_blank">Descargar PDF</a>
-                <!-- Formulario para cambiar el estado -->
-                <form action="/admin/nota/<%= nota.id %>/estado" method="POST" style="display:inline;">
-                  <select name="estado">
-                    <option value="pendiente" <%= nota.estado === 'pendiente' ? 'selected' : '' %>>Pendiente</option>
-                    <option value="recibido" <%= nota.estado === 'recibido' ? 'selected' : '' %>>Recibido</option>
-                  </select>
-                  <button type="submit">Actualizar Estado</button>
-                </form>
               </td>
             </tr>
           <% }); %>

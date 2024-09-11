@@ -143,19 +143,33 @@ exports.generatePDF = async (req, res) => {
   }
 };
 
+// Actualizar estado de la nota (solo si tiene imágenes)
 exports.updateNotaEstado = async (req, res) => {
   const notaId = req.params.id;
   const nuevoEstado = req.body.estado;
 
   try {
-    // Actualizar el estado en la base de datos
-    await pool.query('UPDATE nota_de_pedido SET estado = $1 WHERE id = $2', [nuevoEstado, notaId]);
+    // Verificar si la nota tiene al menos una imagen cargada
+    const imagenesResult = await pool.query('SELECT COUNT(*) as total FROM imagenes WHERE nota_id = $1', [notaId]);
+    const tieneImagenes = parseInt(imagenesResult.rows[0].total) > 0;
 
-    // Redirigir de nuevo al dashboard del admin
+    // Si no tiene imágenes y se intenta marcar como 'recibido', no permitir
+    if (!tieneImagenes && nuevoEstado === 'recibido') {
+      return res.status(400).send('No se puede marcar como recibido sin imágenes.');
+    }
+
+    // Actualizar el estado de la nota solo si aún no está marcada como "recibido"
+    const notaResult = await pool.query('SELECT estado FROM nota_de_pedido WHERE id = $1', [notaId]);
+    const estadoActual = notaResult.rows[0].estado;
+
+    if (estadoActual !== 'recibido') {
+      await pool.query('UPDATE nota_de_pedido SET estado = $1 WHERE id = $2', [nuevoEstado, notaId]);
+    }
+
     res.redirect('/admin');
   } catch (error) {
-    console.error('Error al actualizar el estado de la nota de pedido:', error);
-    res.status(500).send('Error al actualizar el estado de la nota de pedido');
+    console.error('Error al actualizar el estado de la nota:', error);
+    res.status(500).send('Error al actualizar el estado de la nota');
   }
 };
 
