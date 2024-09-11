@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,19 @@
   <div class="adminBody">
 
     <h1>Notas de Pedido</h1>
-  
+
+    <!-- Formulario para filtrar por proveedor -->
+    <form method="GET" action="/admin">
+      <label for="proveedor">Filtrar por Proveedor:</label>
+      <select name="proveedor" id="proveedor">
+        <option value="">Todos</option>
+        <% proveedores.forEach(function(proveedor) { %>
+          <option value="<%= proveedor %>" <%= (proveedorSeleccionado === proveedor) ? 'selected' : '' %>><%= proveedor %></option>
+        <% }); %>
+      </select>
+      <button type="submit">Filtrar</button>
+    </form>
+
     <% if (notas && notas.length > 0) { %>
       <table border="0">
         <thead>

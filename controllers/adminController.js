@@ -3,28 +3,39 @@ const path = require('path');
 const PDFDocument = require('pdfkit');
 // Obtener las notas de pedido
 // Obtener todas las notas de pedido para la vista del admin
+// Obtener todas las notas de pedido para la vista del admin, con filtro por proveedor
 exports.getAdminDashboard = async (req, res) => {
-    try {
-      // Consultar todas las notas de pedido, ordenadas por fecha de más nuevo a más viejo
-      const result = await pool.query('SELECT * FROM nota_de_pedido ');
-  
-      // Asegurarnos de que 'result.rows' contiene los datos de las notas
-      const notas = result.rows;
-  
-      // Verifica si hay datos en la variable notas
-      if (!notas || notas.length === 0) {
-        console.log('No se encontraron notas de pedido.');
-      } else {
-        console.log('Notas obtenidas: ', notas);
-      }
-  
-      // Renderizar la vista y pasar las notas
-      res.render('admin', { notas });
-    } catch (error) {
-      console.error('Error al obtener las notas de pedido:', error);
-      res.status(500).send('Error al obtener las notas de pedido');
+  try {
+    const proveedorSeleccionado = req.query.proveedor || ''; // Obtener proveedor desde la query
+    let query = 'SELECT * FROM nota_de_pedido';
+    const params = [];
+
+    // Si se selecciona un proveedor, agregar la condición al query
+    if (proveedorSeleccionado) {
+      query += ' WHERE proveedor = $1';
+      params.push(proveedorSeleccionado);
     }
-  };
+
+    // Consultar las notas de pedido con el filtro de proveedor
+    const result = await pool.query(query, params);
+    const notas = result.rows;
+
+    // Consultar todos los proveedores para el filtro
+    const proveedoresResult = await pool.query('SELECT DISTINCT proveedor FROM nota_de_pedido');
+    const proveedores = proveedoresResult.rows.map(row => row.proveedor);
+
+    // Renderizar la vista y pasar las notas y los proveedores
+    res.render('admin', {
+      notas,
+      proveedores,
+      proveedorSeleccionado
+    });
+  } catch (error) {
+    console.error('Error al obtener las notas de pedido:', error);
+    res.status(500).send('Error al obtener las notas de pedido');
+  }
+};
+
   
 // Obtener los detalles de la nota de pedido
 exports.getNotaDetalles = async (req, res) => {
