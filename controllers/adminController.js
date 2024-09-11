@@ -143,7 +143,6 @@ exports.generatePDF = async (req, res) => {
   }
 };
 
-// Actualizar estado de la nota (solo si tiene imágenes)
 exports.updateNotaEstado = async (req, res) => {
   const notaId = req.params.id;
   const nuevoEstado = req.body.estado;
@@ -155,7 +154,7 @@ exports.updateNotaEstado = async (req, res) => {
 
     // Si no tiene imágenes y se intenta marcar como 'recibido', no permitir
     if (!tieneImagenes && nuevoEstado === 'recibido') {
-      return res.status(400).send('No se puede marcar como recibido sin imágenes.');
+      return res.redirect(`/admin?error=No se puede marcar como recibido sin imágenes&notaId=${notaId}`);
     }
 
     // Actualizar el estado de la nota solo si aún no está marcada como "recibido"
@@ -172,6 +171,7 @@ exports.updateNotaEstado = async (req, res) => {
     res.status(500).send('Error al actualizar el estado de la nota');
   }
 };
+
 
 // Actualizar el estado de la nota de pedido
 exports.updateNota = async (req, res) => {

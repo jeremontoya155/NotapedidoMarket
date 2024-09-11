@@ -11,6 +11,15 @@
 
     <h1>Notas de Pedido</h1>
 
+    <!-- Mostrar alerta si hay un error -->
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const error = params.get('error');
+      if (error) {
+        alert(error);
+      }
+    </script>
+
     <!-- Formulario para filtrar por proveedor -->
     <form method="GET" action="/admin">
       <label for="proveedor">Filtrar por Proveedor:</label>
