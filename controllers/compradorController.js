@@ -43,8 +43,8 @@ exports.processExcel = async (req, res) => {
     const data = xlsx.utils.sheet_to_json(sheet, { header: 1 });
 
     // Separar encabezado (filas 0-9) y productos (desde la fila 10)
-    const encabezado = data.slice(0, 10); // Las primeras 10 filas para el encabezado
-    const productos = data.slice(10); // Desde la fila 10 en adelante para los productos
+    const encabezado = data.slice(0, 10); 
+    const productos = data.slice(10); 
 
     // Calcular importe y unidades si no están presentes
     let totalImporte = 0;
@@ -71,9 +71,9 @@ exports.processExcel = async (req, res) => {
       cuit_adicional: encabezado[5][4] || null,
       compra: encabezado[5][10] || null,
       operador: encabezado[6][1] || null,
-      importe: isValidNumber(encabezado[6][6]) ? parseFloat(encabezado[6][6]) : totalImporte,  // Usar el valor calculado si no está presente
-      facturado_total: isValidNumber(encabezado[6][9]) ? parseFloat(encabezado[6][9]) : totalImporte,  // Usar el valor calculado
-      unidades: isValidNumber(encabezado[7][6]) ? parseInt(encabezado[7][6]) : totalUnidades  // Usar el valor calculado si no está presente
+      importe: isValidNumber(encabezado[6][6]) ? parseFloat(encabezado[6][6]) : totalImporte,  
+      facturado_total: isValidNumber(encabezado[6][9]) ? parseFloat(encabezado[6][9]) : totalImporte,
+      unidades: isValidNumber(encabezado[7][6]) ? parseInt(encabezado[7][6]) : totalUnidades
     };
 
     // Insertar los datos del encabezado en la tabla nota_de_pedido
@@ -83,9 +83,9 @@ exports.processExcel = async (req, res) => {
       RETURNING id
     `, Object.values(notaDePedidoValues));
 
-    const notaId = result.rows[0].id;  // ID de la nota insertada
+    const notaId = result.rows[0].id; 
 
-    // Procesar los detalles de la nota (productos) a partir de la fila 10 en adelante
+    // Procesar los detalles de la nota
     for (let i = 0; i < productos.length; i++) {
       if (isValidNumber(productos[i][0]) && productos[i][0] !== 'Id Quantio' && productos[i][0] > 0) {
         await pool.query(`
@@ -107,7 +107,8 @@ exports.processExcel = async (req, res) => {
       }
     }
 
-    res.send('Nota de pedido y detalles subidos con éxito');
+    // Redirigir con éxito
+    res.redirect('/buyer?success=true');
   } catch (error) {
     console.error('Error al procesar el archivo:', error);
     res.status(500).send('Error al procesar el archivo');
