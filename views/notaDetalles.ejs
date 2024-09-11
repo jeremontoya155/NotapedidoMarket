@@ -4,51 +4,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalles de Nota de Pedido</title>
+  <link rel="stylesheet" href="/css/detalles.css">
 </head>
 <body>
-  <h1>Detalles de Nota de Pedido</h1>
+  <div class="detallesNotaPedido">
 
-  <p><strong>Laboratorio:</strong> <%= nota.laboratorio %></p>
-  <p><strong>Fecha del Pedido:</strong> <%= new Date(nota.fecha_pedido).toLocaleDateString('es-ES') %></p>
-  <p><strong>Proveedor:</strong> <%= nota.proveedor %></p>
 
-  <!-- Filtro por presupuesto -->
-  <form action="/admin/nota/<%= nota.id %>" method="GET">
-    <label for="presupuesto">Filtrar por importe mayor o igual a:</label>
-    <input type="number" name="presupuesto" id="presupuesto" value="<%= presupuesto %>">
-    <button type="submit">Filtrar</button>
-  </form>
-
-  <!-- Mostrar detalles -->
-  <% if (detalles.length > 0) { %>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Producto</th>
-          <th>Cantidad</th>
-          <th>Importe Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% detalles.forEach(function(detalle) { %>
+    <h1>Detalles de Nota de Pedido</h1>
+    <div class="datosDetalles">
+      <p class="dato"><strong>Laboratorio:</strong> <%= nota.laboratorio %></p>
+      <p class="dato"><strong>Proveedor:</strong> <%= nota.proveedor %></p>
+      <p class="dato"><strong>Fecha del Pedido:</strong>                
+          <%= new Date(nota.fecha_pedido).toLocaleString('es-ES', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          }) %>
+      </p>
+    </div>
+  
+    <!-- Filtro por presupuesto -->
+    <form action="/admin/nota/<%= nota.id %>" method="GET">
+      <div class="filtroDetalle">
+        <label for="presupuesto"><strong>Filtrar</strong> (Importe mayor o igual):</label>
+        <div class="filtroInput">
+          <input type="number" name="presupuesto" id="presupuesto" value="<%= presupuesto %>">
+          <button type="submit">Filtrar</button>
+        </div>
+      </div>
+    </form>
+  
+    <!-- Mostrar detalles -->
+    <% if (detalles.length > 0) { %>
+      <table border="0">
+        <thead>
           <tr>
-            <td><%= detalle.producto %></td>
-            <td><%= detalle.cantidad %></td>
-            <td><%= detalle.imp_total %></td>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Importe Total</th>
           </tr>
-        <% }); %>
-      </tbody>
-    </table>
-  <% } else { %>
-    <p>No hay productos que coincidan con el filtro.</p>
-  <% } %>
-
-  <!-- Mostrar resumen -->
-  <h2>Resumen</h2>
-  <p><strong>Total de Importe:</strong> $<%= totalImporte.toFixed(2) %></p>
-  <p><strong>Total de Unidades:</strong> <%= totalUnidades %></p>
-
-  <!-- Botón para descargar el PDF -->
-  <a href="/admin/nota/<%= nota.id %>/pdf" target="_blank">Descargar PDF</a>
+        </thead>
+        <tbody>
+          <% detalles.forEach(function(detalle) { %>
+            <tr>
+              <td><%= detalle.producto %></td>
+              <td><%= detalle.cantidad %></td>
+              <td><%= detalle.imp_total %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>No hay productos que coincidan con el filtro.</p>
+    <% } %>
+  
+    <!-- Mostrar resumen -->
+    <div class="resumen">
+      <h2>Resumen</h2>
+      <p><strong>Total de Importe:</strong> $<%= totalImporte.toFixed(2) %></p>
+      <p><strong>Total de Unidades:</strong> <%= totalUnidades %></p>
+    </div>
+    <!-- Botón para descargar el PDF -->
+    <div class="descargarPdf">
+      <a class="descargar" href="/admin/nota/<%= nota.id %>/pdf" target="_blank">Descargar PDF</a>
+    </div>
+  </div>
 </body>
 </html>

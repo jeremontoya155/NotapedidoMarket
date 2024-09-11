@@ -4,26 +4,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subir Nota de Pedido</title>
+  <link rel="stylesheet" href="css/buyer.css">
+  <script>
+    // Función para validar las fechas y asegurarse de que son válidas y pertenecen al año 2024
+    function validateForm() {
+      const fechaPedido = document.getElementById('fecha_pedido').value;
+      const fechaPago = document.getElementById('fecha_pago').value;
+
+      if (!isValidDate(fechaPedido) || !isValidDate(fechaPago)) {
+        alert('Por favor, asegúrate de que las fechas son válidas y que el año es 2024.');
+        return false; // Evita que el formulario se envíe si las fechas no son válidas
+      }
+
+      return true; // Permite enviar el formulario si todo es válido
+    }
+
+    // Función para validar una fecha y comprobar que es válida y del año 2024
+    function isValidDate(dateString) {
+      const date = new Date(dateString);
+      return !isNaN(date.getTime()) && date.getFullYear() === 2024;
+    }
+  </script>
 </head>
 <body>
-  <h1>Subir Nota de Pedido</h1>
+  <div class="formularioSubida">
+      <!-- Formulario para subir el archivo Excel -->
+      <form action="/buyer/upload" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()" class="form-container">
+        <h1>Subir Nota de Pedido</h1>
+        <!-- Campo para subir el archivo Excel -->
+        <div class="form-group">
+          <label for="file" >Selecciona el archivo Excel (.xlsx):</label>
+          <input type="file" name="file" accept=".xlsx" required class="form-input fileInput" >
+        </div>
+    
+    
+        <div class="form-group">
+          <label for="fecha_pago">Fecha de Pago (si es necesario corregir):</label>
+          <input type="date" id="fecha_pago" name="fecha_pago" class="form-input">
+        </div>
+    
+        <!-- Botón para enviar el formulario -->
+          <button type="submit" class="submit-btn">Subir Nota</button>
+      </form>
+  </div>
 
-  <!-- Formulario para subir el archivo Excel -->
-  <form action="/buyer/upload" method="POST" enctype="multipart/form-data">
-    <!-- Campo para subir el archivo Excel -->
-    <label for="file">Selecciona el archivo Excel (.xlsx):</label>
-    <input type="file" name="file" accept=".xlsx" required>
-    
-    <br><br>
-    
-    <!-- Campo para corregir la fecha de pago si es necesario -->
-    <label for="fecha_pago">Fecha de Pago (si es necesario corregir):</label>
-    <input type="date" id="fecha_pago" name="fecha_pago">
-    
-    <br><br>
-
-    <!-- Botón para enviar el formulario -->
-    <button type="submit">Subir Nota</button>
-  </form>
 </body>
 </html>
