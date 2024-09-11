@@ -56,13 +56,16 @@ exports.processExcel = async (req, res) => {
       totalImporte += importe;
     });
 
+    // Generar la fecha actual como la fecha del pedido
+    const fechaActual = new Date();
+
     // Extraer los valores del encabezado
     let notaDePedidoValues = {
       laboratorio: encabezado[1][6] || null,
-      fecha_pedido: isValidDate(encabezado[1][10]) ? new Date(encabezado[1][10]) : null,
+      fecha_pedido: fechaActual,  // Usar la fecha y hora actuales
       proveedor: encabezado[2][6] || null,
       direccion: encabezado[3][6] || null,
-      fecha_pago: isValidDate(encabezado[3][10]) ? new Date(encabezado[3][10]) : null,
+      fecha_pago: isValidDate(req.body.fecha_pago) ? new Date(req.body.fecha_pago) : null,
       condicion: encabezado[4][10] || null,
       cuit: encabezado[5][1] || null,
       cuit_adicional: encabezado[5][4] || null,

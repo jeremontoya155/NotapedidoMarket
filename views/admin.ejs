@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,28 @@
   <div class="adminBody">
 
     <h1>Notas de Pedido</h1>
-  
+
+    <!-- Mostrar alerta si hay un error -->
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const error = params.get('error');
+      if (error) {
+        alert(error);
+      }
+    </script>
+
+    <!-- Formulario para filtrar por proveedor -->
+    <form method="GET" action="/admin">
+      <label for="proveedor">Filtrar por Proveedor:</label>
+      <select name="proveedor" id="proveedor">
+        <option value="">Todos</option>
+        <% proveedores.forEach(function(proveedor) { %>
+          <option value="<%= proveedor %>" <%= (proveedorSeleccionado === proveedor) ? 'selected' : '' %>><%= proveedor %></option>
+        <% }); %>
+      </select>
+      <button type="submit">Filtrar</button>
+    </form>
+
     <% if (notas && notas.length > 0) { %>
       <table border="0">
         <thead>
@@ -19,6 +40,8 @@
             <th>Laboratorio</th>
             <th>Fecha del Pedido</th>
             <th>Proveedor</th>
+            <th>Estado</th>
+            <th>Imágenes</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -28,15 +51,30 @@
               <td><%= nota.id %></td>
               <td><%= nota.laboratorio %></td>
               <td>
-                <%= new Date(nota.fecha_pedido).toLocaleString('es-ES', {
+                <%= new Date(nota.fecha_pedido).toLocaleDateString('es-ES', {
                   day: '2-digit',
                   month: '2-digit',
-                  year: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit'
+                  year: 'numeric'
                 }) %>
               </td>
               <td><%= nota.proveedor %></td>
+              <td>
+                <!-- Checkbox para marcar como recibido solo si no está marcado aún -->
+                <form action="/admin/nota/<%= nota.id %>/estado" method="POST">
+                  <input type="checkbox" name="estado" value="recibido" 
+                         <%= nota.estado === 'recibido' ? 'checked disabled' : '' %> 
+                         <%= nota.total_imagenes === 0 ? 'disabled' : '' %> 
+                         onchange="this.form.submit()">
+                  <label for="estado"><%= nota.estado %></label>
+                </form>
+              </td>
+              <td>
+                <% if (nota.total_imagenes > 0) { %>
+                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: green;">Ver Imágenes (Cargadas)</a>
+                <% } else { %>
+                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: red;">Subir Imágenes</a>
+                <% } %>
+              </td>
               <td>
                 <a class="detalles" href="/admin/nota/<%= nota.id %>">Ver Detalles</a> |
                 <a class="descargar" href="/admin/nota/<%= nota.id %>/pdf" target="_blank">Descargar PDF</a>
