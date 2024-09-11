@@ -31,6 +31,8 @@
             <th>Laboratorio</th>
             <th>Fecha del Pedido</th>
             <th>Proveedor</th>
+            <th>Estado</th>
+            <th>Imágenes</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -47,9 +49,25 @@
                 }) %>
               </td>
               <td><%= nota.proveedor %></td>
+              <td><%= nota.estado %></td>
+              <td>
+                <% if (nota.total_imagenes > 0) { %>
+                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: green;">Ver Imágenes (Cargadas)</a>
+                <% } else { %>
+                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: red;">Subir Imágenes</a>
+                <% } %>
+              </td>
               <td>
                 <a class="detalles" href="/admin/nota/<%= nota.id %>">Ver Detalles</a> |
                 <a class="descargar" href="/admin/nota/<%= nota.id %>/pdf" target="_blank">Descargar PDF</a>
+                <!-- Formulario para cambiar el estado -->
+                <form action="/admin/nota/<%= nota.id %>/estado" method="POST" style="display:inline;">
+                  <select name="estado">
+                    <option value="pendiente" <%= nota.estado === 'pendiente' ? 'selected' : '' %>>Pendiente</option>
+                    <option value="recibido" <%= nota.estado === 'recibido' ? 'selected' : '' %>>Recibido</option>
+                  </select>
+                  <button type="submit">Actualizar Estado</button>
+                </form>
               </td>
             </tr>
           <% }); %>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
   <h1>Detalles de Nota de Pedido</h1>
 
   <p><strong>Laboratorio:</strong> <%= nota.laboratorio %></p>
-  <p><strong>Fecha del Pedido:</strong> <%= nota.fecha_pedido %></p>
+  <p><strong>Fecha del Pedido:</strong> <%= new Date(nota.fecha_pedido).toLocaleDateString('es-ES') %></p>
   <p><strong>Proveedor:</strong> <%= nota.proveedor %></p>
 
   <!-- Filtro por presupuesto -->

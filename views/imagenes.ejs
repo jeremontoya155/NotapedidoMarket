@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imágenes de la Nota de Pedido</title>
+</head>
+<body>
+  <h1>Imágenes de la Nota de Pedido #<%= nota.id %></h1>
+
+  <!-- Mostrar las imágenes existentes -->
+  <% if (imagenes && imagenes.length > 0) { %>
+    <h2>Imágenes Existentes</h2>
+    <ul>
+      <% imagenes.forEach(function(imagen) { %>
+        <li>
+          <img src="<%= imagen.ruta %>" alt="Imagen de la nota" width="100">
+          <p><strong>Aclaración:</strong> <%= imagen.aclaracion %></p>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>No hay imágenes para esta nota de pedido.</p>
+  <% } %>
+
+  <!-- Formulario para subir nuevas imágenes -->
+  <h2>Subir Nueva Imagen</h2>
+  <form action="/admin/nota/<%= nota.id %>/imagenes" method="POST" enctype="multipart/form-data">
+    <label for="imagen">Seleccionar Imagen:</label>
+    <input type="file" name="imagen" accept="image/*" required>
+    <br><br>
+    <label for="aclaracion">Aclaración:</label>
+    <textarea name="aclaracion" rows="3" cols="40" placeholder="Añadir una aclaración (opcional)"></textarea>
+    <br><br>
+    <button type="submit">Subir Imagen</button>
+  </form>
+
+  <a href="/admin">Volver a la lista de notas</a>
+</body>
+</html>
