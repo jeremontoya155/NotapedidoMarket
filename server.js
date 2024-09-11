@@ -5,6 +5,10 @@ const pg = require('pg');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Sirve la carpeta 'uploads' de forma pública
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
 // Configuración de la base de datos
 const pool = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
