@@ -1,0 +1,56 @@
+*{
+    
+    margin:0;
+    padding:0;
+}
+.login
+{
+    height:100vh;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    background: #212121;
+}
+
+.formularioLogin{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow:column wrap;
+    padding: 2em;
+    width: 450px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 2px solid rgba(255, 255, 255, 0.3); 
+}
+
+.formularioLogin h1{ 
+    font-size: 2em;
+    color: #d4d4d4;
+}
+.formularioLogin input{
+    width:100%;
+    padding:.4em;
+    border-radius: 10px;
+}
+.boton{
+    padding: .4em 1em;
+    border-radius: 8px;
+    transition: all .3s ease;
+    background:  #007c98;
+    color: #fff;
+}
+.boton:hover{ 
+    background: #40b8d0;
+    cursor: pointer; 
+}
+.error{
+    color: #fff;
+    text-shadow: 1px 1px 5px red;
+    text-transform: italic;
+}

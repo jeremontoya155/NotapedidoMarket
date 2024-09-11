@@ -8,7 +8,7 @@ const path = require('path');
 
 // Sirve la carpeta 'uploads' de forma pública
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Configuración de la base de datos
 const pool = new pg.Pool({
@@ -45,3 +45,5 @@ app.use('/', compradorRoutes);  // Rutas para compradores
 app.listen(port, () => {
   console.log(`Servidor iniciado en http://localhost:${port}`);
 });
+
+
