@@ -4,6 +4,7 @@ const session = require('express-session');
 const pg = require('pg');
 const app = express();
 const port = process.env.PORT || 3000;
+const path = require('path');
 
 // Sirve la carpeta 'uploads' de forma pública
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
