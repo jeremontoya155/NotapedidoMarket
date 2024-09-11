@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Completar Campos Faltantes</title>
+</head>
+<body>
+  <h1>Completar los campos faltantes de la Nota de Pedido</h1>
+
+  <form action="/buyer/manual-input" method="POST">
+    <% camposFaltantes.forEach(function(campo) { %>
+      <label for="<%= campo %>"><%= campo %></label>
+      <input type="text" name="<%= campo %>" value="<%= notaDePedidoValues[campo] || '' %>" required>
+      <br>
+    <% }); %>
+    
+    <button type="submit">Completar y Enviar</button>
+  </form>
+</body>
+</html>

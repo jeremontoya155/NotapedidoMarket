@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalles de Nota de Pedido</title>
+</head>
+<body>
+  <h1>Detalles de Nota de Pedido</h1>
+
+  <p><strong>Laboratorio:</strong> <%= nota.laboratorio %></p>
+  <p><strong>Fecha del Pedido:</strong> <%= nota.fecha_pedido %></p>
+  <p><strong>Proveedor:</strong> <%= nota.proveedor %></p>
+
+  <!-- Filtro por presupuesto -->
+  <form action="/admin/nota/<%= nota.id %>" method="GET">
+    <label for="presupuesto">Filtrar por importe mayor o igual a:</label>
+    <input type="number" name="presupuesto" id="presupuesto" value="<%= presupuesto %>">
+    <button type="submit">Filtrar</button>
+  </form>
+
+  <!-- Mostrar detalles -->
+  <% if (detalles.length > 0) { %>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Importe Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% detalles.forEach(function(detalle) { %>
+          <tr>
+            <td><%= detalle.producto %></td>
+            <td><%= detalle.cantidad %></td>
+            <td><%= detalle.imp_total %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>No hay productos que coincidan con el filtro.</p>
+  <% } %>
+
+  <!-- Mostrar resumen -->
+  <h2>Resumen</h2>
+  <p><strong>Total de Importe:</strong> $<%= totalImporte.toFixed(2) %></p>
+  <p><strong>Total de Unidades:</strong> <%= totalUnidades %></p>
+
+  <!-- Botón para descargar el PDF -->
+  <a href="/admin/nota/<%= nota.id %>/pdf" target="_blank">Descargar PDF</a>
+</body>
+</html>

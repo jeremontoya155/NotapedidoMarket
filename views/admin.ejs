@@ -3,11 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
+  <title>Admin - Notas de Pedido</title>
 </head>
 <body>
-  <h1>Bienvenido, <%= user.username %> (Admin)</h1>
-  <a href="/logout">Cerrar sesión</a>
+  <h1>Notas de Pedido</h1>
+
+  <% if (notas && notas.length > 0) { %>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Laboratorio</th>
+          <th>Fecha del Pedido</th>
+          <th>Proveedor</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% notas.forEach(function(nota) { %>
+          <tr>
+            <td><%= nota.id %></td>
+            <td><%= nota.laboratorio %></td>
+            <td><%= nota.fecha_pedido %></td>
+            <td><%= nota.proveedor %></td>
+            <td>
+              <a href="/admin/nota/<%= nota.id %>">Ver Detalles</a> |
+              <a href="/admin/nota/<%= nota.id %>/pdf" target="_blank">Descargar PDF</a>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>No hay notas de pedido para mostrar.</p>
+  <% } %>
 </body>
 </html>
-    

@@ -27,8 +27,14 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 
 // Rutas
-const authRoutes = require('./routes/authRoutes');
-app.use('/', authRoutes);
+const authRoutes = require('./routes/authRoutes'); // Rutas de autenticación
+const compradorRoutes = require('./routes/compradorRoutes'); // Rutas del comprador
+const adminRoutes = require('./routes/adminRoutes');
+app.use('/', adminRoutes); // O cualquier prefijo como '/admin'
+app.use('/', authRoutes);  // Rutas para autenticación
+app.use('/', compradorRoutes);  // Rutas para compradores
+
+
 
 // Iniciar el servidor
 app.listen(port, () => {
