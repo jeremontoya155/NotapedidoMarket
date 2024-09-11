@@ -9,7 +9,7 @@ exports.getAdminDashboard = async (req, res) => {
     const proveedorSeleccionado = req.query.proveedor || '';
 
     // Consultar todos los proveedores
-    const proveedoresResult = await pool.query('SELECT DISTINCT proveedor FROM nota_de_pedido');
+    const proveedoresResult = await pool.query('SELECT DISTINCT proveedor FROM nota_de_pedido order_by ');
     const proveedores = proveedoresResult.rows.map(row => row.proveedor);
 
     // Si hay un proveedor seleccionado, filtrar las notas de pedido por ese proveedor
@@ -20,6 +20,8 @@ exports.getAdminDashboard = async (req, res) => {
       query += ' WHERE proveedor = $1';
       queryParams.push(proveedorSeleccionado);
     }
+    // Ordenar las notas de pedido por fecha, de más nuevo a más viejo
+    query += ' ORDER BY fecha_pedido DESC';
 
     // Consultar las notas de pedido con el filtro aplicado
     const result = await pool.query(query, queryParams);
