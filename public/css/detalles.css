@@ -27,7 +27,17 @@
     flex-flow: row wrap;
     border: 1px solid #252525;
     gap:5px;
-    padding: 10px;
+    padding: 0.3em;
+    width:50%;
+    height:55px;
+}
+.segundoRenglon{
+    width:100%;
+    display:flex;
+    align-items:center;
+}
+.comprador{
+    width:50%;
 }
 .filtroInput{
     display:flex;

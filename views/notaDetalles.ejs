@@ -25,11 +25,14 @@
   
     <!-- Filtro por presupuesto -->
     <form action="/admin/nota/<%= nota.id %>" method="GET">
-      <div class="filtroDetalle">
-        <label for="presupuesto"><strong>Filtrar</strong> (Importe mayor o igual):</label>
-        <div class="filtroInput">
-          <input type="number" name="presupuesto" id="presupuesto" value="<%= presupuesto %>">
-          <button type="submit">Filtrar</button>
+      <div class="segundoRenglon">
+        <p class="dato comprador"><strong>Comprador:</strong> <%= nota.operador %></p>
+        <div class="filtroDetalle">
+          <label for="presupuesto"><strong>Filtrar</strong> (Importe mayor o igual):</label>
+          <div class="filtroInput">
+            <input type="number" name="presupuesto" id="presupuesto" value="<%= presupuesto %>">
+            <button type="submit">Filtrar</button>
+          </div>
         </div>
       </div>
     </form>
