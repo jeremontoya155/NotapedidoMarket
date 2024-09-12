@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Notas de Pedido - Admin</title>
   <link rel="stylesheet" href="/css/admin.css">
+  
 </head>
 <body>
   <div class="adminBody">
@@ -16,6 +17,7 @@
       const error = params.get('error');
       if (error) {
         alert(error);
+        window.location.replace('/admin');
       }
     </script>
 
@@ -30,12 +32,12 @@
           <% }); %>
         </select>
 
-        <label for="estado"><strong>Filtrar</strong> por Estado:</label>
+        <!-- <label for="estado"><strong>Filtrar</strong> por Estado:</label>
         <select name="estado" id="estado">
           <option value="">Todos</option>
           <option value="recibido" <%= (estadoSeleccionado === 'recibido') ? 'selected' : '' %>>Recibido</option>
-          <option value="no_recibido" <%= (estadoSeleccionado === 'no_recibido') ? 'selected' : '' %>>No Recibido</option>
-        </select>
+          <option value="pendiente" <%= (estadoSeleccionado === 'pendiente') ? 'selected' : '' %>>Pendiente</option>
+        </select> -->
 
         <label for="operador"><strong>Filtrar</strong> por Operador:</label>
         <select name="operador" id="operador">
@@ -45,11 +47,11 @@
           <% }); %>
         </select>
         <br>
-        <label for="ordenFecha"><strong>Ordenar</strong> por Fecha:</label>
+        <!-- <label for="ordenFecha"><strong>Ordenar</strong> por Fecha:</label>
         <select name="ordenFecha" id="ordenFecha">
           <option value="asc" <%= (ordenFecha === 'asc') ? 'selected' : '' %>>Fecha (Menor a Mayor)</option>
           <option value="desc" <%= (ordenFecha === 'desc') ? 'selected' : '' %>>Fecha (Mayor a Menor)</option>
-        </select>
+        </select> -->
 
         <button type="submit">Aplicar Filtros</button>
       </div>
@@ -62,9 +64,13 @@
           <tr>
             <th>ID</th>
             <th>Laboratorio</th>
-            <th>Fecha del Pedido</th>
+            <th><button id="toggleFecha" style="background: none; border: none; cursor: pointer;">
+              Fecha del Pedido <span id="fechaIcon"></span>
+            </button></th>
             <th>Proveedor</th>
-            <th>Estado</th>
+            <th><button id="toggleEstado" style="background: none; border: none; cursor: pointer;">
+              Estado
+            </button></th>
             <th>Operador</th>
             <th>Imágenes</th>
             <th>Acciones</th>
@@ -115,5 +121,43 @@
       <p>No hay notas de pedido para mostrar.</p>
     <% } %>
   </div>
+  <script>
+    // Obtener parámetros actuales de la URL
+    let estadoActual = params.get('estado') || ''; // "" es todos
+  
+    // Función para alternar los estados
+    function toggleEstadoFiltro() {
+      if (estadoActual === '') {
+        estadoActual = 'recibido';
+      } else if (estadoActual === 'recibido') {
+        estadoActual = 'pendiente';
+      } else {
+        estadoActual = '';
+      }
+  
+      // Actualizar la URL con el nuevo estado
+      params.set('estado', estadoActual);
+      window.location.search = params.toString();
+    }
+    
+    // Agregar el evento de clic al botón en el encabezado
+    document.getElementById('toggleEstado').addEventListener('click', toggleEstadoFiltro);
+
+    let ordenFecha = params.get('ordenFecha') || 'desc';
+
+    function toggleFechaOrden() {
+      ordenFecha = (ordenFecha === 'asc') ? 'desc' : 'asc';
+      params.set('ordenFecha', ordenFecha);
+      window.location.search = params.toString();
+    }
+
+    document.getElementById('toggleFecha').addEventListener('click', toggleFechaOrden);
+
+    // Actualiza el icono del encabezado basado en el estado actual
+    function actualizarIconoFecha() {
+      const icono = document.getElementById('fechaIcon');
+      icono.textContent = ordenFecha === 'asc' ? '▲' : '▼';
+    }
+  </script>
 </body>
 </html>
