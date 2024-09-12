@@ -22,6 +22,9 @@ function isAuthenticated(req, res, next) {
   res.redirect('/login');
 }
 
+// Ruta para el logout del admin
+router.get('/admin/logout', adminController.adminLogout);
+
 function isAdmin(req, res, next) {
   if (req.session && req.session.user && req.session.user.role === 'admin') {
     return next();

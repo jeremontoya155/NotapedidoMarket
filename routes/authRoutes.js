@@ -32,6 +32,9 @@ function isAdmin(req, res, next) {
   res.redirect('/login');
 }
 
+// Ruta para el logout del admin
+router.get('/admin/logout', adminController.adminLogout);
+
 // Ruta para la vista del admin que muestra todas las notas de pedido
 router.get('/admin', isAuthenticated, isAdmin, adminController.getAdminDashboard);
 

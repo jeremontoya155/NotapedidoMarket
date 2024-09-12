@@ -119,6 +119,19 @@ exports.processExcel = async (req, res) => {
   }
 };
 
+// Función de logout para el comprador
+exports.buyerLogout = (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error al cerrar la sesión del comprador:', err);
+      return res.redirect('/buyer'); // Si hay un error, redirigir al panel de comprador
+    }
+    res.clearCookie('connect.sid'); // Limpiar la cookie de la sesión
+    res.redirect('/login'); // Redirigir a la página de login
+  });
+};
+
+
 // Función para validar si un valor es numérico
 function isValidNumber(value) {
   return !isNaN(value) && value !== null && value !== '';

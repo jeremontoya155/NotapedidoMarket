@@ -21,6 +21,8 @@ router.get('/buyer', compradorController.showBuyerDashboard);
 // Verifica que la función compradorController.processExcel esté definida correctamente
 router.post('/buyer/upload', upload.single('file'), compradorController.processExcel);
 
+// Ruta para el logout del comprador
+router.get('/buyer/logout', compradorController.buyerLogout);
 
 
 module.exports = router;

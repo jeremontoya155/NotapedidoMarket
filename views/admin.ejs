@@ -9,6 +9,9 @@
 
 </head>
 <body>
+  
+<a href="/admin/logout" style="display: inline-block; padding: 10px 20px; background-color: red; color: black; text-decoration: none; border: 2px solid black; border-radius: 5px; font-weight: bold;">Cerrar Sesión</a>
+
   <div class="adminBody">
     <h1>Notas de Pedido</h1>
 
@@ -21,6 +24,7 @@
         window.location.replace('/admin');
       }
     </script>
+
 
     <!-- Formulario para filtrar por proveedor, estado y operador -->
     <form method="GET" action="/admin">
@@ -120,6 +124,8 @@
     <% } else { %>
       <p>No hay notas de pedido para mostrar.</p>
     <% } %>
+
+
   </div>
   <script>
     // Obtener parámetros actuales de la URL

@@ -15,14 +15,40 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+// Función de logout para el administrador
+exports.adminLogout = (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error al cerrar la sesión del administrador:', err);
+      return res.redirect('/admin'); // Si hay un error, redirigir al panel de admin
+    }
+    res.clearCookie('connect.sid'); // Limpiar la cookie de la sesión
+    res.redirect('/login'); // Redirigir a la página de login
+  });
+};
+
+
 exports.getAdminDashboard = async (req, res) => {
   try {
-    const proveedorSeleccionado = req.query.proveedor || '';
-    const estadoSeleccionado = req.query.estado || '';
-    const operadorSeleccionado = req.query.operador || '';
-    const fechaInicio = req.query.fechaInicio || ''; // Fecha de inicio para el rango
-    const fechaFin = req.query.fechaFin || ''; // Fecha de fin para el rango
-    const ordenFecha = req.query.ordenFecha || 'desc'; // Valor predeterminado: de más nuevo a más viejo
+    // Si los filtros no están definidos en la sesión, inicializarlos
+    if (!req.session.filtros) {
+      req.session.filtros = {
+        proveedorSeleccionado: '',
+        estadoSeleccionado: '',
+        operadorSeleccionado: '',
+        fechaInicio: '',
+        fechaFin: '',
+        ordenFecha: 'desc'
+      };
+    }
+
+    // Actualizar los filtros en la sesión si se han enviado nuevos parámetros
+    req.session.filtros.proveedorSeleccionado = req.query.proveedor || req.session.filtros.proveedorSeleccionado;
+    req.session.filtros.estadoSeleccionado = req.query.estado || req.session.filtros.estadoSeleccionado;
+    req.session.filtros.operadorSeleccionado = req.query.operador || req.session.filtros.operadorSeleccionado;
+    req.session.filtros.fechaInicio = req.query.fechaInicio || req.session.filtros.fechaInicio;
+    req.session.filtros.fechaFin = req.query.fechaFin || req.session.filtros.fechaFin;
+    req.session.filtros.ordenFecha = req.query.ordenFecha || req.session.filtros.ordenFecha;
 
     // Consultar todos los proveedores y operadores
     const proveedoresResult = await pool.query('SELECT DISTINCT proveedor FROM nota_de_pedido');
@@ -39,53 +65,48 @@ exports.getAdminDashboard = async (req, res) => {
     `;
     const queryParams = [];
 
-    // Filtrar por proveedor si está seleccionado
-    if (proveedorSeleccionado) {
+    if (req.session.filtros.proveedorSeleccionado) {
       query += ' WHERE proveedor = $1';
-      queryParams.push(proveedorSeleccionado);
+      queryParams.push(req.session.filtros.proveedorSeleccionado);
     }
 
-    // Filtrar por estado si está seleccionado
-    if (estadoSeleccionado) {
+    if (req.session.filtros.estadoSeleccionado) {
       if (queryParams.length > 0) {
         query += ' AND n.estado = $2';
       } else {
         query += ' WHERE n.estado = $1';
       }
-      queryParams.push(estadoSeleccionado);
+      queryParams.push(req.session.filtros.estadoSeleccionado);
     }
 
-    // Filtrar por operador si está seleccionado
-    if (operadorSeleccionado) {
+    if (req.session.filtros.operadorSeleccionado) {
       if (queryParams.length > 0) {
         query += ` AND operador = $${queryParams.length + 1}`;
       } else {
         query += ' WHERE operador = $1';
       }
-      queryParams.push(operadorSeleccionado);
+      queryParams.push(req.session.filtros.operadorSeleccionado);
     }
 
-    // Filtrar por rango de fechas si están seleccionadas
-    if (fechaInicio) {
+    if (req.session.filtros.fechaInicio) {
       if (queryParams.length > 0) {
         query += ' AND n.fecha_pedido >= $' + (queryParams.length + 1);
       } else {
         query += ' WHERE n.fecha_pedido >= $1';
       }
-      queryParams.push(new Date(fechaInicio).toISOString());
+      queryParams.push(new Date(req.session.filtros.fechaInicio).toISOString());
     }
 
-    if (fechaFin) {
+    if (req.session.filtros.fechaFin) {
       if (queryParams.length > 0) {
         query += ' AND n.fecha_pedido <= $' + (queryParams.length + 1);
       } else {
         query += ' WHERE n.fecha_pedido <= $1';
       }
-      queryParams.push(new Date(fechaFin).toISOString());
+      queryParams.push(new Date(req.session.filtros.fechaFin).toISOString());
     }
 
-    // Aplicar el orden por fecha según el valor recibido en el filtro
-    query += ` GROUP BY n.id ORDER BY n.fecha_pedido ${ordenFecha}`;
+    query += ` GROUP BY n.id ORDER BY n.fecha_pedido ${req.session.filtros.ordenFecha}`;
 
     const result = await pool.query(query, queryParams);
     const notas = result.rows;
@@ -94,13 +115,13 @@ exports.getAdminDashboard = async (req, res) => {
     res.render('admin', {
       notas,
       proveedores,
-      operadores, // Agregamos los operadores para pasarlos a la vista
-      proveedorSeleccionado,
-      estadoSeleccionado,
-      operadorSeleccionado, // Enviamos el operador seleccionado a la vista
-      fechaInicio, // Enviar el valor de fechaInicio a la vista
-      fechaFin, // Enviar el valor de fechaFin a la vista
-      ordenFecha // Enviar el valor de ordenFecha a la vista
+      operadores,
+      proveedorSeleccionado: req.session.filtros.proveedorSeleccionado,
+      estadoSeleccionado: req.session.filtros.estadoSeleccionado,
+      operadorSeleccionado: req.session.filtros.operadorSeleccionado,
+      fechaInicio: req.session.filtros.fechaInicio,
+      fechaFin: req.session.filtros.fechaFin,
+      ordenFecha: req.session.filtros.ordenFecha
     });
   } catch (error) {
     console.error('Error al obtener las notas de pedido:', error);
