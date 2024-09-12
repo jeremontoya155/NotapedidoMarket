@@ -66,6 +66,7 @@ exports.processExcel = async (req, res) => {
     let notaDePedidoValues = {
       laboratorio: encabezado[1][6] || null,
       fecha_pedido: fechaActual,  // Usar la fecha y hora actuales
+      // fecha_entrega: encavezado[3][10] || null,
       proveedor: encabezado[2][6] || null,
       direccion: encabezado[3][6] || null,
       fecha_pago: isValidDate(req.body.fecha_pago) ? new Date(req.body.fecha_pago) : null,  // Manejo opcional de la fecha
