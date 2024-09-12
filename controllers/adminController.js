@@ -123,6 +123,7 @@ exports.getNotaDetalles = async (req, res) => {
 };
 
 // Función para generar PDF con todos los valores del encabezado
+// Función para generar PDF con espacio para firmas
 exports.generatePDF = async (req, res) => {
   const notaId = req.params.id;
 
@@ -195,6 +196,13 @@ exports.generatePDF = async (req, res) => {
 
     doc.fontSize(12).text(`Total de Importe: $${totalImporte.toFixed(2)}`, { align: 'right' });
     doc.fontSize(12).text(`Total de Unidades: ${totalUnidades}`, { align: 'right' });
+
+    doc.moveDown(3);
+
+    // Espacio para la firma
+    doc.moveDown(5);
+    doc.fontSize(12).text('_____________________________', 50, doc.y, { align: 'center' });
+    doc.fontSize(12).text('Firma', 50, doc.y + 5, { align: 'center' });
 
     // Finalizar el PDF
     doc.end();
