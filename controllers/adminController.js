@@ -179,7 +179,7 @@ exports.generatePDF = async (req, res) => {
     doc.fontSize(12).text(`CUIT: ${nota.rows[0].cuit}`, { continued: true });
     doc.text(`CUIT Adicional: ${nota.rows[0].cuit_adicional}`, { align: 'right' });
 
-    doc.fontSize(12).text(`Operador: ${nota.rows[0].operador}`, { continued: true });
+    doc.fontSize(12).text(`Comprador: ${nota.rows[0].operador}`, { continued: true });
     doc.text(`Compra: ${nota.rows[0].compra}`, { align: 'right' });
 
     doc.moveDown(2);
