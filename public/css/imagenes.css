@@ -13,6 +13,8 @@
   .carrusel-item {
     flex: 0 0 100%;
     text-align: center;
+    max-height:450px;
+    overflow:hidden;
   }
   
   .carrusel-item img {
