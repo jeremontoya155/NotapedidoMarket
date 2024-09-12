@@ -44,7 +44,7 @@
             <option value="<%= operador %>" <%= (operadorSeleccionado === operador) ? 'selected' : '' %>><%= operador %></option>
           <% }); %>
         </select>
-
+        <br>
         <label for="ordenFecha"><strong>Ordenar</strong> por Fecha:</label>
         <select name="ordenFecha" id="ordenFecha">
           <option value="asc" <%= (ordenFecha === 'asc') ? 'selected' : '' %>>Fecha (Menor a Mayor)</option>

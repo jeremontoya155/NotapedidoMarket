@@ -100,13 +100,14 @@ exports.getNotaDetalles = async (req, res) => {
       SELECT * FROM detalle_nota WHERE nota_id = $1 AND imp_total >= $2 ORDER BY id ASC
     `, [notaId, presupuesto]);
 
-    // Calcular el resumen (total de importe y unidades)
+    // Calcular el resumen (total de importe y cantidad)
     const totalImporte = detalles.rows.reduce((sum, row) => sum + parseFloat(row.imp_total), 0);
-    const totalUnidades = detalles.rows.reduce((sum, row) => sum + parseFloat(row.unidades), 0);
+    const totalUnidades = detalles.rows.reduce((sum, row) => sum + parseFloat(row.cantidad), 0); // Asegúrate que la columna sea "cantidad"
 
     // Ver si la nota está marcada como "actualizada" para permitir subir imagen
     const isActualizada = nota.rows[0].estado === 'actualizada';
 
+    // Renderizar la vista con los datos calculados
     res.render('notaDetalles', {
       nota: nota.rows[0],
       detalles: detalles.rows,
@@ -120,6 +121,7 @@ exports.getNotaDetalles = async (req, res) => {
     res.status(500).send('Error al obtener los detalles de la nota de pedido');
   }
 };
+
 // Función para generar PDF con todos los valores del encabezado
 exports.generatePDF = async (req, res) => {
   const notaId = req.params.id;
