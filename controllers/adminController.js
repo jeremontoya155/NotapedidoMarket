@@ -199,17 +199,20 @@ exports.generatePDF = async (req, res) => {
       .text('Cantidad', 50 + itemWidth, tableTop)
       .text('Importe Total', 50 + itemWidth + cantidadWidth, tableTop);
 
-    // Línea separadora
+    // Línea separadora para el encabezado de la tabla
     doc.moveTo(50, tableTop + 20).lineTo(550, tableTop + 20).stroke();
 
-    // Renderizado de cada detalle de la nota
+    // Renderizado de cada detalle de la nota con líneas separadoras
     let position = tableTop + 30;
     detalles.rows.forEach((detalle, index) => {
-      const y = position + (index * 20);
+      const y = position + (index * 30); // Aumentamos el espacio vertical entre las filas
       doc.fontSize(10)
         .text(detalle.producto, 50, y)
         .text(detalle.cantidad, 50 + itemWidth, y)
         .text(detalle.imp_total, 50 + itemWidth + cantidadWidth, y);
+
+      // Añadir una línea separadora debajo de cada producto
+      doc.moveTo(50, y + 15).lineTo(550, y + 15).stroke();
     });
 
     // Resumen final de la nota
@@ -234,6 +237,7 @@ exports.generatePDF = async (req, res) => {
     res.status(500).send('Error al generar el PDF');
   }
 };
+
 exports.updateNotaEstado = async (req, res) => {
   const notaId = req.params.id;
   const nuevoEstado = req.body.estado;
