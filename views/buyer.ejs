@@ -14,21 +14,7 @@
       }
     };
 
-    // Función para validar las fechas
-    function validateForm() {
-      const fechaPago = document.getElementById('fecha_pago').value;
-
-      if (!isValidDate(fechaPago)) {
-        alert('Por favor, asegúrate de que las fechas son válidas y que el año es 2024.');
-        return false;
-      }
-      return true;
-    }
-
-    function isValidDate(dateString) {
-      const date = new Date(dateString);
-      return !isNaN(date.getTime()) && date.getFullYear() === 2024;
-    }
+  
   </script>
 </head>
 <body>
@@ -42,7 +28,7 @@
         </div>
     
         <div class="form-group">
-          <label for="fecha_pago">Fecha de Pago (si es necesario corregir):</label>
+          <label for="fecha_pago">Fecha de Pago (Opcional/solo si es necesario corregir):</label>
           <input type="date" id="fecha_pago" name="fecha_pago" class="form-input">
         </div>
     

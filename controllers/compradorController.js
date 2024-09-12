@@ -8,7 +8,7 @@ exports.showBuyerDashboard = (req, res) => {
   res.render('buyer');
 };
 
-// Función para eliminar archivos antiguos
+// Función para eliminar solo archivos antiguos con extensión .xlsx o .xls
 function eliminarArchivosAntiguos() {
   const uploadsDir = path.join(__dirname, '../uploads');
   fs.readdir(uploadsDir, (err, files) => {
@@ -17,14 +17,17 @@ function eliminarArchivosAntiguos() {
       return;
     }
     files.forEach((file) => {
-      const filePath = path.join(uploadsDir, file);
-      fs.unlink(filePath, (err) => {
-        if (err) {
-          console.error('Error al eliminar archivo:', err);
-        } else {
-          console.log(`Archivo eliminado: ${filePath}`);
-        }
-      });
+      // Eliminar solo los archivos .xlsx o .xls
+      if (file.endsWith('.xlsx') || file.endsWith('.xls')) {
+        const filePath = path.join(uploadsDir, file);
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.error('Error al eliminar archivo:', err);
+          } else {
+            console.log(`Archivo eliminado: ${filePath}`);
+          }
+        });
+      }
     });
   });
 }
@@ -59,13 +62,13 @@ exports.processExcel = async (req, res) => {
     // Generar la fecha actual como la fecha del pedido
     const fechaActual = new Date();
 
-    // Extraer los valores del encabezado
+    // Extraer los valores del encabezado y manejar la fecha de pago como opcional
     let notaDePedidoValues = {
       laboratorio: encabezado[1][6] || null,
       fecha_pedido: fechaActual,  // Usar la fecha y hora actuales
       proveedor: encabezado[2][6] || null,
       direccion: encabezado[3][6] || null,
-      fecha_pago: isValidDate(req.body.fecha_pago) ? new Date(req.body.fecha_pago) : null,
+      fecha_pago: isValidDate(req.body.fecha_pago) ? new Date(req.body.fecha_pago) : null,  // Manejo opcional de la fecha
       condicion: encabezado[4][10] || null,
       cuit: encabezado[5][1] || null,
       cuit_adicional: encabezado[5][4] || null,
