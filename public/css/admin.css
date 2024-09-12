@@ -199,3 +199,86 @@ table td:hover {
     opacity: 1;
     visibility: visible;
   }
+
+
+  /* Filtros */
+  /* Estilos generales para el formulario */
+.filtroAdmin {
+  display: flex;
+  flex-direction: row wrap;
+  gap: 2rem; /* Espacio entre los elementos del formulario */
+  width:100%;
+}
+.filtroAdmin .filtro-group{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-flow: column wrap;
+}
+.filtroAdmin label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.filtroAdmin select, 
+.filtroAdmin input[type="date"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.filtroAdmin button {
+  background-color: #007c98; /* Color de fondo verde */
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filtroAdmin button:hover {
+  background-color: #39adc7; /* Color de fondo verde más oscuro */
+}
+
+/* Agrupar los filtros de fecha */
+.filtroFechas {
+  display: flex;
+  gap: 1rem; /* Espacio entre los campos de fecha */
+  flex-wrap: wrap;
+}
+
+.filtroFechas label {
+  margin: 0;
+  flex-basis: 25%; /* Ajusta el ancho del label si es necesario */
+}
+
+.filtroFechas input[type="date"] {
+  flex-basis: 30%; /* Ajusta el ancho de los campos de fecha */
+}
+.filtrable button{
+  font-weight: 600;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  width:100%;
+
+}
+.filtrable:hover{
+  background: #b4b4b4;
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .filtroFechas {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .filtroFechas label, 
+  .filtroFechas input[type="date"] {
+    flex-basis: 100%;
+  }
+}

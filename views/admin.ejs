@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Notas de Pedido - Admin</title>
   <link rel="stylesheet" href="/css/admin.css">
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
   <div class="adminBody">
@@ -24,28 +25,34 @@
     <!-- Formulario para filtrar por proveedor, estado y operador -->
     <form method="GET" action="/admin">
       <div class="filtroAdmin">
-        <label for="proveedor"><strong>Filtrar</strong> por Proveedor:</label>
-        <select name="proveedor" id="proveedor">
-          <option value="">Todos</option>
-          <% proveedores.forEach(function(proveedor) { %>
-            <option value="<%= proveedor %>" <%= (proveedorSeleccionado === proveedor) ? 'selected' : '' %>><%= proveedor %></option>
-          <% }); %>
-        </select>
+        <div class="filtro-group">
+          <label for="proveedor"><strong>Filtrar</strong> por Proveedor:</label>
+          <select name="proveedor" id="proveedor">
+            <option value="">Todos</option>
+            <% proveedores.forEach(function(proveedor) { %>
+              <option value="<%= proveedor %>" <%= (proveedorSeleccionado === proveedor) ? 'selected' : '' %>><%= proveedor %></option>
+            <% }); %>
+          </select>
+        </div>
 
-        <label for="operador"><strong>Filtrar</strong> por Operador:</label>
-        <select name="operador" id="operador">
-          <option value="">Todos</option>
-          <% operadores.forEach(function(operador) { %>
-            <option value="<%= operador %>" <%= (operadorSeleccionado === operador) ? 'selected' : '' %>><%= operador %></option>
-          <% }); %>
-        </select>
-        <br>
+        <div class="filtro-group">
+          <label for="operador"><strong>Filtrar</strong> por Operador:</label>
+          <select name="operador" id="operador">
+            <option value="">Todos</option>
+            <% operadores.forEach(function(operador) { %>
+              <option value="<%= operador %>" <%= (operadorSeleccionado === operador) ? 'selected' : '' %>><%= operador %></option>
+            <% }); %>
+          </select>
+        </div>
+        <div class="filtro-group">
+          <label for="fechaInicio"><strong>Filtrar</strong> desde:</label>
+          <input type="date" id="fechaInicio" name="fechaInicio" value="<%= fechaInicio %>">
+        </div>
+        <div class="filtro-group">
+          <label for="fechaFin"><strong>Filtrar</strong> hasta:</label>
+          <input type="date" id="fechaFin" name="fechaFin" value="<%= fechaFin %>">
+        </div>
 
-        <label for="fechaInicio"><strong>Filtrar</strong> desde:</label>
-        <input type="date" id="fechaInicio" name="fechaInicio" value="<%= fechaInicio %>">
-
-        <label for="fechaFin"><strong>Filtrar</strong> hasta:</label>
-        <input type="date" id="fechaFin" name="fechaFin" value="<%= fechaFin %>">
         <button type="submit">Aplicar Filtros</button>
       </div>
     </form>
@@ -57,12 +64,12 @@
           <tr>
             <th>ID</th>
             <th>Laboratorio</th>
-            <th><button id="toggleFecha" style="background: none; border: none; cursor: pointer;">
-              Fecha del Pedido <span id="fechaIcon"></span>
+            <th class="filtrable"><button id="toggleFecha" style="background: none; border: none; cursor: pointer;">
+              Fecha del Pedido <i class="fa-solid fa-filter"></i> <span id="fechaIcon"></span>
             </button></th>
             <th>Proveedor</th>
-            <th><button id="toggleEstado" style="background: none; border: none; cursor: pointer;">
-              Estado
+            <th class="filtrable"><button id="toggleEstado" style="background: none; border: none; cursor: pointer;">
+              Estado <i class="fa-solid fa-filter"></i>
             </button></th>
             <th>Operador</th>
             <th>Imágenes</th>
@@ -95,11 +102,11 @@
                 </form>
               </td>
               <td><%= nota.operador %></td>
-              <td>
+              <td >
                 <% if (nota.total_imagenes > 0) { %>
                   <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: green;">Ver Imágenes</a>
                 <% } else { %>
-                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: red;">Sin Imágenes</a>
+                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: red;">Cargar Imágenes</a>
                 <% } %>
               </td>
               <td>
