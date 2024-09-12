@@ -16,16 +16,17 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Obtener todas las notas de pedido para la vista del admin
-// Obtener todas las notas de pedido para la vista del admin
 exports.getAdminDashboard = async (req, res) => {
   try {
     const proveedorSeleccionado = req.query.proveedor || '';
+    const estadoSeleccionado = req.query.estado || '';
+    const ordenFecha = req.query.ordenFecha || 'desc'; // Valor predeterminado: de más nuevo a más viejo
 
     // Consultar todos los proveedores
     const proveedoresResult = await pool.query('SELECT DISTINCT proveedor FROM nota_de_pedido');
     const proveedores = proveedoresResult.rows.map(row => row.proveedor);
 
-    // Si hay un proveedor seleccionado, filtrar las notas de pedido por ese proveedor
+    // Construir la consulta SQL con los filtros aplicados
     let query = `
       SELECT n.*, COUNT(i.id) as total_imagenes
       FROM nota_de_pedido n
@@ -38,10 +39,18 @@ exports.getAdminDashboard = async (req, res) => {
       queryParams.push(proveedorSeleccionado);
     }
 
-    // Ordenar las notas de pedido por fecha, de más nuevo a más viejo
-    query += ' GROUP BY n.id ORDER BY n.fecha_pedido DESC';
+    if (estadoSeleccionado) {
+      if (queryParams.length > 0) {
+        query += ' AND n.estado = $2';
+      } else {
+        query += ' WHERE n.estado = $1';
+      }
+      queryParams.push(estadoSeleccionado);
+    }
 
-    // Consultar las notas de pedido con el filtro aplicado
+    // Aplicar el orden por fecha según el valor recibido en el filtro
+    query += ` GROUP BY n.id ORDER BY n.fecha_pedido ${ordenFecha}`;
+
     const result = await pool.query(query, queryParams);
     const notas = result.rows;
 
@@ -49,14 +58,15 @@ exports.getAdminDashboard = async (req, res) => {
     res.render('admin', {
       notas,
       proveedores,
-      proveedorSeleccionado // Enviar el proveedor seleccionado a la vista para mantener el filtro
+      proveedorSeleccionado,
+      estadoSeleccionado,
+      ordenFecha // Enviar el valor de ordenFecha a la vista
     });
   } catch (error) {
     console.error('Error al obtener las notas de pedido:', error);
     res.status(500).send('Error al obtener las notas de pedido');
   }
 };
-
 
 // Obtener los detalles de la nota de pedido
 exports.getNotaDetalles = async (req, res) => {

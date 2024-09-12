@@ -1,96 +1,109 @@
-  <!DOCTYPE html>
-  <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notas de Pedido - Admin</title>
-    <link rel="stylesheet" href="/css/admin.css">
-  </head>
-  <body>
-    <div class="adminBody">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notas de Pedido - Admin</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <div class="adminBody">
+    <h1>Notas de Pedido</h1>
 
-      <h1>Notas de Pedido</h1>
+    <!-- Mostrar alerta si hay un error -->
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const error = params.get('error');
+      if (error) {
+        alert(error);
+      }
+    </script>
 
-      <!-- Mostrar alerta si hay un error -->
-      <script>
-        const params = new URLSearchParams(window.location.search);
-        const error = params.get('error');
-        if (error) {
-          alert(error);
-        }
-      </script>
+    <!-- Formulario para filtrar por proveedor y estado -->
+    <form method="GET" action="/admin">
+      <div class="filtroAdmin">
+        <label for="proveedor"><strong>Filtrar</strong> por Proveedor:</label>
+        <select name="proveedor" id="proveedor">
+          <option value="">Todos</option>
+          <% proveedores.forEach(function(proveedor) { %>
+            <option value="<%= proveedor %>" <%= (proveedorSeleccionado === proveedor) ? 'selected' : '' %>><%= proveedor %></option>
+          <% }); %>
+        </select>
 
-      <!-- Formulario para filtrar por proveedor -->
-      <form method="GET" action="/admin">
-        <div class="filtroAdmin">
-          <label for="proveedor"><strong>Filtrar</strong> por Proveedor:</label>
-          <select name="proveedor" id="proveedor">
-            <option value="">Todos</option>
-            <% proveedores.forEach(function(proveedor) { %>
-              <option value="<%= proveedor %>" <%= (proveedorSeleccionado === proveedor) ? 'selected' : '' %>><%= proveedor %></option>
-            <% }); %>
-          </select>
-          <button type="submit">Filtrar</button>
-        </div>
-      </form>
+        <label for="estado"><strong>Filtrar</strong> por Estado:</label>
+        <select name="estado" id="estado">
+          <option value="">Todos</option>
+          <option value="recibido" <%= (estadoSeleccionado === 'recibido') ? 'selected' : '' %>>Recibido</option>
+          <option value="no_recibido" <%= (estadoSeleccionado === 'no_recibido') ? 'selected' : '' %>>No Recibido</option>
+        </select>
 
-      <% if (notas && notas.length > 0) { %>
-        <table border="0">
-          <thead>
+        <label for="ordenFecha"><strong>Ordenar</strong> por Fecha:</label>
+        <select name="ordenFecha" id="ordenFecha">
+          <option value="asc" <%= (ordenFecha === 'asc') ? 'selected' : '' %>>Fecha (Menor a Mayor)</option>
+          <option value="desc" <%= (ordenFecha === 'desc') ? 'selected' : '' %>>Fecha (Mayor a Menor)</option>
+        </select>
+
+        <button type="submit">Aplicar Filtros</button>
+      </div>
+    </form>
+
+    <!-- Tabla de notas de pedido -->
+    <% if (notas && notas.length > 0) { %>
+      <table border="0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Laboratorio</th>
+            <th>Fecha del Pedido</th>
+            <th>Proveedor</th>
+            <th>Estado</th>
+            <th>Imágenes</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% notas.forEach(function(nota) { %>
             <tr>
-              <th>ID</th>
-              <th>Laboratorio</th>
-              <th>Fecha del Pedido</th>
-              <th>Proveedor</th>
-              <th>Estado</th>
-              <th>Imágenes</th>
-              <th>Acciones</th>
+              <td><%= nota.id %></td>
+              <td><%= nota.laboratorio %></td>
+              <td>
+                <%= new Date(nota.fecha_pedido).toLocaleDateString('es-ES', {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric'
+                }) %>
+              </td>
+              <td><%= nota.proveedor %></td>
+              <td>
+                <form action="/admin/nota/<%= nota.id %>/estado" method="POST" class="estado-form">
+                  <input type="checkbox" id="estado-<%= nota.id %>" name="estado" value="recibido" 
+                        class="estado-toggle"
+                        <%= nota.estado === 'recibido' ? 'checked disabled' : '' %> 
+                        <%= nota.total_imagenes === 0 ? 'disabled' : '' %> 
+                        onchange="this.form.submit()">
+                  <label for="estado-<%= nota.id %>" class="estado-btn" data-hover="Marcar como recibido">
+                    <span class="estado-text"><%= nota.estado %></span>
+                  </label>
+                </form>
+              </td>
+              <td>
+                <% if (nota.total_imagenes > 0) { %>
+                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: green;">Ver Imágenes (Cargadas)</a>
+                <% } else { %>
+                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: red;">Subir Imágenes</a>
+                <% } %>
+              </td>
+              <td>
+                <a class="detalles" href="/admin/nota/<%= nota.id %>">Ver Detalles</a> |
+                <a class="descargar" href="/admin/nota/<%= nota.id %>/pdf" target="_blank">Descargar PDF</a>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            <% notas.forEach(function(nota) { %>
-              <tr>
-                <td><%= nota.id %></td>
-                <td><%= nota.laboratorio %></td>
-                <td>
-                  <%= new Date(nota.fecha_pedido).toLocaleDateString('es-ES', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric'
-                  }) %>
-                </td>
-                <td><%= nota.proveedor %></td>
-                <td>
-                  <form action="/admin/nota/<%= nota.id %>/estado" method="POST" class="estado-form">
-                    <input type="checkbox" id="estado-<%= nota.id %>" name="estado" value="recibido" 
-                          class="estado-toggle"
-                          <%= nota.estado === 'recibido' ? 'checked disabled' : '' %> 
-                          <%= nota.total_imagenes === 0 ? 'disabled' : '' %> 
-                          onchange="this.form.submit()">
-                    <label for="estado-<%= nota.id %>" class="estado-btn" data-hover="Marcar como recibido">
-                      <span class="estado-text"><%= nota.estado %></span>
-                    </label>
-                  </form>
-                </td>
-                
-                <td>
-                  <% if (nota.total_imagenes > 0) { %>
-                    <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: green;">Ver Imágenes (Cargadas)</a>
-                  <% } else { %>
-                    <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: red;">Subir Imágenes</a>
-                  <% } %>
-                </td>
-                <td>
-                  <a class="detalles" href="/admin/nota/<%= nota.id %>">Ver Detalles</a> |
-                  <a class="descargar" href="/admin/nota/<%= nota.id %>/pdf" target="_blank">Descargar PDF</a>
-                </td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      <% } else { %>
-        <p>No hay notas de pedido para mostrar.</p>
-      <% } %>
-    </div>
-  </body>
-  </html>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>No hay notas de pedido para mostrar.</p>
+    <% } %>
+  </div>
+</body>
+</html>
