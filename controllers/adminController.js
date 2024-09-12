@@ -15,16 +15,19 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Obtener todas las notas de pedido para la vista del admin
 exports.getAdminDashboard = async (req, res) => {
   try {
     const proveedorSeleccionado = req.query.proveedor || '';
     const estadoSeleccionado = req.query.estado || '';
+    const operadorSeleccionado = req.query.operador || '';
     const ordenFecha = req.query.ordenFecha || 'desc'; // Valor predeterminado: de más nuevo a más viejo
 
-    // Consultar todos los proveedores
+    // Consultar todos los proveedores y operadores
     const proveedoresResult = await pool.query('SELECT DISTINCT proveedor FROM nota_de_pedido');
     const proveedores = proveedoresResult.rows.map(row => row.proveedor);
+
+    const operadoresResult = await pool.query('SELECT DISTINCT operador FROM nota_de_pedido');
+    const operadores = operadoresResult.rows.map(row => row.operador);
 
     // Construir la consulta SQL con los filtros aplicados
     let query = `
@@ -34,11 +37,13 @@ exports.getAdminDashboard = async (req, res) => {
     `;
     const queryParams = [];
 
+    // Filtrar por proveedor si está seleccionado
     if (proveedorSeleccionado) {
       query += ' WHERE proveedor = $1';
       queryParams.push(proveedorSeleccionado);
     }
 
+    // Filtrar por estado si está seleccionado
     if (estadoSeleccionado) {
       if (queryParams.length > 0) {
         query += ' AND n.estado = $2';
@@ -46,6 +51,16 @@ exports.getAdminDashboard = async (req, res) => {
         query += ' WHERE n.estado = $1';
       }
       queryParams.push(estadoSeleccionado);
+    }
+
+    // Filtrar por operador si está seleccionado
+    if (operadorSeleccionado) {
+      if (queryParams.length > 0) {
+        query += ` AND operador = $${queryParams.length + 1}`;
+      } else {
+        query += ' WHERE operador = $1';
+      }
+      queryParams.push(operadorSeleccionado);
     }
 
     // Aplicar el orden por fecha según el valor recibido en el filtro
@@ -58,8 +73,10 @@ exports.getAdminDashboard = async (req, res) => {
     res.render('admin', {
       notas,
       proveedores,
+      operadores, // Agregamos los operadores para pasarlos a la vista
       proveedorSeleccionado,
       estadoSeleccionado,
+      operadorSeleccionado, // Enviamos el operador seleccionado a la vista
       ordenFecha // Enviar el valor de ordenFecha a la vista
     });
   } catch (error) {
@@ -67,6 +84,7 @@ exports.getAdminDashboard = async (req, res) => {
     res.status(500).send('Error al obtener las notas de pedido');
   }
 };
+
 
 // Obtener los detalles de la nota de pedido
 exports.getNotaDetalles = async (req, res) => {

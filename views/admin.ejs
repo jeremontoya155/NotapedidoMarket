@@ -19,7 +19,7 @@
       }
     </script>
 
-    <!-- Formulario para filtrar por proveedor y estado -->
+    <!-- Formulario para filtrar por proveedor, estado y operador -->
     <form method="GET" action="/admin">
       <div class="filtroAdmin">
         <label for="proveedor"><strong>Filtrar</strong> por Proveedor:</label>
@@ -35,6 +35,14 @@
           <option value="">Todos</option>
           <option value="recibido" <%= (estadoSeleccionado === 'recibido') ? 'selected' : '' %>>Recibido</option>
           <option value="no_recibido" <%= (estadoSeleccionado === 'no_recibido') ? 'selected' : '' %>>No Recibido</option>
+        </select>
+
+        <label for="operador"><strong>Filtrar</strong> por Operador:</label>
+        <select name="operador" id="operador">
+          <option value="">Todos</option>
+          <% operadores.forEach(function(operador) { %>
+            <option value="<%= operador %>" <%= (operadorSeleccionado === operador) ? 'selected' : '' %>><%= operador %></option>
+          <% }); %>
         </select>
 
         <label for="ordenFecha"><strong>Ordenar</strong> por Fecha:</label>
@@ -57,6 +65,7 @@
             <th>Fecha del Pedido</th>
             <th>Proveedor</th>
             <th>Estado</th>
+            <th>Operador</th>
             <th>Imágenes</th>
             <th>Acciones</th>
           </tr>
@@ -86,6 +95,7 @@
                   </label>
                 </form>
               </td>
+              <td><%= nota.operador %></td>
               <td>
                 <% if (nota.total_imagenes > 0) { %>
                   <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: green;">Ver Imágenes (Cargadas)</a>
