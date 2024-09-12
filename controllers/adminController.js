@@ -134,36 +134,67 @@ exports.generatePDF = async (req, res) => {
     const detalles = await pool.query('SELECT * FROM detalle_nota WHERE nota_id = $1', [notaId]);
 
     // Crear un documento PDF
-    const doc = new PDFDocument();
+    const doc = new PDFDocument({ margin: 50 });
     const filePath = path.join(__dirname, '../pdfs', `nota_${notaId}.pdf`);
     doc.pipe(res);
 
     // Título y cabecera
-    doc.fontSize(20).text('Detalles de Nota de Pedido', { align: 'center' });
-    doc.moveDown(2);
-
-    // Información del encabezado
-    doc.fontSize(12).text(`Laboratorio/Droguería: ${nota.rows[0].laboratorio}`);
-    doc.text(`Fecha del Pedido: ${nota.rows[0].fecha_pedido}`);
-    doc.text(`Proveedor: ${nota.rows[0].proveedor}`);
-    doc.text(`Dirección: ${nota.rows[0].direccion}`);
-    doc.text(`Fecha de Pago: ${nota.rows[0].fecha_pago}`);
-    doc.text(`Condición: ${nota.rows[0].condicion}`);
-    doc.text(`CUIT: ${nota.rows[0].cuit}`);
-    doc.text(`CUIT Adicional: ${nota.rows[0].cuit_adicional}`);
-    doc.text(`Compra: ${nota.rows[0].compra}`);
-    doc.text(`Operador: ${nota.rows[0].operador}`);
-    doc.text(`Importe: ${nota.rows[0].importe}`);
-    doc.text(`Facturado Total: ${nota.rows[0].facturado_total}`);
-    doc.text(`Unidades: ${nota.rows[0].unidades}`);
-    doc.moveDown(2);
-
-    // Añadir los detalles de la tabla
-    doc.fontSize(12).text('Detalles de productos:');
+    doc.fontSize(20).text('Detalles de Nota de Pedido', { align: 'center', underline: true });
     doc.moveDown(1);
+
+    // Información del encabezado con columnas
+    doc.fontSize(12).text(`Laboratorio/Droguería: ${nota.rows[0].laboratorio}`, { continued: true });
+    doc.text(`Fecha del Pedido: ${new Date(nota.rows[0].fecha_pedido).toLocaleDateString()}`, { align: 'right' });
+
+    doc.fontSize(12).text(`Proveedor: ${nota.rows[0].proveedor}`, { continued: true });
+    doc.text(`Condición: ${nota.rows[0].condicion}`, { align: 'right' });
+
+    doc.fontSize(12).text(`Dirección: ${nota.rows[0].direccion}`, { continued: true });
+    doc.text(`Fecha de Pago: ${new Date(nota.rows[0].fecha_pago).toLocaleDateString()}`, { align: 'right' });
+
+    doc.fontSize(12).text(`CUIT: ${nota.rows[0].cuit}`, { continued: true });
+    doc.text(`CUIT Adicional: ${nota.rows[0].cuit_adicional}`, { align: 'right' });
+
+    doc.fontSize(12).text(`Operador: ${nota.rows[0].operador}`, { continued: true });
+    doc.text(`Compra: ${nota.rows[0].compra}`, { align: 'right' });
+
+    doc.moveDown(2);
+
+    // Añadir detalles de productos con formato de tabla
+    doc.fontSize(14).text('Detalles de productos', { underline: true });
+    doc.moveDown(1);
+
+    // Encabezado de la tabla
+    const tableTop = doc.y;
+    const itemWidth = 200;
+    const cantidadWidth = 100;
+    const totalWidth = 150;
+
+    doc.fontSize(12)
+      .text('Producto', 50, tableTop)
+      .text('Cantidad', 50 + itemWidth, tableTop)
+      .text('Importe Total', 50 + itemWidth + cantidadWidth, tableTop);
+
+    // Línea separadora
+    doc.moveTo(50, tableTop + 20).lineTo(550, tableTop + 20).stroke();
+
+    // Renderizado de cada detalle de la nota
+    let position = tableTop + 30;
     detalles.rows.forEach((detalle, index) => {
-      doc.text(`${index + 1}. Producto: ${detalle.producto}, Cantidad: ${detalle.cantidad}, Importe Total: ${detalle.imp_total}`);
+      const y = position + (index * 20);
+      doc.fontSize(10)
+        .text(detalle.producto, 50, y)
+        .text(detalle.cantidad, 50 + itemWidth, y)
+        .text(detalle.imp_total, 50 + itemWidth + cantidadWidth, y);
     });
+
+    // Resumen final de la nota
+    doc.moveDown(2);
+    const totalImporte = detalles.rows.reduce((sum, row) => sum + parseFloat(row.imp_total), 0);
+    const totalUnidades = detalles.rows.reduce((sum, row) => sum + parseFloat(row.cantidad), 0);
+
+    doc.fontSize(12).text(`Total de Importe: $${totalImporte.toFixed(2)}`, { align: 'right' });
+    doc.fontSize(12).text(`Total de Unidades: ${totalUnidades}`, { align: 'right' });
 
     // Finalizar el PDF
     doc.end();
@@ -172,7 +203,6 @@ exports.generatePDF = async (req, res) => {
     res.status(500).send('Error al generar el PDF');
   }
 };
-
 exports.updateNotaEstado = async (req, res) => {
   const notaId = req.params.id;
   const nuevoEstado = req.body.estado;
