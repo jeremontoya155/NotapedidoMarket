@@ -32,13 +32,6 @@
           <% }); %>
         </select>
 
-        <!-- <label for="estado"><strong>Filtrar</strong> por Estado:</label>
-        <select name="estado" id="estado">
-          <option value="">Todos</option>
-          <option value="recibido" <%= (estadoSeleccionado === 'recibido') ? 'selected' : '' %>>Recibido</option>
-          <option value="pendiente" <%= (estadoSeleccionado === 'pendiente') ? 'selected' : '' %>>Pendiente</option>
-        </select> -->
-
         <label for="operador"><strong>Filtrar</strong> por Operador:</label>
         <select name="operador" id="operador">
           <option value="">Todos</option>
@@ -47,12 +40,12 @@
           <% }); %>
         </select>
         <br>
-        <!-- <label for="ordenFecha"><strong>Ordenar</strong> por Fecha:</label>
-        <select name="ordenFecha" id="ordenFecha">
-          <option value="asc" <%= (ordenFecha === 'asc') ? 'selected' : '' %>>Fecha (Menor a Mayor)</option>
-          <option value="desc" <%= (ordenFecha === 'desc') ? 'selected' : '' %>>Fecha (Mayor a Menor)</option>
-        </select> -->
 
+        <label for="fechaInicio"><strong>Filtrar</strong> desde:</label>
+        <input type="date" id="fechaInicio" name="fechaInicio" value="<%= fechaInicio %>">
+
+        <label for="fechaFin"><strong>Filtrar</strong> hasta:</label>
+        <input type="date" id="fechaFin" name="fechaFin" value="<%= fechaFin %>">
         <button type="submit">Aplicar Filtros</button>
       </div>
     </form>
@@ -104,9 +97,9 @@
               <td><%= nota.operador %></td>
               <td>
                 <% if (nota.total_imagenes > 0) { %>
-                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: green;">Ver Imágenes (Cargadas)</a>
+                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: green;">Ver Imágenes</a>
                 <% } else { %>
-                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: red;">Subir Imágenes</a>
+                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: red;">Sin Imágenes</a>
                 <% } %>
               </td>
               <td>

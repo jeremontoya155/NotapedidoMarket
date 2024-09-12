@@ -20,6 +20,8 @@ exports.getAdminDashboard = async (req, res) => {
     const proveedorSeleccionado = req.query.proveedor || '';
     const estadoSeleccionado = req.query.estado || '';
     const operadorSeleccionado = req.query.operador || '';
+    const fechaInicio = req.query.fechaInicio || ''; // Fecha de inicio para el rango
+    const fechaFin = req.query.fechaFin || ''; // Fecha de fin para el rango
     const ordenFecha = req.query.ordenFecha || 'desc'; // Valor predeterminado: de más nuevo a más viejo
 
     // Consultar todos los proveedores y operadores
@@ -63,6 +65,25 @@ exports.getAdminDashboard = async (req, res) => {
       queryParams.push(operadorSeleccionado);
     }
 
+    // Filtrar por rango de fechas si están seleccionadas
+    if (fechaInicio) {
+      if (queryParams.length > 0) {
+        query += ' AND n.fecha_pedido >= $' + (queryParams.length + 1);
+      } else {
+        query += ' WHERE n.fecha_pedido >= $1';
+      }
+      queryParams.push(new Date(fechaInicio).toISOString());
+    }
+
+    if (fechaFin) {
+      if (queryParams.length > 0) {
+        query += ' AND n.fecha_pedido <= $' + (queryParams.length + 1);
+      } else {
+        query += ' WHERE n.fecha_pedido <= $1';
+      }
+      queryParams.push(new Date(fechaFin).toISOString());
+    }
+
     // Aplicar el orden por fecha según el valor recibido en el filtro
     query += ` GROUP BY n.id ORDER BY n.fecha_pedido ${ordenFecha}`;
 
@@ -77,6 +98,8 @@ exports.getAdminDashboard = async (req, res) => {
       proveedorSeleccionado,
       estadoSeleccionado,
       operadorSeleccionado, // Enviamos el operador seleccionado a la vista
+      fechaInicio, // Enviar el valor de fechaInicio a la vista
+      fechaFin, // Enviar el valor de fechaFin a la vista
       ordenFecha // Enviar el valor de ordenFecha a la vista
     });
   } catch (error) {
