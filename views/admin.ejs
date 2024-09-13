@@ -6,10 +6,9 @@
   <title>Notas de Pedido - Admin</title>
   <link rel="stylesheet" href="/css/admin.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 </head>
 <body>
-  
+
 <a href="/admin/logout" style="display: inline-block; padding: 10px 20px; background-color: red; color: black; text-decoration: none; border: 2px solid black; border-radius: 5px; font-weight: bold;">Cerrar Sesión</a>
 
   <div class="adminBody">
@@ -25,14 +24,13 @@
       }
     </script>
 
-
     <!-- Formulario para filtrar por proveedor, estado y operador -->
     <form method="GET" action="/admin">
       <div class="filtroAdmin">
         <div class="filtro-group">
           <label for="proveedor"><strong>Filtrar</strong> por Proveedor:</label>
           <select name="proveedor" id="proveedor">
-            <option value="">Todos</option>
+            <option value="">Todos</option> <!-- Valor vacío para seleccionar "Todos" -->
             <% proveedores.forEach(function(proveedor) { %>
               <option value="<%= proveedor %>" <%= (proveedorSeleccionado === proveedor) ? 'selected' : '' %>><%= proveedor %></option>
             <% }); %>
@@ -42,7 +40,7 @@
         <div class="filtro-group">
           <label for="operador"><strong>Filtrar</strong> por Comprador:</label>
           <select name="operador" id="operador">
-            <option value="">Todos</option>
+            <option value="">Todos</option> <!-- Valor vacío para seleccionar "Todos" -->
             <% operadores.forEach(function(operador) { %>
               <option value="<%= operador %>" <%= (operadorSeleccionado === operador) ? 'selected' : '' %>><%= operador %></option>
             <% }); %>
@@ -68,13 +66,17 @@
           <tr>
             <th>ID</th>
             <th>Laboratorio</th>
-            <th class="filtrable"><button id="toggleFecha" style="background: none; border: none; cursor: pointer;">
-              Fecha del Pedido <i class="fa-solid fa-filter"></i> <span id="fechaIcon"></span>
-            </button></th>
+            <th class="filtrable">
+              <button id="toggleFecha" style="background: none; border: none; cursor: pointer;">
+                Fecha del Pedido <i class="fa-solid fa-filter"></i> <span id="fechaIcon"></span>
+              </button>
+            </th>
             <th>Proveedor</th>
-            <th class="filtrable"><button id="toggleEstado" style="background: none; border: none; cursor: pointer;">
-              Estado <i class="fa-solid fa-filter"></i>
-            </button></th>
+            <th class="filtrable">
+              <button id="toggleEstado" style="background: none; border: none; cursor: pointer;">
+                Estado <i class="fa-solid fa-filter"></i>
+              </button>
+            </th>
             <th>Comprador</th>
             <th>Imágenes</th>
             <th>Acciones</th>
@@ -125,12 +127,12 @@
       <p>No hay notas de pedido para mostrar.</p>
     <% } %>
 
-
   </div>
   <script>
     // Obtener parámetros actuales de la URL
+    const params = new URLSearchParams(window.location.search);
     let estadoActual = params.get('estado') || ''; // "" es todos
-  
+
     // Función para alternar los estados
     function toggleEstadoFiltro() {
       if (estadoActual === '') {
@@ -164,6 +166,8 @@
       const icono = document.getElementById('fechaIcon');
       icono.textContent = ordenFecha === 'asc' ? '▲' : '▼';
     }
+    
+    actualizarIconoFecha();
   </script>
 </body>
 </html>

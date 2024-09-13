@@ -54,12 +54,14 @@ exports.getAdminDashboard = async (req, res) => {
     }
 
     // Actualizar los filtros en la sesión si se han enviado nuevos parámetros
-    req.session.filtros.proveedorSeleccionado = req.query.proveedor || req.session.filtros.proveedorSeleccionado;
-    req.session.filtros.estadoSeleccionado = req.query.estado || req.session.filtros.estadoSeleccionado;
-    req.session.filtros.operadorSeleccionado = req.query.operador || req.session.filtros.operadorSeleccionado;
-    req.session.filtros.fechaInicio = req.query.fechaInicio || req.session.filtros.fechaInicio;
-    req.session.filtros.fechaFin = req.query.fechaFin || req.session.filtros.fechaFin;
-    req.session.filtros.ordenFecha = req.query.ordenFecha || req.session.filtros.ordenFecha;
+// Actualizar los filtros en la sesión si se han enviado nuevos parámetros
+req.session.filtros.proveedorSeleccionado = (req.query.proveedor === '') ? '' : req.query.proveedor || req.session.filtros.proveedorSeleccionado;
+req.session.filtros.estadoSeleccionado = req.query.estado || req.session.filtros.estadoSeleccionado;
+req.session.filtros.operadorSeleccionado = (req.query.operador === '') ? '' : req.query.operador || req.session.filtros.operadorSeleccionado;
+req.session.filtros.fechaInicio = req.query.fechaInicio || req.session.filtros.fechaInicio;
+req.session.filtros.fechaFin = req.query.fechaFin || req.session.filtros.fechaFin;
+req.session.filtros.ordenFecha = req.query.ordenFecha || req.session.filtros.ordenFecha;
+
 
     // Consultar todos los proveedores y operadores
     const proveedoresResult = await pool.query('SELECT DISTINCT proveedor FROM nota_de_pedido');
@@ -68,56 +70,47 @@ exports.getAdminDashboard = async (req, res) => {
     const operadoresResult = await pool.query('SELECT DISTINCT operador FROM nota_de_pedido');
     const operadores = operadoresResult.rows.map(row => row.operador);
 
-    // Construir la consulta SQL con los filtros aplicados
-    let query = `
-      SELECT n.*, COUNT(i.id) as total_imagenes
-      FROM nota_de_pedido n
-      LEFT JOIN imagenes i ON n.id = i.nota_id
-    `;
-    const queryParams = [];
+// Construir la consulta SQL con los filtros aplicados
+let query = `
+  SELECT n.*, COUNT(i.id) as total_imagenes
+  FROM nota_de_pedido n
+  LEFT JOIN imagenes i ON n.id = i.nota_id
+`;
+const queryParams = [];
+let conditionIndex = 1; // Contador para los parámetros
 
-    if (req.session.filtros.proveedorSeleccionado) {
-      query += ' WHERE proveedor = $1';
-      queryParams.push(req.session.filtros.proveedorSeleccionado);
-    }
+if (req.session.filtros.proveedorSeleccionado) {
+  query += ` WHERE proveedor = $${conditionIndex}`;
+  queryParams.push(req.session.filtros.proveedorSeleccionado);
+  conditionIndex++;
+}
 
-    if (req.session.filtros.estadoSeleccionado) {
-      if (queryParams.length > 0) {
-        query += ' AND n.estado = $2';
-      } else {
-        query += ' WHERE n.estado = $1';
-      }
-      queryParams.push(req.session.filtros.estadoSeleccionado);
-    }
+if (req.session.filtros.estadoSeleccionado) {
+  query += (queryParams.length > 0 ? ' AND' : ' WHERE') + ` n.estado = $${conditionIndex}`;
+  queryParams.push(req.session.filtros.estadoSeleccionado);
+  conditionIndex++;
+}
 
-    if (req.session.filtros.operadorSeleccionado) {
-      if (queryParams.length > 0) {
-        query += ` AND operador = $${queryParams.length + 1}`;
-      } else {
-        query += ' WHERE operador = $1';
-      }
-      queryParams.push(req.session.filtros.operadorSeleccionado);
-    }
+if (req.session.filtros.operadorSeleccionado) {
+  query += (queryParams.length > 0 ? ' AND' : ' WHERE') + ` operador = $${conditionIndex}`;
+  queryParams.push(req.session.filtros.operadorSeleccionado);
+  conditionIndex++;
+}
 
-    if (req.session.filtros.fechaInicio) {
-      if (queryParams.length > 0) {
-        query += ' AND n.fecha_pedido >= $' + (queryParams.length + 1);
-      } else {
-        query += ' WHERE n.fecha_pedido >= $1';
-      }
-      queryParams.push(new Date(req.session.filtros.fechaInicio).toISOString());
-    }
+if (req.session.filtros.fechaInicio) {
+  query += (queryParams.length > 0 ? ' AND' : ' WHERE') + ` n.fecha_pedido >= $${conditionIndex}`;
+  queryParams.push(new Date(req.session.filtros.fechaInicio).toISOString());
+  conditionIndex++;
+}
 
-    if (req.session.filtros.fechaFin) {
-      if (queryParams.length > 0) {
-        query += ' AND n.fecha_pedido <= $' + (queryParams.length + 1);
-      } else {
-        query += ' WHERE n.fecha_pedido <= $1';
-      }
-      queryParams.push(new Date(req.session.filtros.fechaFin).toISOString());
-    }
+if (req.session.filtros.fechaFin) {
+  query += (queryParams.length > 0 ? ' AND' : ' WHERE') + ` n.fecha_pedido <= $${conditionIndex}`;
+  queryParams.push(new Date(req.session.filtros.fechaFin).toISOString());
+  conditionIndex++;
+}
 
-    query += ` GROUP BY n.id ORDER BY n.fecha_pedido ${req.session.filtros.ordenFecha}`;
+query += ` GROUP BY n.id ORDER BY n.fecha_pedido ${req.session.filtros.ordenFecha}`;
+
 
     const result = await pool.query(query, queryParams);
     const notas = result.rows;
