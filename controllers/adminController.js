@@ -2,6 +2,17 @@ const pool = require('../db');
 const path = require('path');
 const PDFDocument = require('pdfkit');
 const multer = require('multer');
+const fs = require('fs');
+
+const cloudinary = require('cloudinary').v2;
+require('dotenv').config();
+
+// Configurar Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 // Configuración de Multer para manejar la subida de imágenes
 const storage = multer.diskStorage({
@@ -304,16 +315,32 @@ exports.updateNota = async (req, res) => {
 };
 
 // Subir una imagen para la nota de pedido
+// Subir una imagen para la nota de pedido usando Cloudinary
+// Subir una imagen para la nota de pedido usando Cloudinary
 exports.uploadImage = async (req, res) => {
   const notaId = req.params.id;
-  const imagenPath = req.file ? `/uploads/${req.file.filename}` : null;
-
   try {
-    // Verificar si la nota está en estado "actualizada"
-    const nota = await pool.query('SELECT * FROM nota_de_pedido WHERE id = $1', [notaId]);
+    if (req.file) {
+      // Subir la imagen a Cloudinary
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: 'notas_pedido', // Carpeta en Cloudinary
+      });
 
-    if (nota.rows[0].estado === 'actualizada' && imagenPath) {
-      await pool.query('UPDATE nota_de_pedido SET imagen = $1 WHERE id = $2', [imagenPath, notaId]);
+      const imagenPath = result.secure_url; // URL segura de la imagen
+
+      // Verificar si la nota está en estado "actualizada"
+      const nota = await pool.query('SELECT * FROM nota_de_pedido WHERE id = $1', [notaId]);
+
+      if (nota.rows[0].estado === 'actualizada') {
+        await pool.query('UPDATE nota_de_pedido SET imagen = $1 WHERE id = $2', [imagenPath, notaId]);
+      }
+
+      // Eliminar el archivo local después de subir a Cloudinary
+      fs.unlink(req.file.path, (err) => {
+        if (err) {
+          console.error('Error al eliminar el archivo local:', err);
+        }
+      });
     }
     res.redirect(`/admin/nota/${notaId}`);
   } catch (error) {
@@ -321,6 +348,8 @@ exports.uploadImage = async (req, res) => {
     res.status(500).send('Error al subir la imagen');
   }
 };
+
+
 
 
 
@@ -366,22 +395,36 @@ exports.getNotaImagenes = async (req, res) => {
 };
 
 // Función para subir una nueva imagen
+// Función para subir una nueva imagen a Cloudinary
+// Función para subir una nueva imagen a Cloudinary
 exports.postNotaImagen = async (req, res) => {
   const notaId = req.params.id;
   const aclaracion = req.body.aclaracion || '';
 
   try {
-    // Guardar la imagen en el sistema de archivos
-    const file = req.file;
-    const ruta = `/uploads/${file.filename}`;
+    if (req.file) {
+      // Subir la imagen a Cloudinary
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: 'notas_pedido',
+      });
 
-    // Insertar la imagen en la base de datos
-    await pool.query(`
-      INSERT INTO imagenes (nota_id, ruta, aclaracion)
-      VALUES ($1, $2, $3)
-    `, [notaId, ruta, aclaracion]);
+      const ruta = result.secure_url; // URL de la imagen en Cloudinary
 
-    res.redirect(`/admin/nota/${notaId}/imagenes`);
+      // Insertar la imagen en la base de datos
+      await pool.query(`
+        INSERT INTO imagenes (nota_id, ruta, aclaracion)
+        VALUES ($1, $2, $3)
+      `, [notaId, ruta, aclaracion]);
+
+      // Eliminar el archivo local después de subir a Cloudinary
+      fs.unlink(req.file.path, (err) => {
+        if (err) {
+          console.error('Error al eliminar el archivo local:', err);
+        }
+      });
+
+      res.redirect(`/admin/nota/${notaId}/imagenes`);
+    }
   } catch (error) {
     console.error('Error al subir la imagen:', error);
     res.status(500).send('Error al subir la imagen');

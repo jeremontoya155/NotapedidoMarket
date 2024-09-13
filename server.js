@@ -3,10 +3,18 @@ const express = require('express');
 const session = require('express-session');
 const pg = require('pg');
 const path = require('path');
+const cloudinary = require('cloudinary').v2; // Integración de Cloudinary
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Sirve la carpeta 'uploads' de forma pública
+// Configurar Cloudinary con las variables de entorno
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+// Sirve la carpeta 'uploads' de forma pública (puedes quitar esto si solo usas Cloudinary)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -17,10 +25,10 @@ const pool = new pg.Pool({
 
 // Configuración de sesiones
 app.use(session({
-  secret: 'mi_secreto', // Cambia esto a un secreto seguro
+  secret: process.env.SESSION_SECRET || 'mi_secreto', // Usa una variable de entorno para el secreto de la sesión
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false }, // Cambiar a true en producción con HTTPS
+  cookie: { secure: false }, // Cambia a true en producción con HTTPS
 }));
 
 // Configuración de EJS y la carpeta de vistas
@@ -50,7 +58,7 @@ function isAdmin(req, res, next) {
 // Rutas
 const authRoutes = require('./routes/authRoutes'); // Rutas de autenticación
 const compradorRoutes = require('./routes/compradorRoutes'); // Rutas del comprador
-const adminRoutes = require('./routes/adminRoutes');
+const adminRoutes = require('./routes/adminRoutes'); // Rutas del admin
 
 // Rutas de administración protegidas por autenticación y rol de admin
 app.use('/admin', isAuthenticated, isAdmin, adminRoutes);
