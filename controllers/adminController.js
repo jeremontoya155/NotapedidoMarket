@@ -171,7 +171,7 @@ exports.getNotaDetalles = async (req, res) => {
 };
 
 // Función para generar PDF con todos los valores del encabezado
-// Función para generar PDF con espacio para firmas
+
 exports.generatePDF = async (req, res) => {
   const notaId = req.params.id;
 
@@ -187,6 +187,16 @@ exports.generatePDF = async (req, res) => {
     const filePath = path.join(__dirname, '../pdfs', `nota_${notaId}.pdf`);
     doc.pipe(res);
 
+    // Determinar el logo a utilizar en base al tipo de nota
+    const tipoNota = req.query.tipo || 'super'; // Supón que pasas 'super' o 'farmacia' en la query
+    const logoPath = tipoNota === 'farmacia' 
+      ? path.join(__dirname, '../public/img/logo_Farmacia.png') 
+      : path.join(__dirname, '../public/img/logo_Super.png');
+
+    // Añadir el logo al PDF
+    doc.image(logoPath, 50, 20, { width: 100 }); // Ajusta las coordenadas y el tamaño según tus necesidades
+    doc.moveDown(1);
+
     // Título y cabecera
     doc.fontSize(20).text('Detalles de Nota de Pedido', { align: 'center', underline: true });
     doc.moveDown(1);
@@ -197,9 +207,6 @@ exports.generatePDF = async (req, res) => {
 
     doc.fontSize(12).text(`Proveedor: ${nota.rows[0].proveedor}`, { continued: true });
     doc.text(`Condición: ${nota.rows[0].condicion}`, { align: 'right' });
-
-    // doc.fontSize(12).text(`Dirección: ${nota.rows[0].direccion}`, { continued: true });
-    // doc.text(`Fecha de Pago: ${new Date(nota.rows[0].fecha_pago).toLocaleDateString()}`, { align: 'right' });
 
     doc.fontSize(12).text(`CUIT: ${nota.rows[0].cuit}`, { continued: true });
     doc.text(`CUIT Adicional: ${nota.rows[0].cuit_adicional}`, { align: 'right' });

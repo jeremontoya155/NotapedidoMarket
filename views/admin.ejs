@@ -117,8 +117,9 @@
               </td>
               <td>
                 <a class="detalles" href="/admin/nota/<%= nota.id %>">Ver Detalles</a> |
-                <a class="descargar" href="/admin/nota/<%= nota.id %>/pdf" target="_blank">Descargar PDF</a>
+                <button class="descargar" onclick="mostrarOpcionesPDF(<%= nota.id %>)">Descargar PDF</button>
               </td>
+              
             </tr>
           <% }); %>
         </tbody>
@@ -128,6 +129,17 @@
     <% } %>
 
   </div>
+  <!-- Modal para elegir tipo de PDF -->
+<div id="modalPDF" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+  <div style="background-color: #fff; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 300px; text-align: center;">
+    <h2>Selecciona el tipo de PDF</h2>
+    <button onclick="generarPDF('farmacia')" style="margin: 10px; padding: 10px 20px;">Farmacia</button>
+    <button onclick="generarPDF('super')" style="margin: 10px; padding: 10px 20px;">Supermercado</button>
+    <br><br>
+    <button onclick="cerrarModal()" style="margin: 10px; padding: 5px 10px; background-color: red; color: white;">Cancelar</button>
+  </div>
+</div>
+
   <script>
     // Obtener parámetros actuales de la URL
     const params = new URLSearchParams(window.location.search);
@@ -169,5 +181,26 @@
     
     actualizarIconoFecha();
   </script>
+ <script>
+  // Mostrar el modal para elegir el tipo de PDF
+  function mostrarOpcionesPDF(notaId) {
+    document.getElementById('modalPDF').style.display = 'block';
+    window.selectedNotaId = notaId; // Guardamos la ID de la nota seleccionada
+  }
+
+  // Ocultar el modal
+  function cerrarModal() {
+    document.getElementById('modalPDF').style.display = 'none';
+  }
+
+  // Redirigir según la elección
+  function generarPDF(tipoNota) {
+    const notaId = window.selectedNotaId;
+    window.location.href = `/admin/nota/${notaId}/pdf?tipo=${tipoNota}`;
+    cerrarModal(); // Cerrar el modal después de elegir
+  }
+</script>
+
+  
 </body>
 </html>
