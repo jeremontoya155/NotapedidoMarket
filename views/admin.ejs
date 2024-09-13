@@ -108,9 +108,9 @@
               <td><%= nota.operador %></td>
               <td >
                 <% if (nota.total_imagenes > 0) { %>
-                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: green;">Ver Imágenes</a>
+                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: green; text-decoration: none;">Ver Imágenes</a>
                 <% } else { %>
-                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: red;">Cargar Imágenes</a>
+                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: red;text-decoration:  none;">Cargar Imágenes</a>
                 <% } %>
               </td>
               <td>

@@ -205,8 +205,8 @@ exports.generatePDF = async (req, res) => {
     doc.fontSize(12).text(`Proveedor: ${nota.rows[0].proveedor}`, { continued: true });
     doc.text(`Condición: ${nota.rows[0].condicion}`, { align: 'right' });
 
-    doc.fontSize(12).text(`Dirección: ${nota.rows[0].direccion}`, { continued: true });
-    doc.text(`Fecha de Pago: ${new Date(nota.rows[0].fecha_pago).toLocaleDateString()}`, { align: 'right' });
+    // doc.fontSize(12).text(`Dirección: ${nota.rows[0].direccion}`, { continued: true });
+    // doc.text(`Fecha de Pago: ${new Date(nota.rows[0].fecha_pago).toLocaleDateString()}`, { align: 'right' });
 
     doc.fontSize(12).text(`CUIT: ${nota.rows[0].cuit}`, { continued: true });
     doc.text(`CUIT Adicional: ${nota.rows[0].cuit_adicional}`, { align: 'right' });
