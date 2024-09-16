@@ -16,7 +16,7 @@ cloudinary.config({
 
 // Sirve la carpeta 'uploads' de forma pública (puedes quitar esto si solo usas Cloudinary)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Configuración de la base de datos
 const pool = new pg.Pool({
@@ -35,7 +35,8 @@ app.use(session({
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-
+// Archivos estáticos
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 
 // Middleware para verificar si el usuario está autenticado
