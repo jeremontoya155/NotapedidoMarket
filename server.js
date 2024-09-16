@@ -35,8 +35,7 @@ app.use(session({
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-// Archivos estáticos
-app.use(express.static('public'));
+
 app.use(express.urlencoded({ extended: false }));
 
 // Middleware para verificar si el usuario está autenticado
