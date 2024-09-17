@@ -466,3 +466,39 @@ exports.postNotaImagen = async (req, res) => {
     res.status(500).send('Error al subir la imagen');
   }
 };
+
+
+// Eliminar una imagen de la nota de pedido
+exports.deleteNotaImagen = async (req, res) => {
+  const notaId = req.params.id;
+  const imagenId = req.params.imagenId;
+
+  try {
+    // Obtener la imagen de la base de datos para obtener la ruta de Cloudinary
+    const imagenResult = await pool.query('SELECT ruta FROM imagenes WHERE id = $1', [imagenId]);
+    if (imagenResult.rows.length === 0) {
+      return res.status(404).send('Imagen no encontrada');
+    }
+
+    const imagenRuta = imagenResult.rows[0].ruta;
+
+    // Extraer el public_id de Cloudinary a partir de la URL de la imagen
+    const publicId = imagenRuta.split('/').pop().split('.')[0];
+
+    // Eliminar la imagen de Cloudinary
+    await cloudinary.uploader.destroy(`notas_pedido/${publicId}`, (error, result) => {
+      if (error) {
+        console.error('Error al eliminar la imagen de Cloudinary:', error);
+      }
+    });
+
+    // Eliminar la imagen de la base de datos
+    await pool.query('DELETE FROM imagenes WHERE id = $1', [imagenId]);
+
+    // Redirigir a la página de imágenes
+    res.redirect(`/admin/nota/${notaId}/imagenes`);
+  } catch (error) {
+    console.error('Error al eliminar la imagen:', error);
+    res.status(500).send('Error al eliminar la imagen');
+  }
+};

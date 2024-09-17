@@ -5,6 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Imágenes de la Nota de Pedido</title>
   <link rel="stylesheet" href="/css/imagenes.css">
+  <style>
+    /* Estilos adicionales para mejorar la ubicación del botón */
+    .carrusel-item {
+      position: relative;
+      display: inline-block;
+      text-align: center;
+      margin: 10px;
+    }
+
+    .carrusel-img {
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .aclaracion {
+      margin-top: 10px;
+      font-style: italic;
+      color: #555;
+    }
+
+    /* Botón de eliminar como un icono flotante */
+    .btn-eliminar {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      padding: 5px 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn-eliminar:hover {
+      background-color: darkred;
+    }
+  </style>
 </head>
 <body>
   <a href="/admin/logout" style="display: inline-block; padding: 10px 20px; background-color: red; color: black; text-decoration: none; border: 2px solid black; border-radius: 5px; font-weight: bold;">Cerrar Sesión</a>
@@ -18,6 +57,11 @@
             <div class="carrusel-item <%= index === 0 ? 'active' : '' %>">
               <img src="<%= imagen.ruta %>" alt="Imagen de la nota <%= index + 1 %>" class="carrusel-img">
               <p class="aclaracion"><strong>Aclaración:</strong> <%= imagen.aclaracion %></p>
+
+              <!-- Botón para eliminar la imagen -->
+              <form action="/admin/nota/<%= nota.id %>/imagenes/<%= imagen.id %>/eliminar" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta imagen?');">
+                <button type="submit" class="btn-eliminar">Borrar</button>
+              </form>
             </div>
           <% }); %>
         </div>
@@ -53,48 +97,47 @@
   </div>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-  const carrusel = document.querySelector('.carrusel');
-  const items = carrusel.querySelectorAll('.carrusel-item');
-  const prevBtn = document.querySelector('.prev');
-  const nextBtn = document.querySelector('.next');
-  const images = document.querySelectorAll('.carrusel-img');  // Selecciona todas las imágenes
-  let currentIndex = 0;
+      const carrusel = document.querySelector('.carrusel');
+      const items = carrusel.querySelectorAll('.carrusel-item');
+      const prevBtn = document.querySelector('.prev');
+      const nextBtn = document.querySelector('.next');
+      const images = document.querySelectorAll('.carrusel-img');  // Selecciona todas las imágenes
+      let currentIndex = 0;
 
-  function showItem(index) {
-    if (index < 0) index = items.length - 1;
-    if (index >= items.length) index = 0;
-    carrusel.style.transform = `translateX(-${index * 100}%)`;
-    currentIndex = index;
-  }
+      function showItem(index) {
+        if (index < 0) index = items.length - 1;
+        if (index >= items.length) index = 0;
+        carrusel.style.transform = `translateX(-${index * 100}%)`;
+        currentIndex = index;
+      }
 
-  // Evento para cambiar de imagen
-  prevBtn.addEventListener('click', () => showItem(currentIndex - 1));
-  nextBtn.addEventListener('click', () => showItem(currentIndex + 1));
+      // Evento para cambiar de imagen
+      prevBtn.addEventListener('click', () => showItem(currentIndex - 1));
+      nextBtn.addEventListener('click', () => showItem(currentIndex + 1));
 
-  // Función para abrir en fullscreen
-  function openFullscreen(img) {
-    if (img.requestFullscreen) {
-      img.requestFullscreen();
-    } else if (img.webkitRequestFullscreen) { // Safari
-      img.webkitRequestFullscreen();
-    } else if (img.msRequestFullscreen) { // IE11
-      img.msRequestFullscreen();
-    }
-  }
+      // Función para abrir en fullscreen
+      function openFullscreen(img) {
+        if (img.requestFullscreen) {
+          img.requestFullscreen();
+        } else if (img.webkitRequestFullscreen) { // Safari
+          img.webkitRequestFullscreen();
+        } else if (img.msRequestFullscreen) { // IE11
+          img.msRequestFullscreen();
+        }
+      }
 
-  // Añadir eventos a cada imagen para abrir en fullscreen
-  images.forEach(img => {
-    img.addEventListener('click', () => openFullscreen(img));
-  });
+      // Añadir eventos a cada imagen para abrir en fullscreen
+      images.forEach(img => {
+        img.addEventListener('click', () => openFullscreen(img));
+      });
 
-  // Permitir que el usuario salga del modo fullscreen con "Esc"
-  document.addEventListener('fullscreenchange', () => {
-    if (!document.fullscreenElement) {
-      console.log('Saliste del fullscreen');
-    }
-  });
-});
-
-    </script>
+      // Permitir que el usuario salga del modo fullscreen con "Esc"
+      document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+          console.log('Saliste del fullscreen');
+        }
+      });
+    });
+  </script>
 </body>
 </html>

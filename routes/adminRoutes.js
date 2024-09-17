@@ -56,4 +56,7 @@ router.get('/admin/nota/:id/imagenes', isAuthenticated, isAdmin, adminController
 // Ruta para subir una nueva imagen
 router.post('/admin/nota/:id/imagenes', isAuthenticated, isAdmin, upload.single('imagen'), adminController.postNotaImagen);
 
+
+router.post('/nota/:id/imagenes/:imagenId/eliminar', adminController.deleteNotaImagen);
+
 module.exports = router;

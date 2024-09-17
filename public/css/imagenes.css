@@ -145,3 +145,18 @@
     border-radius: 20px;
     text-decoration: none;
   }
+
+  .btn-eliminar {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  
+  .btn-eliminar:hover {
+    background-color: darkred;
+  }
+  
