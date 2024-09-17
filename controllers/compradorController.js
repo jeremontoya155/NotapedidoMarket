@@ -49,6 +49,11 @@ exports.processExcel = async (req, res) => {
     const encabezado = data.slice(0, 10); 
     const productos = data.slice(10); 
 
+    // Verificar si el encabezado tiene las columnas necesarias
+    if (!encabezado[1] || encabezado[1].length < 7) {
+      return res.status(400).send('El formato del archivo es incorrecto. No se encontró la columna esperada en el encabezado.');
+    }
+
     // Calcular importe y unidades si no están presentes
     let totalImporte = 0;
     let totalUnidades = 0;
@@ -64,9 +69,8 @@ exports.processExcel = async (req, res) => {
 
     // Extraer los valores del encabezado y manejar la fecha de pago como opcional
     let notaDePedidoValues = {
-      laboratorio: encabezado[1][6] || null,
+      laboratorio: encabezado[1][6] || null, // Validar que la columna 6 exista
       fecha_pedido: fechaActual,  // Usar la fecha y hora actuales
-      // fecha_entrega: encavezado[3][10] || null,
       proveedor: encabezado[2][6] || null,
       direccion: encabezado[3][6] || null,
       fecha_pago: isValidDate(req.body.fecha_pago) ? new Date(req.body.fecha_pago) : null,  // Manejo opcional de la fecha
@@ -119,6 +123,18 @@ exports.processExcel = async (req, res) => {
   }
 };
 
+// Función para validar si un valor es numérico
+function isValidNumber(value) {
+  return !isNaN(value) && value !== null && value !== '';
+}
+
+// Función para validar si el valor es una fecha válida
+function isValidDate(dateString) {
+  const date = new Date(dateString);
+  return !isNaN(date.getTime()); // Si no es una fecha válida, devolver false
+}
+
+
 // Función de logout para el comprador
 exports.buyerLogout = (req, res) => {
   req.session.destroy((err) => {
@@ -130,7 +146,6 @@ exports.buyerLogout = (req, res) => {
     res.redirect('/login'); // Redirigir a la página de login
   });
 };
-
 
 // Función para validar si un valor es numérico
 function isValidNumber(value) {

@@ -35,8 +35,11 @@ app.use(session({
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+// Determina la ruta absoluta de la carpeta public
+app.locals.publicDir = path.join(__dirname, 'public');
+
 // Archivos estáticos
-app.use(express.static('public'));
+app.use(express.static(app.locals.publicDir));
 app.use(express.urlencoded({ extended: false }));
 
 // Middleware para verificar si el usuario está autenticado

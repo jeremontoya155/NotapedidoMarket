@@ -172,6 +172,10 @@ exports.getNotaDetalles = async (req, res) => {
 
 // Función para generar PDF con todos los valores del encabezado
 
+
+
+// Función para generar PDF con todos los valores del encabezado
+// Función para generar PDF con todos los valores del encabezado
 exports.generatePDF = async (req, res) => {
   const notaId = req.params.id;
 
@@ -180,21 +184,31 @@ exports.generatePDF = async (req, res) => {
     const nota = await pool.query('SELECT * FROM nota_de_pedido WHERE id = $1', [notaId]);
 
     // Obtener los detalles de la nota de pedido por ID de la nota
-    const detalles = await pool.query('SELECT * FROM detalle_nota WHERE nota_id = $1', [notaId]);
+    const detalles = await pool.query('SELECT * FROM detalle_nota WHERE nota_id = $1 AND cantidad > 0 AND imp_total > 0', [notaId]);
+
+    // Verificar que hay detalles para mostrar
+    if (detalles.rows.length === 0) {
+      return res.status(404).send('No se encontraron productos válidos en esta nota.');
+    }
 
     // Crear un documento PDF
     const doc = new PDFDocument({ margin: 50 });
-    const filePath = path.join(__dirname, '../pdfs', `nota_${notaId}.pdf`);
+    res.setHeader('Content-Type', 'application/pdf');
     doc.pipe(res);
 
     // Determinar el logo a utilizar en base al tipo de nota
-    const tipoNota = req.query.tipo || 'super'; // Supón que pasas 'super' o 'farmacia' en la query
-    const logoPath = tipoNota === 'farmacia' 
-      ? path.join(__dirname, 'public/img/logo_Farmacia.png') 
-      : path.join(__dirname, 'public/img/logo_Super.png');
+    const tipoNota = req.query.tipo || 'super';
+    const logoPath = tipoNota === 'farmacia'
+      ? path.join(__dirname, '../public/img/logo_Farmacia.png')
+      : path.join(__dirname, '../public/img/logo_Super.png');
 
     // Añadir el logo al PDF
-    doc.image(logoPath, 50, 20, { width: 100 }); // Ajusta las coordenadas y el tamaño según tus necesidades
+    try {
+      doc.image(logoPath, 50, 20, { width: 100 });
+    } catch (error) {
+      console.error('Error al cargar la imagen del logo:', error);
+    }
+
     doc.moveDown(1);
 
     // Título y cabecera
@@ -234,17 +248,37 @@ exports.generatePDF = async (req, res) => {
     // Línea separadora para el encabezado de la tabla
     doc.moveTo(50, tableTop + 20).lineTo(550, tableTop + 20).stroke();
 
-    // Renderizado de cada detalle de la nota con líneas separadoras
+    // Máximo de filas por página
+    const maxRowsPerPage = 20;
     let position = tableTop + 30;
+    let rowIndex = 0;
+
     detalles.rows.forEach((detalle, index) => {
-      const y = position + (index * 30); // Aumentamos el espacio vertical entre las filas
-      doc.fontSize(10)
-        .text(detalle.producto, 50, y)
-        .text(detalle.cantidad, 50 + itemWidth, y)
-        .text(detalle.imp_total, 50 + itemWidth + cantidadWidth, y);
+      if (rowIndex >= maxRowsPerPage) {
+        doc.addPage();
+        position = 50;
+        rowIndex = 0;
+      }
+
+      const y = position + (rowIndex * 20);
+      const impTotal = parseFloat(detalle.imp_total).toFixed(2);
+      const cantidad = parseFloat(detalle.cantidad).toFixed(2);
+
+      // Ajustar automáticamente la altura de la fila si el texto es largo
+      const textOptions = { width: 200, height: 40, align: 'left' };
+      const productText = detalle.producto || 'N/A';
+
+      // Ajustar el tamaño de fuente si el texto es muy largo
+      const fontSize = productText.length > 30 ? 8 : 10;
+      doc.fontSize(fontSize)
+        .text(productText, 50, y, textOptions)
+        .text(cantidad, 50 + itemWidth, y)
+        .text(impTotal, 50 + itemWidth + cantidadWidth, y);
 
       // Añadir una línea separadora debajo de cada producto
       doc.moveTo(50, y + 15).lineTo(550, y + 15).stroke();
+
+      rowIndex++;
     });
 
     // Resumen final de la nota
@@ -269,6 +303,8 @@ exports.generatePDF = async (req, res) => {
     res.status(500).send('Error al generar el PDF');
   }
 };
+
+
 
 exports.updateNotaEstado = async (req, res) => {
   const notaId = req.params.id;
