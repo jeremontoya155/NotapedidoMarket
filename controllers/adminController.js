@@ -180,6 +180,9 @@ exports.generatePDF = async (req, res) => {
   const notaId = req.params.id;
 
   try {
+    // Definir la ruta absoluta a la carpeta 'public'
+    const publicDir = path.join(__dirname, '..', 'public'); // Corrección de ruta absoluta
+
     // Obtener la nota de pedido por ID
     const nota = await pool.query('SELECT * FROM nota_de_pedido WHERE id = $1', [notaId]);
 
@@ -199,8 +202,8 @@ exports.generatePDF = async (req, res) => {
     // Determinar el logo a utilizar en base al tipo de nota
     const tipoNota = req.query.tipo || 'super';
     const logoPath = tipoNota === 'farmacia'
-      ? path.join(__dirname, '../img/logo_Farmacia.png')//Cambio necesario
-      : path.join(__dirname, '../img/logo_Super.png');
+      ? path.join(publicDir, 'img/Logo_Farmacia.png') // Ruta absoluta correcta
+      : path.join(publicDir, 'img/Logo_Super.png');
 
     // Añadir el logo al PDF
     try {
@@ -234,7 +237,6 @@ exports.generatePDF = async (req, res) => {
     doc.fontSize(14).text('Detalles de productos', { underline: true });
     doc.moveDown(1);
 
-    // Encabezado de la tabla
     const tableTop = doc.y;
     const itemWidth = 200;
     const cantidadWidth = 100;
@@ -245,15 +247,13 @@ exports.generatePDF = async (req, res) => {
       .text('Cantidad', 50 + itemWidth, tableTop)
       .text('Importe Total', 50 + itemWidth + cantidadWidth, tableTop);
 
-    // Línea separadora para el encabezado de la tabla
     doc.moveTo(50, tableTop + 20).lineTo(550, tableTop + 20).stroke();
 
-    // Máximo de filas por página
     const maxRowsPerPage = 20;
     let position = tableTop + 30;
     let rowIndex = 0;
 
-    detalles.rows.forEach((detalle, index) => {
+    detalles.rows.forEach((detalle) => {
       if (rowIndex >= maxRowsPerPage) {
         doc.addPage();
         position = 50;
@@ -264,24 +264,20 @@ exports.generatePDF = async (req, res) => {
       const impTotal = parseFloat(detalle.imp_total).toFixed(2);
       const cantidad = parseFloat(detalle.cantidad).toFixed(2);
 
-      // Ajustar automáticamente la altura de la fila si el texto es largo
       const textOptions = { width: 200, height: 40, align: 'left' };
       const productText = detalle.producto || 'N/A';
 
-      // Ajustar el tamaño de fuente si el texto es muy largo
       const fontSize = productText.length > 30 ? 8 : 10;
       doc.fontSize(fontSize)
         .text(productText, 50, y, textOptions)
         .text(cantidad, 50 + itemWidth, y)
         .text(impTotal, 50 + itemWidth + cantidadWidth, y);
 
-      // Añadir una línea separadora debajo de cada producto
       doc.moveTo(50, y + 15).lineTo(550, y + 15).stroke();
 
       rowIndex++;
     });
 
-    // Resumen final de la nota
     doc.moveDown(2);
     const totalImporte = detalles.rows.reduce((sum, row) => sum + parseFloat(row.imp_total), 0);
     const totalUnidades = detalles.rows.reduce((sum, row) => sum + parseFloat(row.cantidad), 0);
@@ -303,6 +299,7 @@ exports.generatePDF = async (req, res) => {
     res.status(500).send('Error al generar el PDF');
   }
 };
+
 
 
 
