@@ -199,8 +199,8 @@ exports.generatePDF = async (req, res) => {
     // Determinar el logo a utilizar en base al tipo de nota
     const tipoNota = req.query.tipo || 'super';
     const logoPath = tipoNota === 'farmacia'
-      ? path.join(__dirname, 'img/logo_Farmacia.png')//Cambio necesario
-      : path.join(__dirname, 'img/logo_Super.png');
+      ? path.join(__dirname, '../img/logo_Farmacia.png')//Cambio necesario
+      : path.join(__dirname, '../img/logo_Super.png');
 
     // Añadir el logo al PDF
     try {
