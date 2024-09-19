@@ -28,7 +28,7 @@
     <form method="GET" action="/admin">
       <div class="filtroAdmin">
         <div class="filtro-group">
-          <label for="laboratorio"><strong>Filtrar</strong> por Laboratorio:</label>
+          <label for="laboratorio"><strong>Filtrar</strong> por Proveedor:</label>
           <select name="laboratorio" id="laboratorio">
             <option value="">Todos</option> <!-- Valor vacío para seleccionar "Todos" -->
             <% laboratorios.forEach(function(laboratorio) { %>
@@ -141,7 +141,8 @@
     </div>
   </div>
 
- 
+  <a href="/buyer" style="display: inline-block; padding: 10px 20px; background-color: rgb(238, 255, 0); color: black; text-decoration: none; border: 2px solid black; border-radius: 5px; font-weight: bold;">Cargar Nota</a>
+
 
   <script>
     const params = new URLSearchParams(window.location.search);

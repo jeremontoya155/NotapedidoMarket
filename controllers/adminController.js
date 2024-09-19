@@ -3,6 +3,7 @@ const path = require('path');
 const PDFDocument = require('pdfkit');
 const multer = require('multer');
 const fs = require('fs');
+const xlsx = require('xlsx');
 
 const cloudinary = require('cloudinary').v2;
 require('dotenv').config();
