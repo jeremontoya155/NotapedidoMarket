@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/adminController');
 const multer = require('multer');
+const compradorController = require('../controllers/compradorController');
 
 // Configuración de Multer para manejar la subida de imágenes
 const storage = multer.diskStorage({
@@ -58,5 +59,13 @@ router.post('/admin/nota/:id/imagenes', isAuthenticated, isAdmin, upload.single(
 
 
 router.post('/nota/:id/imagenes/:imagenId/eliminar', adminController.deleteNotaImagen);
+
+//Revisar igual
+// Ruta para mostrar el formulario de subida
+router.get('/buyer', compradorController.showBuyerDashboard);
+
+// Verifica que la función compradorController.processExcel esté definida correctamente
+router.post('/buyer/upload', upload.single('file'), compradorController.processExcel);
+
 
 module.exports = router;

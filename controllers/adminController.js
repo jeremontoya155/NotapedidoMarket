@@ -44,7 +44,7 @@ exports.getAdminDashboard = async (req, res) => {
     // Si los filtros no están definidos en la sesión, inicializarlos
     if (!req.session.filtros) {
       req.session.filtros = {
-        proveedorSeleccionado: '',
+        laboratorioSeleccionado: '', // Cambiado de proveedorSeleccionado a laboratorioSeleccionado
         estadoSeleccionado: '',
         operadorSeleccionado: '',
         fechaInicio: '',
@@ -54,63 +54,60 @@ exports.getAdminDashboard = async (req, res) => {
     }
 
     // Actualizar los filtros en la sesión si se han enviado nuevos parámetros
-// Actualizar los filtros en la sesión si se han enviado nuevos parámetros
-req.session.filtros.proveedorSeleccionado = (req.query.proveedor === '') ? '' : req.query.proveedor || req.session.filtros.proveedorSeleccionado;
-req.session.filtros.estadoSeleccionado = req.query.estado || req.session.filtros.estadoSeleccionado;
-req.session.filtros.operadorSeleccionado = (req.query.operador === '') ? '' : req.query.operador || req.session.filtros.operadorSeleccionado;
-req.session.filtros.fechaInicio = req.query.fechaInicio || req.session.filtros.fechaInicio;
-req.session.filtros.fechaFin = req.query.fechaFin || req.session.filtros.fechaFin;
-req.session.filtros.ordenFecha = req.query.ordenFecha || req.session.filtros.ordenFecha;
+    req.session.filtros.laboratorioSeleccionado = (req.query.laboratorio === '') ? '' : req.query.laboratorio || req.session.filtros.laboratorioSeleccionado;
+    req.session.filtros.estadoSeleccionado = req.query.estado || req.session.filtros.estadoSeleccionado;
+    req.session.filtros.operadorSeleccionado = (req.query.operador === '') ? '' : req.query.operador || req.session.filtros.operadorSeleccionado;
+    req.session.filtros.fechaInicio = req.query.fechaInicio || req.session.filtros.fechaInicio;
+    req.session.filtros.fechaFin = req.query.fechaFin || req.session.filtros.fechaFin;
+    req.session.filtros.ordenFecha = req.query.ordenFecha || req.session.filtros.ordenFecha;
 
-
-    // Consultar todos los proveedores y operadores
-    const proveedoresResult = await pool.query('SELECT DISTINCT proveedor FROM nota_de_pedido');
-    const proveedores = proveedoresResult.rows.map(row => row.proveedor);
+    // Consultar todos los laboratorios y operadores
+    const laboratoriosResult = await pool.query('SELECT DISTINCT laboratorio FROM nota_de_pedido');
+    const laboratorios = laboratoriosResult.rows.map(row => row.laboratorio);
 
     const operadoresResult = await pool.query('SELECT DISTINCT operador FROM nota_de_pedido');
     const operadores = operadoresResult.rows.map(row => row.operador);
 
-// Construir la consulta SQL con los filtros aplicados
-let query = `
-  SELECT n.*, COUNT(i.id) as total_imagenes
-  FROM nota_de_pedido n
-  LEFT JOIN imagenes i ON n.id = i.nota_id
-`;
-const queryParams = [];
-let conditionIndex = 1; // Contador para los parámetros
+    // Construir la consulta SQL con los filtros aplicados
+    let query = `
+      SELECT n.*, COUNT(i.id) as total_imagenes
+      FROM nota_de_pedido n
+      LEFT JOIN imagenes i ON n.id = i.nota_id
+    `;
+    const queryParams = [];
+    let conditionIndex = 1; // Contador para los parámetros
 
-if (req.session.filtros.proveedorSeleccionado) {
-  query += ` WHERE proveedor = $${conditionIndex}`;
-  queryParams.push(req.session.filtros.proveedorSeleccionado);
-  conditionIndex++;
-}
+    if (req.session.filtros.laboratorioSeleccionado) {
+      query += ` WHERE laboratorio = $${conditionIndex}`;
+      queryParams.push(req.session.filtros.laboratorioSeleccionado);
+      conditionIndex++;
+    }
 
-if (req.session.filtros.estadoSeleccionado) {
-  query += (queryParams.length > 0 ? ' AND' : ' WHERE') + ` n.estado = $${conditionIndex}`;
-  queryParams.push(req.session.filtros.estadoSeleccionado);
-  conditionIndex++;
-}
+    if (req.session.filtros.estadoSeleccionado) {
+      query += (queryParams.length > 0 ? ' AND' : ' WHERE') + ` n.estado = $${conditionIndex}`;
+      queryParams.push(req.session.filtros.estadoSeleccionado);
+      conditionIndex++;
+    }
 
-if (req.session.filtros.operadorSeleccionado) {
-  query += (queryParams.length > 0 ? ' AND' : ' WHERE') + ` operador = $${conditionIndex}`;
-  queryParams.push(req.session.filtros.operadorSeleccionado);
-  conditionIndex++;
-}
+    if (req.session.filtros.operadorSeleccionado) {
+      query += (queryParams.length > 0 ? ' AND' : ' WHERE') + ` operador = $${conditionIndex}`;
+      queryParams.push(req.session.filtros.operadorSeleccionado);
+      conditionIndex++;
+    }
 
-if (req.session.filtros.fechaInicio) {
-  query += (queryParams.length > 0 ? ' AND' : ' WHERE') + ` n.fecha_pedido >= $${conditionIndex}`;
-  queryParams.push(new Date(req.session.filtros.fechaInicio).toISOString());
-  conditionIndex++;
-}
+    if (req.session.filtros.fechaInicio) {
+      query += (queryParams.length > 0 ? ' AND' : ' WHERE') + ` n.fecha_pedido >= $${conditionIndex}`;
+      queryParams.push(new Date(req.session.filtros.fechaInicio).toISOString());
+      conditionIndex++;
+    }
 
-if (req.session.filtros.fechaFin) {
-  query += (queryParams.length > 0 ? ' AND' : ' WHERE') + ` n.fecha_pedido <= $${conditionIndex}`;
-  queryParams.push(new Date(req.session.filtros.fechaFin).toISOString());
-  conditionIndex++;
-}
+    if (req.session.filtros.fechaFin) {
+      query += (queryParams.length > 0 ? ' AND' : ' WHERE') + ` n.fecha_pedido <= $${conditionIndex}`;
+      queryParams.push(new Date(req.session.filtros.fechaFin).toISOString());
+      conditionIndex++;
+    }
 
-query += ` GROUP BY n.id ORDER BY n.fecha_pedido ${req.session.filtros.ordenFecha}`;
-
+    query += ` GROUP BY n.id ORDER BY n.fecha_pedido ${req.session.filtros.ordenFecha}`;
 
     const result = await pool.query(query, queryParams);
     const notas = result.rows;
@@ -118,9 +115,9 @@ query += ` GROUP BY n.id ORDER BY n.fecha_pedido ${req.session.filtros.ordenFech
     // Renderizar la vista y pasar los datos
     res.render('admin', {
       notas,
-      proveedores,
+      laboratorios, // Cambiado de 'proveedores' a 'laboratorios'
       operadores,
-      proveedorSeleccionado: req.session.filtros.proveedorSeleccionado,
+      laboratorioSeleccionado: req.session.filtros.laboratorioSeleccionado, // Cambio aquí
       estadoSeleccionado: req.session.filtros.estadoSeleccionado,
       operadorSeleccionado: req.session.filtros.operadorSeleccionado,
       fechaInicio: req.session.filtros.fechaInicio,
@@ -132,6 +129,7 @@ query += ` GROUP BY n.id ORDER BY n.fecha_pedido ${req.session.filtros.ordenFech
     res.status(500).send('Error al obtener las notas de pedido');
   }
 };
+
 
 
 // Obtener los detalles de la nota de pedido
@@ -174,7 +172,6 @@ exports.getNotaDetalles = async (req, res) => {
 
 
 
-// Función para generar PDF con todos los valores del encabezado
 // Función para generar PDF con todos los valores del encabezado
 exports.generatePDF = async (req, res) => {
   const notaId = req.params.id;

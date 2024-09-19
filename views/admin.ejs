@@ -24,15 +24,15 @@
       }
     </script>
 
-    <!-- Formulario para filtrar por proveedor, estado y operador -->
+    <!-- Formulario para filtrar por laboratorio, estado y operador -->
     <form method="GET" action="/admin">
       <div class="filtroAdmin">
         <div class="filtro-group">
-          <label for="proveedor"><strong>Filtrar</strong> por Proveedor:</label>
-          <select name="proveedor" id="proveedor">
+          <label for="laboratorio"><strong>Filtrar</strong> por Laboratorio:</label>
+          <select name="laboratorio" id="laboratorio">
             <option value="">Todos</option> <!-- Valor vacío para seleccionar "Todos" -->
-            <% proveedores.forEach(function(proveedor) { %>
-              <option value="<%= proveedor %>" <%= (proveedorSeleccionado === proveedor) ? 'selected' : '' %>><%= proveedor %></option>
+            <% laboratorios.forEach(function(laboratorio) { %>
+              <option value="<%= laboratorio %>" <%= (laboratorioSeleccionado === laboratorio) ? 'selected' : '' %>><%= laboratorio %></option>
             <% }); %>
           </select>
         </div>
@@ -129,19 +129,21 @@
     <% } %>
 
   </div>
+
   <!-- Modal para elegir tipo de PDF -->
-<div id="modalPDF" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
-  <div style="background-color: #fff; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 300px; text-align: center;">
-    <h2>Selecciona el tipo de PDF</h2>
-    <button onclick="generarPDF('farmacia')" style="margin: 10px; padding: 10px 20px;">Farmacia</button>
-    <button onclick="generarPDF('super')" style="margin: 10px; padding: 10px 20px;">Supermercado</button>
-    <br><br>
-    <button onclick="cerrarModal()" style="margin: 10px; padding: 5px 10px; background-color: red; color: white;">Cancelar</button>
+  <div id="modalPDF" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+    <div style="background-color: #fff; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 300px; text-align: center;">
+      <h2>Selecciona el tipo de PDF</h2>
+      <button onclick="generarPDF('farmacia')" style="margin: 10px; padding: 10px 20px;">Farmacia</button>
+      <button onclick="generarPDF('super')" style="margin: 10px; padding: 10px 20px;">Supermercado</button>
+      <br><br>
+      <button onclick="cerrarModal()" style="margin: 10px; padding: 5px 10px; background-color: red; color: white;">Cancelar</button>
+    </div>
   </div>
-</div>
+
+ 
 
   <script>
-    // Obtener parámetros actuales de la URL
     const params = new URLSearchParams(window.location.search);
     let estadoActual = params.get('estado') || ''; // "" es todos
 
@@ -160,7 +162,6 @@
       window.location.search = params.toString();
     }
     
-    // Agregar el evento de clic al botón en el encabezado
     document.getElementById('toggleEstado').addEventListener('click', toggleEstadoFiltro);
 
     let ordenFecha = params.get('ordenFecha') || 'desc';
@@ -173,7 +174,6 @@
 
     document.getElementById('toggleFecha').addEventListener('click', toggleFechaOrden);
 
-    // Actualiza el icono del encabezado basado en el estado actual
     function actualizarIconoFecha() {
       const icono = document.getElementById('fechaIcon');
       icono.textContent = ordenFecha === 'asc' ? '▲' : '▼';
@@ -181,26 +181,24 @@
     
     actualizarIconoFecha();
   </script>
- <script>
-  // Mostrar el modal para elegir el tipo de PDF
-  function mostrarOpcionesPDF(notaId) {
-    document.getElementById('modalPDF').style.display = 'block';
-    window.selectedNotaId = notaId; // Guardamos la ID de la nota seleccionada
-  }
 
-  // Ocultar el modal
-  function cerrarModal() {
-    document.getElementById('modalPDF').style.display = 'none';
-  }
+  <script>
+    // Mostrar el modal para elegir el tipo de PDF
+    function mostrarOpcionesPDF(notaId) {
+      document.getElementById('modalPDF').style.display = 'block';
+      window.selectedNotaId = notaId; // Guardamos la ID de la nota seleccionada
+    }
 
-  // Redirigir según la elección
-  function generarPDF(tipoNota) {
-    const notaId = window.selectedNotaId;
-    window.location.href = `/admin/nota/${notaId}/pdf?tipo=${tipoNota}`;
-    cerrarModal(); // Cerrar el modal después de elegir
-  }
-</script>
+    function cerrarModal() {
+      document.getElementById('modalPDF').style.display = 'none';
+    }
 
+    function generarPDF(tipoNota) {
+      const notaId = window.selectedNotaId;
+      window.location.href = `/admin/nota/${notaId}/pdf?tipo=${tipoNota}`;
+      cerrarModal(); // Cerrar el modal después de elegir
+    }
+  </script>
   
 </body>
 </html>
