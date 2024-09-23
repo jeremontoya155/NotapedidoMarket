@@ -6,6 +6,8 @@
   <title>Notas de Pedido - Admin</title>
   <link rel="stylesheet" href="/css/admin.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Incluir Select2 CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -29,196 +31,207 @@
   </a>
 </div>
 
-  <div class="adminBody">
-    <h1>Notas de Pedido</h1>
+<div class="adminBody">
+  <h1>Notas de Pedido</h1>
 
-
-    <!-- Mostrar alerta si hay un error -->
-    <script>
-      const params = new URLSearchParams(window.location.search);
-      const error = params.get('error');
-      if (error) {
-        alert(error);
-        window.location.replace('/admin');
-      }
-    </script>
-
-    <!-- Formulario para filtrar por laboratorio, estado y operador -->
-    <form method="GET" action="/admin">
-      <div class="filtroAdmin">
-        <div class="filtro-group">
-          <label for="laboratorio"><strong>Filtrar</strong> por Proveedor:</label>
-          <select name="laboratorio" id="laboratorio">
-            <option value="">Todos</option> <!-- Valor vacío para seleccionar "Todos" -->
-            <% laboratorios.forEach(function(laboratorio) { %>
-              <option value="<%= laboratorio %>" <%= (laboratorioSeleccionado === laboratorio) ? 'selected' : '' %>><%= laboratorio %></option>
-            <% }); %>
-          </select>
-        </div>
-
-        <div class="filtro-group">
-          <label for="operador"><strong>Filtrar</strong> por Comprador:</label>
-          <select name="operador" id="operador">
-            <option value="">Todos</option> <!-- Valor vacío para seleccionar "Todos" -->
-            <% operadores.forEach(function(operador) { %>
-              <option value="<%= operador %>" <%= (operadorSeleccionado === operador) ? 'selected' : '' %>><%= operador %></option>
-            <% }); %>
-          </select>
-        </div>
-        <div class="filtro-group">
-          <label for="fechaInicio"><strong>Filtrar</strong> desde:</label>
-          <input type="date" id="fechaInicio" name="fechaInicio" value="<%= fechaInicio %>">
-        </div>
-        <div class="filtro-group">
-          <label for="fechaFin"><strong>Filtrar</strong> hasta:</label>
-          <input type="date" id="fechaFin" name="fechaFin" value="<%= fechaFin %>">
-        </div>
-
-        <button type="submit">Aplicar Filtros</button>
-      </div>
-    </form>
-
-    <!-- Tabla de notas de pedido -->
-    <% if (notas && notas.length > 0) { %>
-      <table border="0">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Laboratorio</th>
-            <th class="filtrable">
-              <button id="toggleFecha" style="background: none; border: none; cursor: pointer;">
-                Fecha del Pedido <i class="fa-solid fa-filter"></i> <span id="fechaIcon"></span>
-              </button>
-            </th>
-            <th>Proveedor</th>
-            <th class="filtrable">
-              <button id="toggleEstado" style="background: none; border: none; cursor: pointer;">
-                Estado <i class="fa-solid fa-filter"></i>
-              </button>
-            </th>
-            <th>Comprador</th>
-            <th>Imágenes</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% notas.forEach(function(nota) { %>
-            <tr>
-              <td><%= nota.id %></td>
-              <td><%= nota.laboratorio %></td>
-              <td>
-                <%= new Date(nota.fecha_pedido).toLocaleDateString('es-ES', {
-                  day: '2-digit',
-                  month: '2-digit',
-                  year: 'numeric'
-                }) %>
-              </td>
-              <td><%= nota.proveedor %></td>
-              <td>
-                <form action="/admin/nota/<%= nota.id %>/estado" method="POST" class="estado-form">
-                  <input type="checkbox" id="estado-<%= nota.id %>" name="estado" value="recibido" 
-                        class="estado-toggle"
-                        <%= nota.estado === 'recibido' ? 'checked disabled' : '' %> 
-                        <%= nota.total_imagenes === 0 ? 'disabled' : '' %> 
-                        onchange="this.form.submit()">
-                  <label for="estado-<%= nota.id %>" class="estado-btn" data-hover="Marcar como recibido">
-                    <span class="estado-text"><%= nota.estado %></span>
-                  </label>
-                </form>
-              </td>
-              <td><%= nota.operador %></td>
-              <td >
-                <% if (nota.total_imagenes > 0) { %>
-                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: green; text-decoration: none;">Ver Imágenes</a>
-                <% } else { %>
-                  <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: red;text-decoration:  none;">Cargar Imágenes</a>
-                <% } %>
-              </td>
-              <td>
-                <a class="detalles" href="/admin/nota/<%= nota.id %>">Ver Detalles</a> |
-                <button class="descargar" onclick="mostrarOpcionesPDF(<%= nota.id %>)">Descargar PDF</button>
-              </td>
-              
-            </tr>
-          <% }); %>
-        </tbody>
-      </table>
-    <% } else { %>
-      <p>No hay notas de pedido para mostrar.</p>
-    <% } %>
-
-  </div>
-
-  <!-- Modal para elegir tipo de PDF -->
-  <div id="modalPDF" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
-    <div style="background-color: #fff; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 300px; text-align: center;">
-      <h2>Selecciona el tipo de PDF</h2>
-      <button onclick="generarPDF('farmacia')" style="margin: 10px; padding: 10px 20px;">Farmacia</button>
-      <button onclick="generarPDF('super')" style="margin: 10px; padding: 10px 20px;">Supermercado</button>
-      <br><br>
-      <button onclick="cerrarModal()" style="margin: 10px; padding: 5px 10px; background-color: red; color: white;">Cancelar</button>
-    </div>
-  </div>
-
-  <a href="/buyer" style="display: inline-block; padding: 10px 20px; background-color: rgb(238, 255, 0); color: black; text-decoration: none; border: 2px solid black; border-radius: 5px; font-weight: bold;">Cargar Nota</a>
-
-
+  <!-- Mostrar alerta si hay un error -->
   <script>
     const params = new URLSearchParams(window.location.search);
-    let estadoActual = params.get('estado') || ''; // "" es todos
-
-    // Función para alternar los estados
-    function toggleEstadoFiltro() {
-      if (estadoActual === '') {
-        estadoActual = 'recibido';
-      } else if (estadoActual === 'recibido') {
-        estadoActual = 'pendiente';
-      } else {
-        estadoActual = '';
-      }
-  
-      // Actualizar la URL con el nuevo estado
-      params.set('estado', estadoActual);
-      window.location.search = params.toString();
-    }
-    
-    document.getElementById('toggleEstado').addEventListener('click', toggleEstadoFiltro);
-
-    let ordenFecha = params.get('ordenFecha') || 'desc';
-
-    function toggleFechaOrden() {
-      ordenFecha = (ordenFecha === 'asc') ? 'desc' : 'asc';
-      params.set('ordenFecha', ordenFecha);
-      window.location.search = params.toString();
-    }
-
-    document.getElementById('toggleFecha').addEventListener('click', toggleFechaOrden);
-
-    function actualizarIconoFecha() {
-      const icono = document.getElementById('fechaIcon');
-      icono.textContent = ordenFecha === 'asc' ? '▲' : '▼';
-    }
-    
-    actualizarIconoFecha();
-  </script>
-
-  <script>
-    // Mostrar el modal para elegir el tipo de PDF
-    function mostrarOpcionesPDF(notaId) {
-      document.getElementById('modalPDF').style.display = 'block';
-      window.selectedNotaId = notaId; // Guardamos la ID de la nota seleccionada
-    }
-
-    function cerrarModal() {
-      document.getElementById('modalPDF').style.display = 'none';
-    }
-
-    function generarPDF(tipoNota) {
-      const notaId = window.selectedNotaId;
-      window.location.href = `/admin/nota/${notaId}/pdf?tipo=${tipoNota}`;
-      cerrarModal(); // Cerrar el modal después de elegir
+    const error = params.get('error');
+    if (error) {
+      alert(error);
+      window.location.replace('/admin');
     }
   </script>
+
+  <!-- Formulario para filtrar por laboratorio, estado y operador -->
+  <form method="GET" action="/admin">
+    <div class="filtroAdmin">
+      <div class="filtro-group">
+        <label for="laboratorio"><strong>Filtrar</strong> por Proveedor:</label>
+        <select name="laboratorio" id="laboratorio" style="width: 100%;">
+          <option value="">Todos</option> <!-- Valor vacío para seleccionar "Todos" -->
+          <% laboratorios.forEach(function(laboratorio) { %>
+            <option value="<%= laboratorio %>" <%= (laboratorioSeleccionado === laboratorio) ? 'selected' : '' %>><%= laboratorio %></option>
+          <% }); %>
+        </select>
+      </div>
+
+      <div class="filtro-group">
+        <label for="operador"><strong>Filtrar</strong> por Comprador:</label>
+        <select name="operador" id="operador" style="width: 100%;">
+          <option value="">Todos</option> <!-- Valor vacío para seleccionar "Todos" -->
+          <% operadores.forEach(function(operador) { %>
+            <option value="<%= operador %>" <%= (operadorSeleccionado === operador) ? 'selected' : '' %>><%= operador %></option>
+          <% }); %>
+        </select>
+      </div>
+
+      <div class="filtro-group">
+        <label for="fechaInicio"><strong>Filtrar</strong> desde:</label>
+        <input type="date" id="fechaInicio" name="fechaInicio" value="<%= fechaInicio %>">
+      </div>
+      <div class="filtro-group">
+        <label for="fechaFin"><strong>Filtrar</strong> hasta:</label>
+        <input type="date" id="fechaFin" name="fechaFin" value="<%= fechaFin %>">
+      </div>
+
+      <button type="submit">Aplicar Filtros</button>
+    </div>
+  </form>
+
+  <!-- Tabla de notas de pedido -->
+  <% if (notas && notas.length > 0) { %>
+    <table border="0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Laboratorio</th>
+          <th class="filtrable">
+            <button id="toggleFecha" style="background: none; border: none; cursor: pointer;">
+              Fecha del Pedido <i class="fa-solid fa-filter"></i> <span id="fechaIcon"></span>
+            </button>
+          </th>
+          <th>Proveedor</th>
+          <th class="filtrable">
+            <button id="toggleEstado" style="background: none; border: none; cursor: pointer;">
+              Estado <i class="fa-solid fa-filter"></i>
+            </button>
+          </th>
+          <th>Comprador</th>
+          <th>Imágenes</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% notas.forEach(function(nota) { %>
+          <tr>
+            <td><%= nota.id %></td>
+            <td><%= nota.laboratorio %></td>
+            <td>
+              <%= new Date(nota.fecha_pedido).toLocaleDateString('es-ES', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+              }) %>
+            </td>
+            <td><%= nota.proveedor %></td>
+            <td>
+              <form action="/admin/nota/<%= nota.id %>/estado" method="POST" class="estado-form">
+                <input type="checkbox" id="estado-<%= nota.id %>" name="estado" value="recibido" 
+                      class="estado-toggle"
+                      <%= nota.estado === 'recibido' ? 'checked disabled' : '' %> 
+                      <%= nota.total_imagenes === 0 ? 'disabled' : '' %> 
+                      onchange="this.form.submit()">
+                <label for="estado-<%= nota.id %>" class="estado-btn" data-hover="Marcar como recibido">
+                  <span class="estado-text"><%= nota.estado %></span>
+                </label>
+              </form>
+            </td>
+            <td><%= nota.operador %></td>
+            <td>
+              <% if (nota.total_imagenes > 0) { %>
+                <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: green; text-decoration: none;">Ver Imágenes</a>
+              <% } else { %>
+                <a href="/admin/nota/<%= nota.id %>/imagenes" style="color: red;text-decoration:  none;">Cargar Imágenes</a>
+              <% } %>
+            </td>
+            <td>
+              <a class="detalles" href="/admin/nota/<%= nota.id %>">Ver Detalles</a> |
+              <button class="descargar" onclick="mostrarOpcionesPDF(<%= nota.id %>)">Descargar PDF</button>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>No hay notas de pedido para mostrar.</p>
+  <% } %>
+
+</div>
+
+<!-- Modal para elegir tipo de PDF -->
+<div id="modalPDF" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+  <div style="background-color: #fff; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 300px; text-align: center;">
+    <h2>Selecciona el tipo de PDF</h2>
+    <button onclick="generarPDF('farmacia')" style="margin: 10px; padding: 10px 20px;">Farmacia</button>
+    <button onclick="generarPDF('super')" style="margin: 10px; padding: 10px 20px;">Supermercado</button>
+    <br><br>
+    <button onclick="cerrarModal()" style="margin: 10px; padding: 5px 10px; background-color: red; color: white;">Cancelar</button>
+  </div>
+</div>
+
+<a href="/buyer" style="display: inline-block; padding: 10px 20px; background-color: rgb(238, 255, 0); color: black; text-decoration: none; border: 2px solid black; border-radius: 5px; font-weight: bold;">Cargar Nota</a>
+
+<!-- Incluir Select2 JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Activar Select2 para los filtros de laboratorio y operador
+    $('#laboratorio').select2({
+      placeholder: "Selecciona un laboratorio",
+      allowClear: true
+    });
+
+    $('#operador').select2({
+      placeholder: "Selecciona un comprador",
+      allowClear: true
+    });
+  });
+</script>
+
+<script>
+  // Función para alternar los estados
+  function toggleEstadoFiltro() {
+    let estadoActual = params.get('estado') || '';
+    if (estadoActual === '') {
+      estadoActual = 'recibido';
+    } else if (estadoActual === 'recibido') {
+      estadoActual = 'pendiente';
+    } else {
+      estadoActual = '';
+    }
+    params.set('estado', estadoActual);
+    window.location.search = params.toString();
+  }
+
+  document.getElementById('toggleEstado').addEventListener('click', toggleEstadoFiltro);
+
+  let ordenFecha = params.get('ordenFecha') || 'desc';
+
+  function toggleFechaOrden() {
+    ordenFecha = (ordenFecha === 'asc') ? 'desc' : 'asc';
+    params.set('ordenFecha', ordenFecha);
+    window.location.search = params.toString();
+  }
+
+  document.getElementById('toggleFecha').addEventListener('click', toggleFechaOrden);
+
+  function actualizarIconoFecha() {
+    const icono = document.getElementById('fechaIcon');
+    icono.textContent = ordenFecha === 'asc' ? '▲' : '▼';
+  }
   
+  actualizarIconoFecha();
+</script>
+
+<script>
+  // Mostrar el modal para elegir el tipo de PDF
+  function mostrarOpcionesPDF(notaId) {
+    document.getElementById('modalPDF').style.display = 'block';
+    window.selectedNotaId = notaId; // Guardamos la ID de la nota seleccionada
+  }
+
+  function cerrarModal() {
+    document.getElementById('modalPDF').style.display = 'none';
+  }
+
+  function generarPDF(tipoNota) {
+    const notaId = window.selectedNotaId;
+    window.location.href = `/admin/nota/${notaId}/pdf?tipo=${tipoNota}`;
+    cerrarModal(); // Cerrar el modal después de elegir
+  }
+</script>
+
 </body>
 </html>

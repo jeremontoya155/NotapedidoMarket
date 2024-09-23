@@ -63,10 +63,11 @@ exports.getAdminDashboard = async (req, res) => {
     req.session.filtros.ordenFecha = req.query.ordenFecha || req.session.filtros.ordenFecha;
 
     // Consultar todos los laboratorios y operadores
-    const laboratoriosResult = await pool.query('SELECT DISTINCT laboratorio FROM nota_de_pedido');
+    const laboratoriosResult = await pool.query('SELECT DISTINCT laboratorio FROM nota_de_pedido ORDER BY laboratorio ASC');
     const laboratorios = laboratoriosResult.rows.map(row => row.laboratorio);
-
-    const operadoresResult = await pool.query('SELECT DISTINCT operador FROM nota_de_pedido');
+    
+    // Obtener operadores ordenados alfabéticamente
+    const operadoresResult = await pool.query('SELECT DISTINCT operador FROM nota_de_pedido ORDER BY operador ASC');
     const operadores = operadoresResult.rows.map(row => row.operador);
 
     // Construir la consulta SQL con los filtros aplicados
