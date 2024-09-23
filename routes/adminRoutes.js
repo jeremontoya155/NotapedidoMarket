@@ -68,4 +68,9 @@ router.get('/buyer', compradorController.showBuyerDashboard);
 router.post('/buyer/upload', upload.single('file'), compradorController.processExcel);
 
 
+// Rutas para el panel de carga
+router.get('/cargar', adminController.showCargarPage);
+router.post('/cargar', upload.single('excel'), adminController.processExcel);
+
+
 module.exports = router;
