@@ -615,6 +615,8 @@ function isValidNumber(value) {
   return !isNaN(value) && value !== null && value !== '';
 }
 
+/*Cambios*/ 
+
 function isValidDate(dateString) {
   const date = new Date(dateString);
   return !isNaN(date.getTime());
