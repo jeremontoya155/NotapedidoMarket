@@ -1,3 +1,8 @@
+html,
+body{
+  margin:0;
+  padding:0;
+}
 .adminBody{ 
     height:100%;
     min-height: 100vh;
@@ -92,51 +97,6 @@ table td:hover {
     margin-right: 10px;
   }
   
-  /* Estilos para el select */
-  .filtroAdmin select {
-    padding: 8px 12px;
-    font-size: 16px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    background-color: white;
-    color: #495057;
-    min-width: 200px;
-  }
-  
-  .filtroAdmin select:focus {
-    outline: none;
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-  }
-  
-  /* Estilos para el botón */
-  .filtroAdmin button {
-    padding: 8px 16px;
-    font-size: 16px;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .filtroAdmin button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .filtroAdmin {
-      flex-direction: column;
-      align-items: stretch;
-    }
-    
-    .filtroAdmin select,
-    .filtroAdmin button {
-      width: 100%;
-    }
-  }
 
 
 
@@ -161,11 +121,11 @@ table td:hover {
   }
   
   .estado-toggle:not(:checked) + .estado-btn {
-    background-color: #f3ba0098;
+    background-color: #f3ba00;
     color: white;
   }
   .estado-toggle:not(:checked) + .estado-btn:hover {
-    background-color: #f3ba00;
+    background-color: #997500;
   }
   
   .estado-toggle:checked + .estado-btn {
@@ -206,8 +166,8 @@ table td:hover {
 .filtroAdmin {
   display: flex;
   flex-direction: row wrap;
-  gap: 2rem; /* Espacio entre los elementos del formulario */
-  width:100%;
+  gap: 2rem;
+  margin-top: 1em;
 }
 .filtroAdmin .filtro-group{
   display:flex;
@@ -281,4 +241,44 @@ table td:hover {
   .filtroFechas input[type="date"] {
     flex-basis: 100%;
   }
+}
+
+
+.nav{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content: space-around;
+  background-color: #007c98;
+  color:#fff;
+}
+.nav .nuevaNotaBoton,
+.nav .logoutBtn
+{
+  padding: .6em 1em;
+  border-radius:7px;
+  text-decoration:none;
+  transition: all .5s ease;
+}
+.nav .nuevaNotaBoton{
+  background-color: #ffff72;
+  color:#252525;
+}
+.nav .logoutBtn{
+  background-color: rgba(255, 0, 0, .9);
+  color:#fff;
+}
+.nav .nuevaNotaBoton:hover{
+  background-color: #ffb310;
+  font-size: 1.02em;
+}
+.nav .logoutBtn:hover{
+  background-color: rgba(255, 0, 0, .6);
+  font-size: 1.02em;
+
+}
+
+
+.acciones{
+  min-width: 210px;
 }

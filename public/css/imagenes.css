@@ -1,3 +1,7 @@
+html, body{
+  margin:0;
+  padding:0;
+}
 .carrusel-container {
     position: relative;
     max-width: 600px;
@@ -159,4 +163,38 @@
   .btn-eliminar:hover {
     background-color: darkred;
   }
-  
+   
+
+.nav{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content: space-around;
+  background-color: #007c98;
+  color:#fff;
+}
+.nav .nuevaNotaBoton,
+.nav .logoutBtn
+{
+  padding: .6em 1em;
+  border-radius:7px;
+  text-decoration:none;
+  transition: all .5s ease;
+}
+.nav .nuevaNotaBoton{
+  background-color: #ffff72;
+  color:#252525;
+}
+.nav .logoutBtn{
+  background-color: rgba(255, 0, 0, .9);
+  color:#fff;
+}
+.nav .nuevaNotaBoton:hover{
+  background-color: #ffb310;
+  font-size: 1.02em;
+}
+.nav .logoutBtn:hover{
+  background-color: rgba(255, 0, 0, .6);
+  font-size: 1.02em;
+
+}

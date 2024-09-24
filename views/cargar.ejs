@@ -18,9 +18,13 @@
   </script>
 </head>
 <body>
-  <a href="/buyer/logout" style="display: inline-block; padding: 10px 20px; background-color: red; color: black; text-decoration: none; border: 2px solid black; border-radius: 5px; font-weight: bold;">Cerrar Sesión</a>
+  <div class="nav">
+    <a href="/admin" class="nuevaNotaBoton">Volver</a>
 
-
+    <h1>Notas de Pedido</h1>
+    <a href="/admin/logout" class="logoutBtn">Cerrar Sesión <i class="fas fa-sign-out-alt"></i></a>
+  
+  </div>
   <div class="formularioSubida">
       <!-- Formulario para subir el archivo Excel -->
       <form action="/buyer/upload" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()" class="form-container">
