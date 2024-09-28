@@ -75,4 +75,9 @@ router.get('/logout', authController.logout);
 router.get('/admin', authController.getAdmin);
 router.get('/buyer', authController.getBuyer);
 
+
+// Nueva ruta para la nueva vista
+router.get('/admin/nueva', adminController.showNuevaVista);
+
+
 module.exports = router;

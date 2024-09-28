@@ -256,6 +256,7 @@ table td:hover {
 .nav .logoutBtn
 {
   padding: .6em 1em;
+  
   border-radius:7px;
   text-decoration:none;
   transition: all .5s ease;

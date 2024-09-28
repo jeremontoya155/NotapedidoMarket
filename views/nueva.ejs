@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proveedores y Laboratorios</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        /* Container styling */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 40px;
+        }
+
+        /* Search input styling */
+        .search-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .search-box {
+            position: relative;
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+        input[type="text"] {
+            padding: 15px;
+            width: 100%;
+            border: 2px solid #ccc;
+            border-radius: 30px;
+            font-size: 16px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        input[type="text"]:focus {
+            border-color: #4A90E2;
+            outline: none;
+        }
+
+
+        /* Button styling */
+        .filter-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .filter-buttons button {
+            background-color: #4A90E2;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .filter-buttons button:hover {
+            background-color: #357ABD;
+        }
+        .filter-buttons button.active {
+            background-color: #1F618D;
+        }
+
+        /* Results styling */
+        .results {
+            margin-top: 30px;
+        }
+
+
+        .result-item {
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            width: 80%;
+        }
+        .result-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Collapsible list styling */
+        .toggle-laboratorios {
+            cursor: pointer;
+            color: #4A90E2;
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+            margin-bottom: 1em;
+        }
+        .laboratorios-hidden {
+            display: none;
+        }
+        .laboratorios-visible {
+            display: block;
+        }
+
+        /* Table styling for large lists */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f7f7f7;
+            font-weight: bold;
+        }
+        td {
+            background-color: #fff;
+        }
+
+        /* Button to return to admin panel */
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            margin-bottom: 1em;
+            padding: 12px 25px;
+            background-color: #4A90E2;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #357ABD;
+        }
+
+        /* Search box inside each laboratorio section */
+        .laboratorio-search {
+    width: calc(100% - 20px); /* Asegurarse que se ajuste dentro del contenedor */
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto; /* Centra el input */
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 14px;
+    padding: 10px; /* Añadir un relleno más cómodo */
+    box-sizing: border-box; /* Asegura que el padding no sobresalga del ancho */
+}
+
+        /* Empty results message */
+        .no-results {
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+            color: #888;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s;
+        }
+
+        #filter-proveedor{
+          margin-left: 2em;
+          margin-right: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Filtrar Proveedores y Laboratorios</h1>
+
+        <!-- Botón para regresar al admin -->
+        <a href="/admin" class="back-btn">Volver al Admin</a>
+
+        <!-- Search Interface -->
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="search" placeholder="Buscar laboratorio o proveedor..." oninput="filterResults()">
+            </div>
+            <div class="filter-buttons">
+                <button id="filter-proveedor" class="active" onclick="setFilter('proveedor')">Buscar por Proveedor</button>
+                <button id="filter-laboratorio" onclick="setFilter('laboratorio')">Buscar por Laboratorio</button>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div id="results" class="results"></div>
+    </div>
+
+    <script>
+        let data = [];
+        let filterType = 'proveedor';  // Default filter type
+
+        // Fetch the JSON data dynamically
+        fetch('/proveedores.json')
+            .then(response => response.json())
+            .then(json => {
+                data = json.proveedores;
+                displayResults(data);
+            });
+
+        // Function to set the current filter type
+        function setFilter(type) {
+            filterType = type;
+            document.getElementById('filter-proveedor').classList.toggle('active', type === 'proveedor');
+            document.getElementById('filter-laboratorio').classList.toggle('active', type === 'laboratorio');
+            filterResults();
+        }
+
+        // Function to filter the results based on search input
+        function filterResults() {
+            const searchValue = document.getElementById('search').value.toLowerCase();
+
+            const filteredData = data.filter(item => {
+                if (filterType === 'proveedor') {
+                    return item.nombre.toLowerCase().includes(searchValue);
+                } else {
+                    return item.laboratorios.some(lab => lab.toLowerCase().includes(searchValue));
+                }
+            });
+
+            displayResults(filteredData);
+        }
+
+        // Display filtered results
+        function displayResults(proveedores) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';  // Clear previous results
+
+            if (proveedores.length === 0) {
+                resultsDiv.innerHTML = '<div class="no-results fade-in">No se encontraron resultados.</div>';
+                return;
+            }
+
+            proveedores.forEach((proveedor, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('result-item', 'fade-in');
+
+                const labCount = proveedor.laboratorios.length;
+                const showMore = labCount > 5 ? `<span class="toggle-laboratorios" onclick="toggleLaboratorios(${index})">Ver laboratorios (${labCount})</span>` : '';
+
+                let laboratoriosList = `
+                    <input type="text" class="laboratorio-search" id="laboratorio-search-${index}" placeholder="Buscar en laboratorios..." oninput="filterLaboratorios(${index})">
+                    <ul id="laboratorios-${index}" class="laboratorios-hidden">
+                        ${proveedor.laboratorios.map((lab, i) => `<li id="lab-${index}-${i}">${lab}</li>`).join('')}
+                    </ul>
+                `;
+
+                if (labCount > 5) {
+                    laboratoriosList = `
+                        <input type="text" class="laboratorio-search" id="laboratorio-search-${index}" placeholder="Buscar en laboratorios..." oninput="filterLaboratorios(${index})">
+                        <table id="laboratorios-${index}" class="laboratorios-hidden">
+                            <tr><th>Laboratorios</th></tr>
+                            ${proveedor.laboratorios.map((lab, i) => `<tr id="lab-${index}-${i}"><td>${lab}</td></tr>`).join('')}
+                        </table>
+                    `;
+                }
+
+                itemDiv.innerHTML = `
+                    <h3>${filterType === 'proveedor' ? proveedor.nombre : proveedor.laboratorios.join(', ')}</h3>
+                    <p><strong>Proveedor:</strong> ${proveedor.nombre}</p>
+                    ${showMore}
+                    ${laboratoriosList}
+                `;
+
+                resultsDiv.appendChild(itemDiv);
+            });
+        }
+
+        // Function to toggle the visibility of laboratorios
+        function toggleLaboratorios(index) {
+            const laboratoriosList = document.getElementById(`laboratorios-${index}`);
+            if (laboratoriosList.classList.contains('laboratorios-hidden')) {
+                laboratoriosList.classList.remove('laboratorios-hidden');
+                laboratoriosList.classList.add('laboratorios-visible');
+            } else {
+                laboratoriosList.classList.remove('laboratorios-visible');
+                laboratoriosList.classList.add('laboratorios-hidden');
+            }
+        }
+
+        // Function to filter laboratories within the expanded list
+        function filterLaboratorios(index) {
+            const searchValue = document.getElementById(`laboratorio-search-${index}`).value.toLowerCase();
+            const labElements = document.querySelectorAll(`#laboratorios-${index} tr, #laboratorios-${index} li`);
+
+            labElements.forEach((el, i) => {
+                const labName = el.textContent.toLowerCase();
+                if (labName.includes(searchValue)) {
+                    el.style.display = '';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

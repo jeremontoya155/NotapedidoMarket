@@ -40,6 +40,10 @@ exports.adminLogout = (req, res) => {
 };
 
 
+
+
+
+
 exports.getAdminDashboard = async (req, res) => {
   try {
     // Si los filtros no están definidos en la sesión, inicializarlos
@@ -502,7 +506,13 @@ exports.deleteNotaImagen = async (req, res) => {
 
 exports.showCargarPage = (req, res) => {
   res.render('cargar'); // Asegúrate que 'cargar.ejs' esté en la carpeta 'views'
+
 };
+
+exports.showNuevaVista = (req, res) => {
+  res.render('nueva'); // Asegúrate de que 'nuevaVista.ejs' esté en la carpeta 'views'
+};
+
 
 // Función para eliminar solo archivos antiguos con extensión .xlsx o .xls
 function eliminarArchivosAntiguos() {
@@ -604,12 +614,16 @@ exports.processExcel = async (req, res) => {
       }
     }
 
+
+
     res.redirect('/admin?success=true');
   } catch (error) {
     console.error('Error al procesar el archivo:', error);
     res.status(500).send('Error al procesar el archivo');
   }
 };
+
+
 
 // Funciones auxiliares
 function isValidNumber(value) {

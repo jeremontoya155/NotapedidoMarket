@@ -98,3 +98,8 @@ exports.getBuyer = (req, res) => {
   }
   res.render('buyer', { user: req.session.user });
 };
+
+
+exports.showNuevaVista = (req, res) => {
+  res.render('nueva'); // Asegúrate de que 'nuevaVista.ejs' esté en la carpeta 'views'
+};

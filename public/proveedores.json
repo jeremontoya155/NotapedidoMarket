@@ -1,0 +1,3938 @@
+{
+    "proveedores": [
+        {
+            "nombre": "SUIZO ARGENTINA SA",
+            "laboratorios": [
+                "ALGABO",
+                "RIMMEL LONDON",
+                "COTY ARGENTINA S.A.",
+                "LABORATORIO ENA",
+                "BEIERSDORF",
+                "PIERRE FABRE DE",
+                "GLAM DISTRIBUCIONES S.R.L.",
+                "PROCTER & GAMBL",
+                "UNILEVER DE ARGENTINA S.A.",
+                "GRIMBERG",
+                "PUIG ARGENTINA S.A.",
+                "CORTASSA",
+                "LABORATORIO ESTETICA FRANCESA SRL",
+                "MAURICIO J SZTERN Y CIA S.R.L.",
+                "MYG",
+                "ITALCOSMETICA S.A",
+                "PRIFAMON S A INDUSTRIAL Y COMERCIAL",
+                "3M ACCESORIOS",
+                "PORTA HNOS S.A.",
+                "CAPILATIS  ****",
+                "COLGATE",
+                "SISCOM DE ARGENTINA S.A.",
+                "KIMBERLY CLARK ARGENTINA S.A.",
+                "SUNSTAR",
+                "VAMMA SRL",
+                "GLAXOSMITHKLINE",
+                "COMBE",
+                "JOHNSON & JOHNS",
+                "LA FÃRMACO ARG.",
+                "BUYANOR S.A.",
+                "SAINT JULIEN S.A.",
+                "EMAIL DIAMANT S.A.C.I.F.I. Y A.",
+                "SUIZO ARGENTINA SA",
+                "CANNON PUNTANA S.A.",
+                "BIFERDIL",
+                "LOREAL ARGENTINA S.A.",
+                "LISTEN S.A.C.I.Y M.",
+                "H.COZZA Y M.A.FERNANDEZ S.R.L.",
+                "RECKITT BENCKIS",
+                "NEW REVLON ARGENTINA S.A.",
+                "BAUSCH & LOMB A",
+                "AISICO S.R.L.",
+                "MERISANT ARGENT",
+                "SC JOHNSON & SO",
+                "PRODICOS SA",
+                "HEALTH CARE SUDAMERICANA S.A.",
+                "PHILIPS",
+                "GENOMMA LAB.",
+                "SEISEME S.A.",
+                "DROGUERIA MARTORANI S A",
+                "CDIMEX",
+                "ACONCAGUA.ALGOD",
+                "PANTYMED SA",
+                "PAIK MATEO PABLO",
+                "LABORATORIO CUENCA S.A.",
+                "VMP",
+                "PUREDERM",
+                "CRUELTY FREE SRL",
+                "COFARSUR SACIF",
+                "BBD S.A.",
+                "LOVAL S.A",
+                "MEG LINE",
+                "DROGUERIA BARRACAS",
+                "DISPITA",
+                "FERRINI",
+                "JCB PRODUCCIONES S.A.",
+                "SAN UP S.A.",
+                "JACTANÂ´S",
+                "SILKEY MUNDIAL",
+                "LA PAPELERA DEL PLATA S A",
+                "LENOX",
+                "SÃNCHEZ",
+                "MAS ACCESORIOS",
+                "LABORATORIO MER",
+                "RIASA S.R.L",
+                "D C C S.A.",
+                "BUHL S.A",
+                "ULTRA TECH",
+                "ARIMEX IMPORTADORA S.A.",
+                "ROBERTO PASMANTER S.A.",
+                "ARGIE TOURS S.R.L",
+                "MAPA VIRULANA S.A.I.C.",
+                "CHEEKY",
+                "RIMMEL",
+                "ATUCHA",
+                "APPER",
+                "LABORATORIO",
+                "COPAHUE",
+                "DROGUERIA SUIZO",
+                "RAISSE",
+                0.0,
+                "CARESOFT SA",
+                "ISDIN"
+            ]
+        },
+        {
+            "nombre": "NUEVA VILLA SRL",
+            "laboratorios": [
+                "ALGABO",
+                "PROCTER & GAMBL",
+                "MYG",
+                "DURACELL PILAS S.R.L.",
+                "NESTLE",
+                "SÃNCHEZ",
+                "COLGATE",
+                "FUREY",
+                "ARIMEX IMPORTADORA S.A.",
+                "DISPITA",
+                "COCOT",
+                "SUNSTAR",
+                "GRIMBERG",
+                "OLIO",
+                "ELEA (INACTIVO)",
+                "LOREAL ARGENTINA S.A.",
+                "PHILIPS",
+                "AZURA JOYAS",
+                "BEIERSDORF",
+                "BIOSINTEX RETAI",
+                "FERNIPLAST",
+                "UNILEVER DE ARGENTINA S.A.",
+                "PUIG ARGENTINA S.A.",
+                "KIMBERLY CLARK ARGENTINA S.A.",
+                "MEG LINE",
+                "FITONATURE",
+                "T"
+            ]
+        },
+        {
+            "nombre": "PARALLEL SA",
+            "laboratorios": [
+                "AVENT PHILIPS",
+                "PARALLEL SA"
+            ]
+        },
+        {
+            "nombre": "GONZALEZ GARCIA SA ",
+            "laboratorios": [
+                "ARCOR"
+            ]
+        },
+        {
+            "nombre": "JOSE IGNACIO PAROLA S.R.L.",
+            "laboratorios": [
+                "ARCOR",
+                "BAGLEY"
+            ]
+        },
+        {
+            "nombre": "SEBASTIAN KRMPOTIC",
+            "laboratorios": [
+                "BABELITO",
+                "BEL GIOCO SRL"
+            ]
+        },
+        {
+            "nombre": "CREACIONES MA YO FAVEN SRL",
+            "laboratorios": [
+                "CAREY"
+            ]
+        },
+        {
+            "nombre": "DROGUERIA DEL SUD SA",
+            "laboratorios": [
+                "RIMMEL LONDON",
+                "COTY ARGENTINA S.A.",
+                "CORTASSA",
+                "NAOS ARGENTINA S.A",
+                "BEIERSDORF",
+                "LOREAL ARGENTINA S.A.",
+                "PIERRE FABRE DE",
+                "COPAHUE",
+                "PROCTER & GAMBL",
+                "UNILEVER DE ARGENTINA S.A.",
+                "CAMPANA",
+                "LA PAPELERA DEL PLATA S A",
+                "LABORATORIO ESTETICA FRANCESA SRL",
+                "LA FÃRMACO ARG.",
+                "SISCOM DE ARGENTINA S.A.",
+                "GRIMBERG",
+                "LABORATORIO CUENCA S.A.",
+                "ITALCOSMETICA S.A",
+                "COSMETICA Y BELLEZA SRL",
+                "SAINT JULIEN S.A.",
+                "LISTEN S.A.C.I.Y M.",
+                "D C C S.A.",
+                "EMAIL DIAMANT S.A.C.I.F.I. Y A.",
+                "KOPELCO S.A.",
+                "OFAR S.A.",
+                "PUIG ARGENTINA S.A.",
+                "RECKITT BENCKIS",
+                "H.COZZA Y M.A.FERNANDEZ S.R.L.",
+                "MERISANT ARGENT",
+                "NEW REVLON ARGENTINA S.A.",
+                "JCB PRODUCCIONES S.A.",
+                "GENTECH",
+                "ARIMEX IMPORTADORA S.A.",
+                "SEISEME S.A.",
+                "ABBOTT",
+                "KIMBERLY CLARK ARGENTINA S.A.",
+                "KUIDAR",
+                "TENACTA S.A.",
+                "BAUSCH & LOMB A",
+                "BECTON DICKIN",
+                "LABORATORIOS DIFAPE S.A.I. Y C.",
+                "TERMOMETROS ARGENTINOS S.A.",
+                "3M ACCESORIOS",
+                "JOHNSON & JOHNS",
+                "GENOMMA LAB.",
+                "PRODICOS SA",
+                "LOVAL S.A",
+                "CAPILATIS  ****",
+                "COLGATE",
+                "SOLDIST S.R.L.",
+                "CDIMEX",
+                "CARESOFT SA",
+                "BIC ARGENTINA S.A.",
+                "PANTYMED SA",
+                "PAIK MATEO PABLO",
+                "VMP",
+                "RIASA S.R.L",
+                "MAPA VIRULANA S.A.I.C.",
+                "VECCHIO EDUARDO RAMON",
+                "DQUICO ADDAFE",
+                "AKAPOL SOCIEDAD ANONIMA",
+                "GRUPO QUERUCLOR",
+                "PUREDERM",
+                "PORTA HNOS S.A.",
+                "ELEA",
+                "CRUELTY FREE SRL",
+                "CICLICA S.R.L.",
+                "CRAFTMEN S.A.",
+                "BAGÃ“",
+                "PHILIPS",
+                "NINGBO SA",
+                "SUMERU AYURVEDA S.A.",
+                "ROBERTO PASMANTER S.A.",
+                "PRIFAMON S A INDUSTRIAL Y COMERCIAL",
+                "PROMARC S.A.",
+                "ACONCAGUA.ALGOD",
+                "LISFAR"
+            ]
+        },
+        {
+            "nombre": "CORTASSA SA",
+            "laboratorios": [
+                "CORTASSA",
+                "PUIG ARGENTINA S.A.",
+                "LOVAL S.A",
+                "SAINT JULIEN S.A.",
+                "CRAFTMEN S.A.",
+                "ROVAFARM ARGENTINA S.A.",
+                "COFARSUR SACIF",
+                "CDIMEX"
+            ]
+        },
+        {
+            "nombre": "DEPIMIEL SRL",
+            "laboratorios": [
+                "DEPIMIEL S.R.L."
+            ]
+        },
+        {
+            "nombre": "LOREAL ARGENTINA SOCIEDAD ANONIMA",
+            "laboratorios": [
+                "LOREAL ARGENTINA S.A.",
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "DROGUERIA COFARSUR SACIF",
+            "laboratorios": [
+                "JOHNSON & JOHNS",
+                "LOREAL ARGENTINA S.A.",
+                "GLAM DISTRIBUCIONES S.R.L.",
+                "PROCTER & GAMBL",
+                "UNILEVER DE ARGENTINA S.A.",
+                "MYG",
+                "ITALCOSMETICA S.A",
+                "FUREY",
+                "PRIFAMON S A INDUSTRIAL Y COMERCIAL",
+                "VAMMA SRL",
+                "PUIG ARGENTINA S.A.",
+                "LABORATORIO CUENCA S.A.",
+                "CAPILATIS  ****",
+                "SUNSTAR",
+                "COLGATE",
+                "COFARSUR SACIF",
+                "PADOC S.A.",
+                "DROGUERIA BARRACAS",
+                "PORTA HNOS S.A.",
+                "ARIMEX IMPORTADORA S.A.",
+                "LA FÃRMACO ARG.",
+                "SÃNCHEZ",
+                "UBG UNITED SRL",
+                "GRIMBERG",
+                "SAINT JULIEN S.A.",
+                "INSTITUTO BIOLOGICO CORDOBA",
+                "ACONCAGUA.ALGOD",
+                "DISTRIBUIDORA R3 S.R.L",
+                "LABORATORIO ESTETICA FRANCESA SRL",
+                "KIMBERLY CLARK ARGENTINA S.A.",
+                "DREAMCO S.C.A.",
+                "BEIERSDORF",
+                "LABORATORIOS GASANA S.R.L.",
+                "OBIS",
+                "SISCOM DE ARGENTINA S.A.",
+                "VALMAX",
+                "NEOTEKSA SA",
+                "MAYBELLINE"
+            ]
+        },
+        {
+            "nombre": "BEIERSDORF SA",
+            "laboratorios": [
+                "BEIERSDORF",
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "ISDIN ARGENTINA SA",
+            "laboratorios": [
+                "ISDIN",
+                "ISDINCEUTIC"
+            ]
+        },
+        {
+            "nombre": "SILVESTRIN FABRIS SRL",
+            "laboratorios": [
+                "SILFAB"
+            ]
+        },
+        {
+            "nombre": "ALBERTO Y JUAN FUREY SRL",
+            "laboratorios": [
+                "FUREY",
+                "MYG",
+                "RIASA S.R.L",
+                "PORTA HNOS S.A.",
+                "CHAPOTEANDO"
+            ]
+        },
+        {
+            "nombre": "DISTRIBUIDORA NUEVO ARCO IRIS SRL",
+            "laboratorios": [
+                "VAITA"
+            ]
+        },
+        {
+            "nombre": "RAFCA S.R.L.",
+            "laboratorios": [
+                "PROCTER & GAMBL",
+                "CEPAS",
+                "RAFCA",
+                "CLOROX ARGENTINA S.A.",
+                "DREAMCO S.C.A.",
+                "NEWSAN SOCIEDAD ANONIMA",
+                "P&G PERFU"
+            ]
+        },
+        {
+            "nombre": "UNILEVER DE ARGENTINA S.A.",
+            "laboratorios": [
+                "UNILEVER DE ARGENTINA S.A."
+            ]
+        },
+        {
+            "nombre": "ALONSO J. Y JOSE A. REDOLFI S.R.L.",
+            "laboratorios": [
+                "UNILEVER DE ARGENTINA S.A.",
+                "COOPERATIVA LIEBIG",
+                "MAPA VIRULANA S.A.I.C.",
+                "MISTER TRAPO",
+                "WASSINGTON S.A.C.I.F. E I.",
+                "FOSFOROS SUDAMERICANA",
+                "CLOROX ARGENTINA S.A.",
+                "REDOLFI"
+            ]
+        },
+        {
+            "nombre": "MAR - PLAST SA",
+            "laboratorios": [
+                "MAR PLAST",
+                "POPEYE"
+            ]
+        },
+        {
+            "nombre": "LABORATORIOS WARMIC S.A.I.C.",
+            "laboratorios": [
+                "SAGRADA MADRE ",
+                "ESENCIA NATAL",
+                "COALIX S.A."
+            ]
+        },
+        {
+            "nombre": "IMPORTADORA SUDAMERICANA SRL",
+            "laboratorios": [
+                "IMPORTADORA SUDAMERICANA S.R.L.",
+                "IMPORT SUD",
+                "CHIALVO",
+                "UNILEVER DE ARGENTINA S.A.",
+                "RJL SRL",
+                "JEAN CARTIER",
+                "LABANIM"
+            ]
+        },
+        {
+            "nombre": "VELAS DE LOS MILAGROS SRL",
+            "laboratorios": [
+                "ILUMINARTE"
+            ]
+        },
+        {
+            "nombre": "CAMPANA DISTRIBUCIONES SRL",
+            "laboratorios": [
+                "CAMPANA",
+                "MAURICIO J SZTERN Y CIA S.R.L."
+            ]
+        },
+        {
+            "nombre": "LIPROT SRL",
+            "laboratorios": [
+                "BANDER GREEN"
+            ]
+        },
+        {
+            "nombre": "MAURICIO J SZTERN Y CIA SRL",
+            "laboratorios": [
+                "JACTANÂ´S",
+                "MAURICIO J SZTERN Y CIA S.R.L."
+            ]
+        },
+        {
+            "nombre": "DROGUERIA MG SRL",
+            "laboratorios": [
+                "MYG",
+                "FUREY",
+                "PORTA HNOS S.A.",
+                "ITALCOSMETICA S.A",
+                "SÃNCHEZ",
+                "SAN UP S.A.",
+                "3M ACCESORIOS",
+                "HEDALY S.A.",
+                "UPALALA",
+                "DROGUERIA MG SRL"
+            ]
+        },
+        {
+            "nombre": "EZEFA S.A.",
+            "laboratorios": [
+                "LENTERDIT SA"
+            ]
+        },
+        {
+            "nombre": "LUCENA ENRRI JAVIER",
+            "laboratorios": [
+                "LUCENA"
+            ]
+        },
+        {
+            "nombre": "MAGLIONE SRL",
+            "laboratorios": [
+                "LA PAPELERA DEL PLATA S A",
+                "LOREAL ARGENTINA S.A.",
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "SAN UP SA",
+            "laboratorios": [
+                "SAN UP S.A."
+            ]
+        },
+        {
+            "nombre": "LOS CATALANES S.R.L.",
+            "laboratorios": [
+                "3M ACCESORIOS",
+                "KT TAPE",
+                "SÃNCHEZ",
+                "PORTA HNOS S.A."
+            ]
+        },
+        {
+            "nombre": "BUHL SA",
+            "laboratorios": [
+                "BUHL S.A",
+                "FERRINI"
+            ]
+        },
+        {
+            "nombre": "HISAN SA",
+            "laboratorios": [
+                "HISAN S.A."
+            ]
+        },
+        {
+            "nombre": "FERNANDEZ WALTER CEFERINO",
+            "laboratorios": [
+                "LABORATORIO CUENCA S.A."
+            ]
+        },
+        {
+            "nombre": "CANNON PUNTANA SA",
+            "laboratorios": [
+                "CANNON PUNTANA S.A."
+            ]
+        },
+        {
+            "nombre": "SOFTYS ARGENTINA SA",
+            "laboratorios": [
+                "LA PAPELERA DEL PLATA S A"
+            ]
+        },
+        {
+            "nombre": "MAGNUM S.A.",
+            "laboratorios": [
+                "SC JOHNSON & SO",
+                "DROGUERIA BARRACAS",
+                "FRATELLI",
+                "MAGNUM",
+                "MAGNUM S.A"
+            ]
+        },
+        {
+            "nombre": "GRIMBERG DENTALES S.A.",
+            "laboratorios": [
+                "GRIMBERG",
+                "DEKKIN"
+            ]
+        },
+        {
+            "nombre": "PADOC SA",
+            "laboratorios": [
+                "PADOC S.A."
+            ]
+        },
+        {
+            "nombre": "DROGUERIA KELLERHOFF SA",
+            "laboratorios": [
+                "LABORATORIO CUENCA S.A.",
+                "LOVAL S.A",
+                "JAYOR",
+                "KELLERHOFF",
+                "SÃNCHEZ",
+                "PIERRE FABRE DE"
+            ]
+        },
+        {
+            "nombre": "NEOTEKSA S.A.",
+            "laboratorios": [
+                "NEOTEKSA SA"
+            ]
+        },
+        {
+            "nombre": "LABORATORIOS ALVEAR S.A.",
+            "laboratorios": [
+                "OMRON",
+                "ICARE"
+            ]
+        },
+        {
+            "nombre": "LABORATORIOS MEG LINE SA",
+            "laboratorios": [
+                "MEG LINE"
+            ]
+        },
+        {
+            "nombre": "GLOBALFARM S.A.",
+            "laboratorios": [
+                "AISICO S.R.L."
+            ]
+        },
+        {
+            "nombre": "NEWSAN SA",
+            "laboratorios": [
+                "NEWSAN SOCIEDAD ANONIMA"
+            ]
+        },
+        {
+            "nombre": "DECADE S.A",
+            "laboratorios": [
+                "SILMAG",
+                "MYG",
+                "CONVATEC (ACC)",
+                "FUREY",
+                "GIBECK",
+                "SÃNCHEZ",
+                "3M ACCESORIOS",
+                "KENDALL",
+                "HALYARD",
+                "B. BRAUN",
+                "KOLER",
+                "ABBOTT",
+                "AUSTRAL",
+                "SERTEX",
+                "ESSITY"
+            ]
+        },
+        {
+            "nombre": "GRUPO JRG S.A.S.",
+            "laboratorios": [
+                "GAMA SOCIEDAD ANONIMA"
+            ]
+        },
+        {
+            "nombre": "PROFACOR SRL",
+            "laboratorios": [
+                "ALICORP ARGENTINA S.C.A.",
+                "SÃNCHEZ",
+                "GRIMBERG",
+                "BIC ARGENTINA S.A.",
+                "VARTA"
+            ]
+        },
+        {
+            "nombre": "DISTRIBUIDORA EDEN S.R.L.",
+            "laboratorios": [
+                "THELMA & LOUISE"
+            ]
+        },
+        {
+            "nombre": "DR.LENOX SA",
+            "laboratorios": [
+                "LENOX"
+            ]
+        },
+        {
+            "nombre": "LA CUMBRE SAN LUIS SA",
+            "laboratorios": [
+                "HILERET"
+            ]
+        },
+        {
+            "nombre": "MAS ACCESORIOS SRL",
+            "laboratorios": [
+                "MAS ACCESORIOS"
+            ]
+        },
+        {
+            "nombre": "LOZA INSUMOS MEDICOS SAS",
+            "laboratorios": [
+                "SÃNCHEZ",
+                "MYG"
+            ]
+        },
+        {
+            "nombre": "BERTOLINI JULIAN",
+            "laboratorios": [
+                "ALICIA DORE"
+            ]
+        },
+        {
+            "nombre": "GRUPO C3 S.A.",
+            "laboratorios": [
+                "COLOPLAST"
+            ]
+        },
+        {
+            "nombre": "EXPENDEDORES",
+            "laboratorios": [
+                "SIDUS",
+                "CRAVERI",
+                "POEN",
+                "ROEMMERS",
+                "MILLET-FRANKLIN",
+                "INVESTI",
+                "SIEGFRIED",
+                "GENOMMA LAB.",
+                "ECZANE",
+                "FINADIET",
+                "DR. MADAUS",
+                "CASASCO",
+                "SIEGFRIED S.A.",
+                "SCHAFER"
+            ]
+        },
+        {
+            "nombre": "MONROE AMERICANA SA",
+            "laboratorios": [
+                "MONROE AMERICANA SA",
+                "SOL BEBE S.A.",
+                "SC JOHNSON & SO"
+            ]
+        },
+        {
+            "nombre": "DI MARCO RAFAEL",
+            "laboratorios": [
+                "FUREY",
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "ARIMEX IMPORTADORA SA",
+            "laboratorios": [
+                "ARIMEX IMPORTADORA S.A."
+            ]
+        },
+        {
+            "nombre": "GIRONES CLAUDIO WALTER",
+            "laboratorios": [
+                "LOVE",
+                "MAR PLAST"
+            ]
+        },
+        {
+            "nombre": "JCP INSUMOS MEDICOS S.A.",
+            "laboratorios": [
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "LARET SAS",
+            "laboratorios": [
+                "LARET"
+            ]
+        },
+        {
+            "nombre": "EMBOTELLADORA DEL ATLANTICO S.A",
+            "laboratorios": [
+                "COCA COLA COMPANY"
+            ]
+        },
+        {
+            "nombre": "RJL SRL",
+            "laboratorios": [
+                "RJL SRL",
+                "CHIALVO"
+            ]
+        },
+        {
+            "nombre": "FRAGUEIRO MAYORISTA S.A.",
+            "laboratorios": [
+                "PRINGLES",
+                "ESTABLECIMIENTO LAS MARIAS",
+                "IMPORT SUD",
+                "VERDEFLOR",
+                "NATURA"
+            ]
+        },
+        {
+            "nombre": "ENRIQUE REYES S.A.",
+            "laboratorios": [
+                "FERNIPLAST"
+            ]
+        },
+        {
+            "nombre": "VELOX DISTRIBUCIONES S.A.S.",
+            "laboratorios": [
+                "ABCOR"
+            ]
+        },
+        {
+            "nombre": "DACOR",
+            "laboratorios": [
+                "DACOR"
+            ]
+        },
+        {
+            "nombre": "DA ROSA MARIO CHRISTIAN",
+            "laboratorios": [
+                "DROGUERIA BARRACAS",
+                "CLOROX ARGENTINA S.A.",
+                "DEA",
+                "NUVIA",
+                "FOSFOROS SUDAMERICANA",
+                "RECKITT BENCKIS",
+                "RANCHERA"
+            ]
+        },
+        {
+            "nombre": "BEVERAGE DESING ARGENTINA",
+            "laboratorios": [
+                "CONTIGO",
+                "COLEMAN",
+                "RUBBERMAID",
+                "SISTEMA"
+            ]
+        },
+        {
+            "nombre": "CINCAM SACIFAE",
+            "laboratorios": [
+                "CAROL"
+            ]
+        },
+        {
+            "nombre": "MARCEL GUILLERMO NESTOR",
+            "laboratorios": [
+                "CLAUDE GARNIE"
+            ]
+        },
+        {
+            "nombre": "MODELIFE GROUP SA",
+            "laboratorios": [
+                "MODELIFE"
+            ]
+        },
+        {
+            "nombre": "QUI-PAR SRL",
+            "laboratorios": [
+                "MONDELEZ ARGENTINA"
+            ]
+        },
+        {
+            "nombre": "PRODUCTOS FARMACEUTICOS DR.GRAY SACIF",
+            "laboratorios": [
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "B Y V DISTRIBUCIONES SRL",
+            "laboratorios": [
+                "MONDELEZ ARGENTINA"
+            ]
+        },
+        {
+            "nombre": "SYEMED SRL",
+            "laboratorios": [
+                "MAVERICK"
+            ]
+        },
+        {
+            "nombre": "LOZA MARIA GRACIA",
+            "laboratorios": [
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "DROGUERIA DISTRIMEN SA",
+            "laboratorios": [
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "BIO-SALUD S.R.L.",
+            "laboratorios": [
+                "BIO-SALUD S.R.L."
+            ]
+        },
+        {
+            "nombre": "BRIX S.R.L.",
+            "laboratorios": [
+                "BRIX S.R.L."
+            ]
+        },
+        {
+            "nombre": "EMPRESA DE NUTRICION ARGENTINA SRL",
+            "laboratorios": [
+                "LABORATORIO ENA"
+            ]
+        },
+        {
+            "nombre": "UXS S.A.",
+            "laboratorios": [
+                "MAR PLAST",
+                "CELLFOX"
+            ]
+        },
+        {
+            "nombre": "BONALDI MARIANA TERESA",
+            "laboratorios": [
+                "FUNCIONAL FOODS S.A.S."
+            ]
+        },
+        {
+            "nombre": "SALUS AEQUITAS SA",
+            "laboratorios": [
+                "SALUS AEQUITAS"
+            ]
+        },
+        {
+            "nombre": "ASHI SA",
+            "laboratorios": [
+                "WATERDOG"
+            ]
+        },
+        {
+            "nombre": "WEB SUPPLEMENTS SRL",
+            "laboratorios": [
+                "ULTRA TECH"
+            ]
+        },
+        {
+            "nombre": "KINEMED SA",
+            "laboratorios": [
+                "KINEMED"
+            ]
+        },
+        {
+            "nombre": "THE RISE OF EMPIRE SRL",
+            "laboratorios": [
+                "MOBILE ACC"
+            ]
+        },
+        {
+            "nombre": "SEISEME SA",
+            "laboratorios": [
+                "SEISEME S.A."
+            ]
+        },
+        {
+            "nombre": "SF PANDA SRL",
+            "laboratorios": [
+                "PANDA SRL"
+            ]
+        },
+        {
+            "nombre": "DIMAFO SA",
+            "laboratorios": [
+                "DIMAFO SA"
+            ]
+        },
+        {
+            "nombre": "PRITTY SA",
+            "laboratorios": [
+                "PRITTY"
+            ]
+        },
+        {
+            "nombre": "CAMMISA, CECILIA INÃ‰S",
+            "laboratorios": [
+                "GRINNIBE"
+            ]
+        },
+        {
+            "nombre": "TAZISKY S.A.",
+            "laboratorios": [
+                "TRYMS"
+            ]
+        },
+        {
+            "nombre": "FYN 5 SRL",
+            "laboratorios": [
+                "BOTI-K"
+            ]
+        },
+        {
+            "nombre": "ELECTROMEDICINA SRL",
+            "laboratorios": [
+                "SÃNCHEZ",
+                "SILFAB"
+            ]
+        },
+        {
+            "nombre": "LABORATORIOS BERNABO S.A.",
+            "laboratorios": [
+                "LABORATORIOS BE"
+            ]
+        },
+        {
+            "nombre": "BEEPEX S.A.S.",
+            "laboratorios": [
+                "BEEPEX S.A.S."
+            ]
+        },
+        {
+            "nombre": "ACCESORIOS.COM SRL",
+            "laboratorios": [
+                "AXER"
+            ]
+        },
+        {
+            "nombre": "EXCELLENCE COSMETIQUE S.A.",
+            "laboratorios": [
+                "RAISSE"
+            ]
+        },
+        {
+            "nombre": "IMPORTADORA LA SRL",
+            "laboratorios": [
+                "IMPORT SUD"
+            ]
+        },
+        {
+            "nombre": "FITNUT SAS",
+            "laboratorios": [
+                "NESTLE"
+            ]
+        },
+        {
+            "nombre": "ACCME SRL",
+            "laboratorios": [
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "DROGUERIA PATRIA S.A.",
+            "laboratorios": [
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "CERVECERIA Y MALTERIA QUILMES SAICA Y G",
+            "laboratorios": [
+                "PEPSI"
+            ]
+        },
+        {
+            "nombre": "MULTIBAGS S.A.S.",
+            "laboratorios": [
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "STENDY",
+            "laboratorios": [
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "IDIOMA GRAFICO S.R.L.",
+            "laboratorios": [
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "OLYMPIC PRO",
+            "laboratorios": [
+                "OLYMPIC PRO"
+            ]
+        },
+        {
+            "nombre": "FLORES JAVIER ALBERTO",
+            "laboratorios": [
+                "HOCH SPORT"
+            ]
+        },
+        {
+            "nombre": "ALGABO S.A.",
+            "laboratorios": [
+                "ALGABO"
+            ]
+        },
+        {
+            "nombre": "MAUTINO DANTE MANUEL",
+            "laboratorios": [
+                "AD +"
+            ]
+        },
+        {
+            "nombre": "NATURAL CANDY S.R.L.",
+            "laboratorios": [
+                "NATURAL CANDY"
+            ]
+        },
+        {
+            "nombre": "GELPOCKET S.R.L.",
+            "laboratorios": [
+                "OCOA"
+            ]
+        },
+        {
+            "nombre": "SARANG TOSANG",
+            "laboratorios": [
+                "ELEMENTO"
+            ]
+        },
+        {
+            "nombre": "AUSTRAL FARMA S.R.L.",
+            "laboratorios": [
+                "AUSTRAL"
+            ]
+        },
+        {
+            "nombre": "MARCAS SRL",
+            "laboratorios": [
+                "KIMBERLY CLARK ARGENTINA S.A."
+            ]
+        },
+        {
+            "nombre": "DROGUERIA CAPDEVILA S R L",
+            "laboratorios": [
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "BERLES S.R.L",
+            "laboratorios": [
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "NX LABORATORIOS S.A.S.",
+            "laboratorios": [
+                "NUTREMAX"
+            ]
+        },
+        {
+            "nombre": "CIUDAD DE PAPEL SAS",
+            "laboratorios": [
+                "SÃNCHEZ"
+            ]
+        },
+        {
+            "nombre": "KIRAM SRL",
+            "laboratorios": [
+                "LEGO"
+            ]
+        },
+        {
+            "nombre": "CAMBRILS DISTRIBUCIONES S.A.",
+            "laboratorios": [
+                "MIR FITNESS"
+            ]
+        },
+        {
+            "nombre": "INTERPORK S.A.",
+            "laboratorios": [
+                "INTERPORK S.A."
+            ]
+        },
+        {
+            "nombre": "MATADERO FRIGORIFICO UNION S.A.",
+            "laboratorios": [
+                "MATADERO FRIGORIFICO UNION S.A."
+            ]
+        },
+        {
+            "nombre": "ALIMENTOS MAGROS SA",
+            "laboratorios": [
+                "ALIMENTOS MAGROS S.A."
+            ]
+        },
+        {
+            "nombre": "STABILE GUILLERMO ANTONIO",
+            "laboratorios": [
+                "STABILE GUILLERMO ANTONIO"
+            ]
+        },
+        {
+            "nombre": "GRANJA TRES ARROYOS SA",
+            "laboratorios": [
+                "GRANJA TRES ARROYOS S.A."
+            ]
+        },
+        {
+            "nombre": "BUSTOS Y BELTRAN SA",
+            "laboratorios": [
+                "BUSTOS Y BELTRAN S.A."
+            ]
+        },
+        {
+            "nombre": "WATERMELON OBJETOS SRL",
+            "laboratorios": [
+                "WATERMELON"
+            ]
+        },
+        {
+            "nombre": "CHIALVO S.R.L.",
+            "laboratorios": [
+                "CHIALVO",
+                "MOLINOS CAÃ‘UELAS",
+                "PUREZA",
+                "PRODEMAN",
+                "MANI KING"
+            ]
+        },
+        {
+            "nombre": "CITISOL SA",
+            "laboratorios": [
+                "BUNGUIS"
+            ]
+        },
+        {
+            "nombre": "BESTIA PELUDA SA",
+            "laboratorios": [
+                "BESTIA PELUDA"
+            ]
+        },
+        {
+            "nombre": "MYF DISTRIBUIDORA SA",
+            "laboratorios": [
+                "TRAMONTINA",
+                "NADIR"
+            ]
+        },
+        {
+            "nombre": "NEWTOYS SA",
+            "laboratorios": [
+                "NEW TOYS"
+            ]
+        },
+        {
+            "nombre": "CATAR S.R.L",
+            "laboratorios": [
+                "CATAR"
+            ]
+        },
+        {
+            "nombre": "BRUNO BAROVERO",
+            "laboratorios": [
+                "CORI FOOD",
+                "MARS",
+                "SOUR PATCH",
+                "HUBBA BUBBA",
+                "HARIBO",
+                "TAKIS",
+                "CAPRICE",
+                "MENTOS",
+                "PUSH POP",
+                "JUAN VALDEZ",
+                "CHIMBOTE",
+                "ENTRE DOS",
+                "RASTA",
+                "CACHAFAZ",
+                "LINDT"
+            ]
+        },
+        {
+            "nombre": "SAN PABLO S.R.L.",
+            "laboratorios": [
+                "UNILEVER DE ARGENTINA S.A.",
+                "FAVINCO",
+                "TASK"
+            ]
+        },
+        {
+            "nombre": "TOSI LUIS PEDRO",
+            "laboratorios": [
+                "FAMILIA GULLO"
+            ]
+        },
+        {
+            "nombre": "DANKON SRL",
+            "laboratorios": [
+                "DANKON"
+            ]
+        },
+        {
+            "nombre": "DECORMESA SA",
+            "laboratorios": [
+                "DECORMESA"
+            ]
+        },
+        {
+            "nombre": "GESON SA",
+            "laboratorios": [
+                "GESON"
+            ]
+        },
+        {
+            "nombre": "KUUSAI SA",
+            "laboratorios": [
+                "APA LA PAPA"
+            ]
+        },
+        {
+            "nombre": "ENTRANCE SA",
+            "laboratorios": [
+                "ENTRANCE"
+            ]
+        },
+        {
+            "nombre": "MOLCO SPORT S.R.L.",
+            "laboratorios": [
+                "SPORT COM"
+            ]
+        },
+        {
+            "nombre": "MOLINOS RIO DE LA PLATA SA",
+            "laboratorios": [
+                "MOLINOS RIO DE LA PLATA"
+            ]
+        },
+        {
+            "nombre": "NATURALMENTE ALIMENTOS S.A.",
+            "laboratorios": [
+                "BEEPURE"
+            ]
+        },
+        {
+            "nombre": "CABRALES S.A.",
+            "laboratorios": [
+                "CABRALES"
+            ]
+        },
+        {
+            "nombre": "UKCOM SA ",
+            "laboratorios": [
+                "AXER"
+            ]
+        },
+        {
+            "nombre": "MAYORISTA DISTRIBUIDORA MINORISTA SAS",
+            "laboratorios": [
+                "MAYORISTA DE ALIMENTOS",
+                "LEDESMA",
+                "VANOLI",
+                "DOS HERMANOS"
+            ]
+        },
+        {
+            "nombre": "LA AGRÃCOLA SA",
+            "laboratorios": [
+                "LA 14",
+                "ALAMBRADO"
+            ]
+        },
+        {
+            "nombre": "MAYORISTA DE ALIMENTOS S.A.",
+            "laboratorios": [
+                "DULCOR"
+            ]
+        },
+        {
+            "nombre": "BODEGAS ESMERALDA SOCIEDAD ANONIMA",
+            "laboratorios": [
+                "CATENA"
+            ]
+        },
+        {
+            "nombre": "CAFES LA VIRGINIA S A",
+            "laboratorios": [
+                "CAFES LA VIRGINIA S.A."
+            ]
+        },
+        {
+            "nombre": "GBA SUR LOGISTICA SA",
+            "laboratorios": [
+                "PEPSICO",
+                "PEÃ‘AFLOR"
+            ]
+        },
+        {
+            "nombre": "VALENTIN BIANCHI S A C I F",
+            "laboratorios": [
+                "BIANCHI"
+            ]
+        },
+        {
+            "nombre": "BLONDIS SRL",
+            "laboratorios": [
+                "BLONDIS"
+            ]
+        },
+        {
+            "nombre": "CORDEIRO Y CIA S R L",
+            "laboratorios": [
+                "CAFES LA VIRGINIA S.A."
+            ]
+        },
+        {
+            "nombre": "FLAMA SA",
+            "laboratorios": [
+                "MAGICLICK"
+            ]
+        },
+        {
+            "nombre": "CORDOBA DRINKS S.A.",
+            "laboratorios": [
+                "C DRINKS"
+            ]
+        },
+        {
+            "nombre": "PARQUE SRL",
+            "laboratorios": [
+                "LA 14"
+            ]
+        },
+        {
+            "nombre": "SEABOARD ENERGIAS RENOVABLES Y ALIMENTOS SRL",
+            "laboratorios": [
+                "CHANGO"
+            ]
+        },
+        {
+            "nombre": "GRANGER SA",
+            "laboratorios": [
+                "GRANGER"
+            ]
+        },
+        {
+            "nombre": "MOSTO DISTRIBUCIONES S.A.",
+            "laboratorios": [
+                "LAS PERDICES",
+                "ANDELUNA",
+                "HENNESY"
+            ]
+        },
+        {
+            "nombre": "ONE TWO FIT ALIMENTOS SAS",
+            "laboratorios": [
+                "ONE TWO FIT"
+            ]
+        },
+        {
+            "nombre": "TRES H BEBIDAS SAS",
+            "laboratorios": [
+                "SPEED UNLIMITED"
+            ]
+        },
+        {
+            "nombre": "SUPER VERDE SRL",
+            "laboratorios": [
+                "SUPER VERDE SRL"
+            ]
+        },
+        {
+            "nombre": "VENDOR",
+            "laboratorios": [
+                "CITRIC"
+            ]
+        },
+        {
+            "nombre": "CCU - CIA INDUSTRIAL CERVECERA SA",
+            "laboratorios": [
+                "CCU",
+                "EL ABUELO",
+                "HEINEKEN",
+                "MILLER",
+                "AMSTEL",
+                "IMPERIAL",
+                "SANTIAGO GRAFFIGNA"
+            ]
+        },
+        {
+            "nombre": "CINCO RIOS ASOCIADOS SRL",
+            "laboratorios": [
+                "SELLO DE VINOS"
+            ]
+        },
+        {
+            "nombre": "LEONCIO ARIZU S.A.",
+            "laboratorios": [
+                "LUIGI BOSCA"
+            ]
+        },
+        {
+            "nombre": "COPPENTO S.A.S",
+            "laboratorios": [
+                "COPPENTO"
+            ]
+        },
+        {
+            "nombre": "CAROLINA BEATRIZ RODRIGUEZ",
+            "laboratorios": [
+                "LAGO PUELO"
+            ]
+        },
+        {
+            "nombre": "S.A. ESTABLECIMIENTOS VITINICOLAS ESCORIHUELA",
+            "laboratorios": [
+                "ESCORIHUELA"
+            ]
+        },
+        {
+            "nombre": "KLOR CONSTANZA",
+            "laboratorios": [
+                "SWIFT"
+            ]
+        },
+        {
+            "nombre": "INDUSCUER S.A.S.",
+            "laboratorios": [
+                "LAS PERDICES"
+            ]
+        },
+        {
+            "nombre": "FRUIT DE LAIT S.A.",
+            "laboratorios": [
+                "FRUIT DE LAIT"
+            ]
+        },
+        {
+            "nombre": "DIZAIN DOST",
+            "laboratorios": [
+                "MASALE CAYA"
+            ]
+        },
+        {
+            "nombre": "DOMINGUEZ GLADIS INES",
+            "laboratorios": [
+                "AGOFA CHOCOLATES"
+            ]
+        },
+        {
+            "nombre": "AC LOGISTICA SRL",
+            "laboratorios": [
+                "MOLINOS CAÃ‘UELAS"
+            ]
+        },
+        {
+            "nombre": "ALBINA S.A",
+            "laboratorios": [
+                "DON RAMON"
+            ]
+        },
+        {
+            "nombre": "GARCIA HERMANOS AGROINDUSTRIAL SRL",
+            "laboratorios": [
+                "TREGAR"
+            ]
+        },
+        {
+            "nombre": "PALADINI S.A.",
+            "laboratorios": [
+                "PALADINI"
+            ]
+        },
+        {
+            "nombre": "DE LOS RIOS NICOLAS",
+            "laboratorios": [
+                "DLR CONGELADOS"
+            ]
+        },
+        {
+            "nombre": "PANIFICADORA VENEZIANA S.A.",
+            "laboratorios": [
+                "VENEZIANA"
+            ]
+        },
+        {
+            "nombre": "FRIGORIFICO NUEVO MUNICH S.R.L.",
+            "laboratorios": [
+                "NUEVO MUNICH"
+            ]
+        },
+        {
+            "nombre": "GRANJAS CARNAVE S.A.",
+            "laboratorios": [
+                "CARNAVE"
+            ]
+        },
+        {
+            "nombre": "VILLA ELIAS PATAGONIA SRL",
+            "laboratorios": [
+                "VILLA ELIAS PATAGONIA"
+            ]
+        },
+        {
+            "nombre": "MONTHELADO S.A.",
+            "laboratorios": [
+                "MONTHELADO"
+            ]
+        }
+    ],
+    "laboratorios": [
+        {
+            "nombre": "ALGABO",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "NUEVA VILLA SRL",
+                "ALGABO S.A."
+            ]
+        },
+        {
+            "nombre": "AVENT PHILIPS",
+            "proveedores": [
+                "PARALLEL SA"
+            ]
+        },
+        {
+            "nombre": "ARCOR",
+            "proveedores": [
+                "GONZALEZ GARCIA SA ",
+                "JOSE IGNACIO PAROLA S.R.L."
+            ]
+        },
+        {
+            "nombre": "BABELITO",
+            "proveedores": [
+                "SEBASTIAN KRMPOTIC"
+            ]
+        },
+        {
+            "nombre": "CAREY",
+            "proveedores": [
+                "CREACIONES MA YO FAVEN SRL"
+            ]
+        },
+        {
+            "nombre": "RIMMEL LONDON",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "COTY ARGENTINA S.A.",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "CORTASSA",
+            "proveedores": [
+                "CORTASSA SA",
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "DEPIMIEL S.R.L.",
+            "proveedores": [
+                "DEPIMIEL SRL"
+            ]
+        },
+        {
+            "nombre": "LABORATORIO ENA",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "EMPRESA DE NUTRICION ARGENTINA SRL"
+            ]
+        },
+        {
+            "nombre": "LOREAL ARGENTINA S.A.",
+            "proveedores": [
+                "LOREAL ARGENTINA SOCIEDAD ANONIMA",
+                "DROGUERIA COFARSUR SACIF",
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA",
+                "MAGLIONE SRL",
+                "NUEVA VILLA SRL"
+            ]
+        },
+        {
+            "nombre": "BEIERSDORF",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "BEIERSDORF SA",
+                "DROGUERIA DEL SUD SA",
+                "NUEVA VILLA SRL",
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "JOHNSON & JOHNS",
+            "proveedores": [
+                "DROGUERIA COFARSUR SACIF",
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "NAOS ARGENTINA S.A",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "PIERRE FABRE DE",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA KELLERHOFF SA"
+            ]
+        },
+        {
+            "nombre": "COPAHUE",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "ISDIN",
+            "proveedores": [
+                "ISDIN ARGENTINA SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "SILFAB",
+            "proveedores": [
+                "SILVESTRIN FABRIS SRL",
+                "ELECTROMEDICINA SRL"
+            ]
+        },
+        {
+            "nombre": "FUREY",
+            "proveedores": [
+                "ALBERTO Y JUAN FUREY SRL",
+                "DROGUERIA MG SRL",
+                "DROGUERIA COFARSUR SACIF",
+                "NUEVA VILLA SRL",
+                "DECADE S.A",
+                "DI MARCO RAFAEL"
+            ]
+        },
+        {
+            "nombre": "MYG",
+            "proveedores": [
+                "ALBERTO Y JUAN FUREY SRL",
+                "DROGUERIA MG SRL",
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA COFARSUR SACIF",
+                "NUEVA VILLA SRL",
+                "DECADE S.A",
+                "LOZA INSUMOS MEDICOS SAS"
+            ]
+        },
+        {
+            "nombre": "VAITA",
+            "proveedores": [
+                "DISTRIBUIDORA NUEVO ARCO IRIS SRL"
+            ]
+        },
+        {
+            "nombre": "GLAM DISTRIBUCIONES S.R.L.",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "PROCTER & GAMBL",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "NUEVA VILLA SRL",
+                "DROGUERIA DEL SUD SA",
+                "DROGUERIA COFARSUR SACIF",
+                "RAFCA S.R.L."
+            ]
+        },
+        {
+            "nombre": "UNILEVER DE ARGENTINA S.A.",
+            "proveedores": [
+                "DROGUERIA COFARSUR SACIF",
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA",
+                "UNILEVER DE ARGENTINA S.A.",
+                "ALONSO J. Y JOSE A. REDOLFI S.R.L.",
+                "IMPORTADORA SUDAMERICANA SRL",
+                "NUEVA VILLA SRL",
+                "SAN PABLO S.R.L."
+            ]
+        },
+        {
+            "nombre": "MAR PLAST",
+            "proveedores": [
+                "MAR - PLAST SA",
+                "GIRONES CLAUDIO WALTER",
+                "UXS S.A."
+            ]
+        },
+        {
+            "nombre": "SAGRADA MADRE ",
+            "proveedores": [
+                "LABORATORIOS WARMIC S.A.I.C."
+            ]
+        },
+        {
+            "nombre": "IMPORTADORA SUDAMERICANA S.R.L.",
+            "proveedores": [
+                "IMPORTADORA SUDAMERICANA SRL"
+            ]
+        },
+        {
+            "nombre": "GRIMBERG",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA DEL SUD SA",
+                "GRIMBERG DENTALES S.A.",
+                "NUEVA VILLA SRL",
+                "PROFACOR SRL",
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "IMPORT SUD",
+            "proveedores": [
+                "IMPORTADORA SUDAMERICANA SRL",
+                "IMPORTADORA LA SRL",
+                "FRAGUEIRO MAYORISTA S.A."
+            ]
+        },
+        {
+            "nombre": "ILUMINARTE",
+            "proveedores": [
+                "VELAS DE LOS MILAGROS SRL"
+            ]
+        },
+        {
+            "nombre": "PUIG ARGENTINA S.A.",
+            "proveedores": [
+                "CORTASSA SA",
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA DEL SUD SA",
+                "DROGUERIA COFARSUR SACIF",
+                "NUEVA VILLA SRL"
+            ]
+        },
+        {
+            "nombre": "LABORATORIO ESTETICA FRANCESA SRL",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA DEL SUD SA",
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "CAMPANA",
+            "proveedores": [
+                "CAMPANA DISTRIBUCIONES SRL",
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "BANDER GREEN",
+            "proveedores": [
+                "LIPROT SRL"
+            ]
+        },
+        {
+            "nombre": "JACTANÂ´S",
+            "proveedores": [
+                "MAURICIO J SZTERN Y CIA SRL",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "MAURICIO J SZTERN Y CIA S.R.L.",
+            "proveedores": [
+                "CAMPANA DISTRIBUCIONES SRL",
+                "MAURICIO J SZTERN Y CIA SRL",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "PORTA HNOS S.A.",
+            "proveedores": [
+                "DROGUERIA MG SRL",
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA DEL SUD SA",
+                "DROGUERIA COFARSUR SACIF",
+                "ALBERTO Y JUAN FUREY SRL",
+                "LOS CATALANES S.R.L."
+            ]
+        },
+        {
+            "nombre": "LENTERDIT SA",
+            "proveedores": [
+                "EZEFA S.A."
+            ]
+        },
+        {
+            "nombre": "LUCENA",
+            "proveedores": [
+                "LUCENA ENRRI JAVIER"
+            ]
+        },
+        {
+            "nombre": "ITALCOSMETICA S.A",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA COFARSUR SACIF",
+                "DROGUERIA MG SRL",
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "SÃNCHEZ",
+            "proveedores": [
+                "DROGUERIA MG SRL",
+                "NUEVA VILLA SRL",
+                "SUIZO ARGENTINA SA",
+                "LOZA INSUMOS MEDICOS SAS",
+                "DECADE S.A",
+                "DI MARCO RAFAEL",
+                "JCP INSUMOS MEDICOS S.A.",
+                "LOS CATALANES S.R.L.",
+                "PROFACOR SRL",
+                "MAGLIONE SRL",
+                "PRODUCTOS FARMACEUTICOS DR.GRAY SACIF",
+                "LOREAL ARGENTINA SOCIEDAD ANONIMA",
+                "LOZA MARIA GRACIA",
+                "DROGUERIA COFARSUR SACIF",
+                "DROGUERIA DISTRIMEN SA",
+                "DROGUERIA KELLERHOFF SA",
+                "BEIERSDORF SA",
+                "ELECTROMEDICINA SRL",
+                "ACCME SRL",
+                "DROGUERIA PATRIA S.A.",
+                "MULTIBAGS S.A.S.",
+                "STENDY",
+                "IDIOMA GRAFICO S.R.L.",
+                "DROGUERIA CAPDEVILA S R L",
+                "BERLES S.R.L",
+                "CIUDAD DE PAPEL SAS"
+            ]
+        },
+        {
+            "nombre": "LA PAPELERA DEL PLATA S A",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "MAGLIONE SRL",
+                "SOFTYS ARGENTINA SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "PRIFAMON S A INDUSTRIAL Y COMERCIAL",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA COFARSUR SACIF",
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "SAN UP S.A.",
+            "proveedores": [
+                "SAN UP SA",
+                "DROGUERIA MG SRL",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "3M ACCESORIOS",
+            "proveedores": [
+                "LOS CATALANES S.R.L.",
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA MG SRL",
+                "DROGUERIA DEL SUD SA",
+                "DECADE S.A"
+            ]
+        },
+        {
+            "nombre": "HEDALY S.A.",
+            "proveedores": [
+                "DROGUERIA MG SRL"
+            ]
+        },
+        {
+            "nombre": "UPALALA",
+            "proveedores": [
+                "DROGUERIA MG SRL"
+            ]
+        },
+        {
+            "nombre": "BUHL S.A",
+            "proveedores": [
+                "BUHL SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "LA FÃRMACO ARG.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "CAPILATIS  ****",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA DEL SUD SA",
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "HISAN S.A.",
+            "proveedores": [
+                "HISAN SA"
+            ]
+        },
+        {
+            "nombre": "COLGATE",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "NUEVA VILLA SRL",
+                "DROGUERIA DEL SUD SA",
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "SISCOM DE ARGENTINA S.A.",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA DEL SUD SA",
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "VAMMA SRL",
+            "proveedores": [
+                "DROGUERIA COFARSUR SACIF",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "KIMBERLY CLARK ARGENTINA S.A.",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA DEL SUD SA",
+                "NUEVA VILLA SRL",
+                "DROGUERIA COFARSUR SACIF",
+                "MARCAS SRL"
+            ]
+        },
+        {
+            "nombre": "LABORATORIO CUENCA S.A.",
+            "proveedores": [
+                "FERNANDEZ WALTER CEFERINO",
+                "DROGUERIA DEL SUD SA",
+                "DROGUERIA COFARSUR SACIF",
+                "DROGUERIA KELLERHOFF SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "SUNSTAR",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA COFARSUR SACIF",
+                "NUEVA VILLA SRL"
+            ]
+        },
+        {
+            "nombre": "CANNON PUNTANA S.A.",
+            "proveedores": [
+                "CANNON PUNTANA SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "GLAXOSMITHKLINE",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "COSMETICA Y BELLEZA SRL",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "SAINT JULIEN S.A.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA",
+                "CORTASSA SA",
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "LISTEN S.A.C.I.Y M.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "D C C S.A.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "EMAIL DIAMANT S.A.C.I.F.I. Y A.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "KOPELCO S.A.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "COMBE",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "OFAR S.A.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "RECKITT BENCKIS",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA",
+                "DA ROSA MARIO CHRISTIAN"
+            ]
+        },
+        {
+            "nombre": "BUYANOR S.A.",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "DURACELL PILAS S.R.L.",
+            "proveedores": [
+                "NUEVA VILLA SRL"
+            ]
+        },
+        {
+            "nombre": "SUIZO ARGENTINA SA",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "SC JOHNSON & SO",
+            "proveedores": [
+                "MAGNUM S.A.",
+                "SUIZO ARGENTINA SA",
+                "MONROE AMERICANA SA"
+            ]
+        },
+        {
+            "nombre": "BIFERDIL",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "H.COZZA Y M.A.FERNANDEZ S.R.L.",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "MERISANT ARGENT",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "NEW REVLON ARGENTINA S.A.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "JCB PRODUCCIONES S.A.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "PADOC S.A.",
+            "proveedores": [
+                "PADOC SA",
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "GENTECH",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "ARIMEX IMPORTADORA S.A.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "NUEVA VILLA SRL",
+                "ARIMEX IMPORTADORA SA",
+                "DROGUERIA COFARSUR SACIF",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "SEISEME S.A.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA",
+                "SEISEME SA"
+            ]
+        },
+        {
+            "nombre": "ABBOTT",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "DECADE S.A"
+            ]
+        },
+        {
+            "nombre": "KUIDAR",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "NESTLE",
+            "proveedores": [
+                "NUEVA VILLA SRL",
+                "FITNUT SAS"
+            ]
+        },
+        {
+            "nombre": "NEOTEKSA SA",
+            "proveedores": [
+                "NEOTEKSA S.A.",
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "TENACTA S.A.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "BAUSCH & LOMB A",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "BECTON DICKIN",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "LABORATORIOS DIFAPE S.A.I. Y C.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "TERMOMETROS ARGENTINOS S.A.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "AISICO S.R.L.",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "GLOBALFARM S.A."
+            ]
+        },
+        {
+            "nombre": "OMRON",
+            "proveedores": [
+                "LABORATORIOS ALVEAR S.A."
+            ]
+        },
+        {
+            "nombre": "MEG LINE",
+            "proveedores": [
+                "LABORATORIOS MEG LINE SA",
+                "SUIZO ARGENTINA SA",
+                "NUEVA VILLA SRL"
+            ]
+        },
+        {
+            "nombre": "GENOMMA LAB.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA",
+                "EXPENDEDORES"
+            ]
+        },
+        {
+            "nombre": "PRODICOS SA",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "NEWSAN SOCIEDAD ANONIMA",
+            "proveedores": [
+                "NEWSAN SA",
+                "RAFCA S.R.L."
+            ]
+        },
+        {
+            "nombre": "ISDINCEUTIC",
+            "proveedores": [
+                "ISDIN ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "LOVAL S.A",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "CORTASSA SA",
+                "DROGUERIA KELLERHOFF SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "HEALTH CARE SUDAMERICANA S.A.",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "PHILIPS",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA DEL SUD SA",
+                "NUEVA VILLA SRL"
+            ]
+        },
+        {
+            "nombre": "SOLDIST S.R.L.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "DROGUERIA MARTORANI S A",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "SILMAG",
+            "proveedores": [
+                "DECADE S.A"
+            ]
+        },
+        {
+            "nombre": "CDIMEX",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA DEL SUD SA",
+                "CORTASSA SA"
+            ]
+        },
+        {
+            "nombre": "ICARE",
+            "proveedores": [
+                "LABORATORIOS ALVEAR S.A."
+            ]
+        },
+        {
+            "nombre": "CARESOFT SA",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "ACONCAGUA.ALGOD",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA COFARSUR SACIF",
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "PANTYMED SA",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "BIC ARGENTINA S.A.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "PROFACOR SRL"
+            ]
+        },
+        {
+            "nombre": "GAMA SOCIEDAD ANONIMA",
+            "proveedores": [
+                "GRUPO JRG S.A.S."
+            ]
+        },
+        {
+            "nombre": "PAIK MATEO PABLO",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "VMP",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "RIASA S.R.L",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "ALBERTO Y JUAN FUREY SRL",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "BEL GIOCO SRL",
+            "proveedores": [
+                "SEBASTIAN KRMPOTIC"
+            ]
+        },
+        {
+            "nombre": "MAPA VIRULANA S.A.I.C.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA",
+                "ALONSO J. Y JOSE A. REDOLFI S.R.L."
+            ]
+        },
+        {
+            "nombre": "CONVATEC (ACC)",
+            "proveedores": [
+                "DECADE S.A"
+            ]
+        },
+        {
+            "nombre": "VECCHIO EDUARDO RAMON",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "ALICORP ARGENTINA S.C.A.",
+            "proveedores": [
+                "PROFACOR SRL"
+            ]
+        },
+        {
+            "nombre": "DQUICO ADDAFE",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "AKAPOL SOCIEDAD ANONIMA",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "GRUPO QUERUCLOR",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "PUREDERM",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "ELEA",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "CRUELTY FREE SRL",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "CICLICA S.R.L.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "THELMA & LOUISE",
+            "proveedores": [
+                "DISTRIBUIDORA EDEN S.R.L."
+            ]
+        },
+        {
+            "nombre": "CRAFTMEN S.A.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA",
+                "CORTASSA SA"
+            ]
+        },
+        {
+            "nombre": "BAGÃ“",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "NINGBO SA",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "COFARSUR SACIF",
+            "proveedores": [
+                "DROGUERIA COFARSUR SACIF",
+                "SUIZO ARGENTINA SA",
+                "CORTASSA SA"
+            ]
+        },
+        {
+            "nombre": "BBD S.A.",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "LENOX",
+            "proveedores": [
+                "DR.LENOX SA",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "DROGUERIA BARRACAS",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "MAGNUM S.A.",
+                "DROGUERIA COFARSUR SACIF",
+                "DA ROSA MARIO CHRISTIAN"
+            ]
+        },
+        {
+            "nombre": "DISPITA",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "NUEVA VILLA SRL"
+            ]
+        },
+        {
+            "nombre": "FERRINI",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "BUHL SA"
+            ]
+        },
+        {
+            "nombre": "HILERET",
+            "proveedores": [
+                "LA CUMBRE SAN LUIS SA"
+            ]
+        },
+        {
+            "nombre": "SILKEY MUNDIAL",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "MAS ACCESORIOS",
+            "proveedores": [
+                "MAS ACCESORIOS SRL",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "ALICIA DORE",
+            "proveedores": [
+                "BERTOLINI JULIAN"
+            ]
+        },
+        {
+            "nombre": "COLOPLAST",
+            "proveedores": [
+                "GRUPO C3 S.A."
+            ]
+        },
+        {
+            "nombre": "SIDUS",
+            "proveedores": [
+                "EXPENDEDORES"
+            ]
+        },
+        {
+            "nombre": "CRAVERI",
+            "proveedores": [
+                "EXPENDEDORES"
+            ]
+        },
+        {
+            "nombre": "POEN",
+            "proveedores": [
+                "EXPENDEDORES"
+            ]
+        },
+        {
+            "nombre": "ROEMMERS",
+            "proveedores": [
+                "EXPENDEDORES"
+            ]
+        },
+        {
+            "nombre": "MILLET-FRANKLIN",
+            "proveedores": [
+                "EXPENDEDORES"
+            ]
+        },
+        {
+            "nombre": "INVESTI",
+            "proveedores": [
+                "EXPENDEDORES"
+            ]
+        },
+        {
+            "nombre": "SIEGFRIED",
+            "proveedores": [
+                "EXPENDEDORES"
+            ]
+        },
+        {
+            "nombre": "ECZANE",
+            "proveedores": [
+                "EXPENDEDORES"
+            ]
+        },
+        {
+            "nombre": "FINADIET",
+            "proveedores": [
+                "EXPENDEDORES"
+            ]
+        },
+        {
+            "nombre": "MONROE AMERICANA SA",
+            "proveedores": [
+                "MONROE AMERICANA SA"
+            ]
+        },
+        {
+            "nombre": "DR. MADAUS",
+            "proveedores": [
+                "EXPENDEDORES"
+            ]
+        },
+        {
+            "nombre": "LABORATORIO MER",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "ESENCIA NATAL",
+            "proveedores": [
+                "LABORATORIOS WARMIC S.A.I.C."
+            ]
+        },
+        {
+            "nombre": "KT TAPE",
+            "proveedores": [
+                "LOS CATALANES S.R.L."
+            ]
+        },
+        {
+            "nombre": "CHIALVO",
+            "proveedores": [
+                "IMPORTADORA SUDAMERICANA SRL",
+                "RJL SRL",
+                "CHIALVO S.R.L."
+            ]
+        },
+        {
+            "nombre": "GIBECK",
+            "proveedores": [
+                "DECADE S.A"
+            ]
+        },
+        {
+            "nombre": "LOVE",
+            "proveedores": [
+                "GIRONES CLAUDIO WALTER"
+            ]
+        },
+        {
+            "nombre": "PARALLEL SA",
+            "proveedores": [
+                "PARALLEL SA"
+            ]
+        },
+        {
+            "nombre": "POPEYE",
+            "proveedores": [
+                "MAR - PLAST SA"
+            ]
+        },
+        {
+            "nombre": "LARET",
+            "proveedores": [
+                "LARET SAS"
+            ]
+        },
+        {
+            "nombre": "COCA COLA COMPANY",
+            "proveedores": [
+                "EMBOTELLADORA DEL ATLANTICO S.A"
+            ]
+        },
+        {
+            "nombre": "RJL SRL",
+            "proveedores": [
+                "RJL SRL",
+                "IMPORTADORA SUDAMERICANA SRL"
+            ]
+        },
+        {
+            "nombre": "PRINGLES",
+            "proveedores": [
+                "FRAGUEIRO MAYORISTA S.A."
+            ]
+        },
+        {
+            "nombre": "FERNIPLAST",
+            "proveedores": [
+                "ENRIQUE REYES S.A.",
+                "NUEVA VILLA SRL"
+            ]
+        },
+        {
+            "nombre": "ABCOR",
+            "proveedores": [
+                "VELOX DISTRIBUCIONES S.A.S."
+            ]
+        },
+        {
+            "nombre": "ULTRA TECH",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "WEB SUPPLEMENTS SRL"
+            ]
+        },
+        {
+            "nombre": "SUMERU AYURVEDA S.A.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "DACOR",
+            "proveedores": [
+                "DACOR"
+            ]
+        },
+        {
+            "nombre": "ROBERTO PASMANTER S.A.",
+            "proveedores": [
+                "SUIZO ARGENTINA SA",
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "CONTIGO",
+            "proveedores": [
+                "BEVERAGE DESING ARGENTINA"
+            ]
+        },
+        {
+            "nombre": "CAROL",
+            "proveedores": [
+                "CINCAM SACIFAE"
+            ]
+        },
+        {
+            "nombre": "COCOT",
+            "proveedores": [
+                "NUEVA VILLA SRL"
+            ]
+        },
+        {
+            "nombre": "KENDALL",
+            "proveedores": [
+                "DECADE S.A"
+            ]
+        },
+        {
+            "nombre": "HALYARD",
+            "proveedores": [
+                "DECADE S.A"
+            ]
+        },
+        {
+            "nombre": "B. BRAUN",
+            "proveedores": [
+                "DECADE S.A"
+            ]
+        },
+        {
+            "nombre": "KOLER",
+            "proveedores": [
+                "DECADE S.A"
+            ]
+        },
+        {
+            "nombre": "CLAUDE GARNIE",
+            "proveedores": [
+                "MARCEL GUILLERMO NESTOR"
+            ]
+        },
+        {
+            "nombre": "MODELIFE",
+            "proveedores": [
+                "MODELIFE GROUP SA"
+            ]
+        },
+        {
+            "nombre": "MONDELEZ ARGENTINA",
+            "proveedores": [
+                "QUI-PAR SRL",
+                "B Y V DISTRIBUCIONES SRL"
+            ]
+        },
+        {
+            "nombre": "ESTABLECIMIENTO LAS MARIAS",
+            "proveedores": [
+                "FRAGUEIRO MAYORISTA S.A."
+            ]
+        },
+        {
+            "nombre": "OLIO",
+            "proveedores": [
+                "NUEVA VILLA SRL"
+            ]
+        },
+        {
+            "nombre": "CLOROX ARGENTINA S.A.",
+            "proveedores": [
+                "DA ROSA MARIO CHRISTIAN",
+                "RAFCA S.R.L.",
+                "ALONSO J. Y JOSE A. REDOLFI S.R.L."
+            ]
+        },
+        {
+            "nombre": "CHAPOTEANDO",
+            "proveedores": [
+                "ALBERTO Y JUAN FUREY SRL"
+            ]
+        },
+        {
+            "nombre": "ELEA (INACTIVO)",
+            "proveedores": [
+                "NUEVA VILLA SRL"
+            ]
+        },
+        {
+            "nombre": "MAVERICK",
+            "proveedores": [
+                "SYEMED SRL"
+            ]
+        },
+        {
+            "nombre": "ARGIE TOURS S.R.L",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "UBG UNITED SRL",
+            "proveedores": [
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "BIO-SALUD S.R.L.",
+            "proveedores": [
+                "BIO-SALUD S.R.L."
+            ]
+        },
+        {
+            "nombre": "AZURA JOYAS",
+            "proveedores": [
+                "NUEVA VILLA SRL"
+            ]
+        },
+        {
+            "nombre": "BRIX S.R.L.",
+            "proveedores": [
+                "BRIX S.R.L."
+            ]
+        },
+        {
+            "nombre": "JAYOR",
+            "proveedores": [
+                "DROGUERIA KELLERHOFF SA"
+            ]
+        },
+        {
+            "nombre": "FUNCIONAL FOODS S.A.S.",
+            "proveedores": [
+                "BONALDI MARIANA TERESA"
+            ]
+        },
+        {
+            "nombre": "SALUS AEQUITAS",
+            "proveedores": [
+                "SALUS AEQUITAS SA"
+            ]
+        },
+        {
+            "nombre": "KELLERHOFF",
+            "proveedores": [
+                "DROGUERIA KELLERHOFF SA"
+            ]
+        },
+        {
+            "nombre": "CELLFOX",
+            "proveedores": [
+                "UXS S.A."
+            ]
+        },
+        {
+            "nombre": "WATERDOG",
+            "proveedores": [
+                "ASHI SA"
+            ]
+        },
+        {
+            "nombre": "PROMARC S.A.",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "BIOSINTEX RETAI",
+            "proveedores": [
+                "NUEVA VILLA SRL"
+            ]
+        },
+        {
+            "nombre": "KINEMED",
+            "proveedores": [
+                "KINEMED SA"
+            ]
+        },
+        {
+            "nombre": "AUSTRAL",
+            "proveedores": [
+                "DECADE S.A",
+                "AUSTRAL FARMA S.R.L."
+            ]
+        },
+        {
+            "nombre": "SOL BEBE S.A.",
+            "proveedores": [
+                "MONROE AMERICANA SA"
+            ]
+        },
+        {
+            "nombre": "MOBILE ACC",
+            "proveedores": [
+                "THE RISE OF EMPIRE SRL"
+            ]
+        },
+        {
+            "nombre": "PANDA SRL",
+            "proveedores": [
+                "SF PANDA SRL"
+            ]
+        },
+        {
+            "nombre": "DIMAFO SA",
+            "proveedores": [
+                "DIMAFO SA"
+            ]
+        },
+        {
+            "nombre": "PRITTY",
+            "proveedores": [
+                "PRITTY SA"
+            ]
+        },
+        {
+            "nombre": "GRINNIBE",
+            "proveedores": [
+                "CAMMISA, CECILIA INÃ‰S"
+            ]
+        },
+        {
+            "nombre": "TRYMS",
+            "proveedores": [
+                "TAZISKY S.A."
+            ]
+        },
+        {
+            "nombre": "BOTI-K",
+            "proveedores": [
+                "FYN 5 SRL"
+            ]
+        },
+        {
+            "nombre": "COALIX S.A.",
+            "proveedores": [
+                "LABORATORIOS WARMIC S.A.I.C."
+            ]
+        },
+        {
+            "nombre": "LABORATORIOS BE",
+            "proveedores": [
+                "LABORATORIOS BERNABO S.A."
+            ]
+        },
+        {
+            "nombre": "BEEPEX S.A.S.",
+            "proveedores": [
+                "BEEPEX S.A.S."
+            ]
+        },
+        {
+            "nombre": "CHEEKY",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "RIMMEL",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "AXER",
+            "proveedores": [
+                "ACCESORIOS.COM SRL",
+                "UKCOM SA "
+            ]
+        },
+        {
+            "nombre": "INSTITUTO BIOLOGICO CORDOBA",
+            "proveedores": [
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "DISTRIBUIDORA R3 S.R.L",
+            "proveedores": [
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "ATUCHA",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "DEKKIN",
+            "proveedores": [
+                "GRIMBERG DENTALES S.A."
+            ]
+        },
+        {
+            "nombre": "DREAMCO S.C.A.",
+            "proveedores": [
+                "DROGUERIA COFARSUR SACIF",
+                "RAFCA S.R.L."
+            ]
+        },
+        {
+            "nombre": "LABORATORIOS GASANA S.R.L.",
+            "proveedores": [
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "OBIS",
+            "proveedores": [
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "APPER",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "LABORATORIO",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "RAISSE",
+            "proveedores": [
+                "EXCELLENCE COSMETIQUE S.A.",
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "DROGUERIA SUIZO",
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "ROVAFARM ARGENTINA S.A.",
+            "proveedores": [
+                "CORTASSA SA"
+            ]
+        },
+        {
+            "nombre": 0.0,
+            "proveedores": [
+                "SUIZO ARGENTINA SA"
+            ]
+        },
+        {
+            "nombre": "CASASCO",
+            "proveedores": [
+                "EXPENDEDORES"
+            ]
+        },
+        {
+            "nombre": "SIEGFRIED S.A.",
+            "proveedores": [
+                "EXPENDEDORES"
+            ]
+        },
+        {
+            "nombre": "SCHAFER",
+            "proveedores": [
+                "EXPENDEDORES"
+            ]
+        },
+        {
+            "nombre": "VARTA",
+            "proveedores": [
+                "PROFACOR SRL"
+            ]
+        },
+        {
+            "nombre": "VALMAX",
+            "proveedores": [
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "FITONATURE",
+            "proveedores": [
+                "NUEVA VILLA SRL"
+            ]
+        },
+        {
+            "nombre": "SERTEX",
+            "proveedores": [
+                "DECADE S.A"
+            ]
+        },
+        {
+            "nombre": "PEPSI",
+            "proveedores": [
+                "CERVECERIA Y MALTERIA QUILMES SAICA Y G"
+            ]
+        },
+        {
+            "nombre": "OLYMPIC PRO",
+            "proveedores": [
+                "OLYMPIC PRO"
+            ]
+        },
+        {
+            "nombre": "HOCH SPORT",
+            "proveedores": [
+                "FLORES JAVIER ALBERTO"
+            ]
+        },
+        {
+            "nombre": "ESSITY",
+            "proveedores": [
+                "DECADE S.A"
+            ]
+        },
+        {
+            "nombre": "AD +",
+            "proveedores": [
+                "MAUTINO DANTE MANUEL"
+            ]
+        },
+        {
+            "nombre": "NATURAL CANDY",
+            "proveedores": [
+                "NATURAL CANDY S.R.L."
+            ]
+        },
+        {
+            "nombre": "OCOA",
+            "proveedores": [
+                "GELPOCKET S.R.L."
+            ]
+        },
+        {
+            "nombre": "ELEMENTO",
+            "proveedores": [
+                "SARANG TOSANG"
+            ]
+        },
+        {
+            "nombre": "DROGUERIA MG SRL",
+            "proveedores": [
+                "DROGUERIA MG SRL"
+            ]
+        },
+        {
+            "nombre": "LISFAR",
+            "proveedores": [
+                "DROGUERIA DEL SUD SA"
+            ]
+        },
+        {
+            "nombre": "NUTREMAX",
+            "proveedores": [
+                "NX LABORATORIOS S.A.S."
+            ]
+        },
+        {
+            "nombre": "FRATELLI",
+            "proveedores": [
+                "MAGNUM S.A."
+            ]
+        },
+        {
+            "nombre": "MAGNUM",
+            "proveedores": [
+                "MAGNUM S.A."
+            ]
+        },
+        {
+            "nombre": "LEGO",
+            "proveedores": [
+                "KIRAM SRL"
+            ]
+        },
+        {
+            "nombre": "MIR FITNESS",
+            "proveedores": [
+                "CAMBRILS DISTRIBUCIONES S.A."
+            ]
+        },
+        {
+            "nombre": "CEPAS",
+            "proveedores": [
+                "RAFCA S.R.L."
+            ]
+        },
+        {
+            "nombre": "COOPERATIVA LIEBIG",
+            "proveedores": [
+                "ALONSO J. Y JOSE A. REDOLFI S.R.L."
+            ]
+        },
+        {
+            "nombre": "INTERPORK S.A.",
+            "proveedores": [
+                "INTERPORK S.A."
+            ]
+        },
+        {
+            "nombre": "MATADERO FRIGORIFICO UNION S.A.",
+            "proveedores": [
+                "MATADERO FRIGORIFICO UNION S.A."
+            ]
+        },
+        {
+            "nombre": "ALIMENTOS MAGROS S.A.",
+            "proveedores": [
+                "ALIMENTOS MAGROS SA"
+            ]
+        },
+        {
+            "nombre": "STABILE GUILLERMO ANTONIO",
+            "proveedores": [
+                "STABILE GUILLERMO ANTONIO"
+            ]
+        },
+        {
+            "nombre": "GRANJA TRES ARROYOS S.A.",
+            "proveedores": [
+                "GRANJA TRES ARROYOS SA"
+            ]
+        },
+        {
+            "nombre": "BUSTOS Y BELTRAN S.A.",
+            "proveedores": [
+                "BUSTOS Y BELTRAN SA"
+            ]
+        },
+        {
+            "nombre": "WATERMELON",
+            "proveedores": [
+                "WATERMELON OBJETOS SRL"
+            ]
+        },
+        {
+            "nombre": "JEAN CARTIER",
+            "proveedores": [
+                "IMPORTADORA SUDAMERICANA SRL"
+            ]
+        },
+        {
+            "nombre": "LABANIM",
+            "proveedores": [
+                "IMPORTADORA SUDAMERICANA SRL"
+            ]
+        },
+        {
+            "nombre": "BUNGUIS",
+            "proveedores": [
+                "CITISOL SA"
+            ]
+        },
+        {
+            "nombre": "BESTIA PELUDA",
+            "proveedores": [
+                "BESTIA PELUDA SA"
+            ]
+        },
+        {
+            "nombre": "TRAMONTINA",
+            "proveedores": [
+                "MYF DISTRIBUIDORA SA"
+            ]
+        },
+        {
+            "nombre": "NADIR",
+            "proveedores": [
+                "MYF DISTRIBUIDORA SA"
+            ]
+        },
+        {
+            "nombre": "COLEMAN",
+            "proveedores": [
+                "BEVERAGE DESING ARGENTINA"
+            ]
+        },
+        {
+            "nombre": "RUBBERMAID",
+            "proveedores": [
+                "BEVERAGE DESING ARGENTINA"
+            ]
+        },
+        {
+            "nombre": "SISTEMA",
+            "proveedores": [
+                "BEVERAGE DESING ARGENTINA"
+            ]
+        },
+        {
+            "nombre": "NEW TOYS",
+            "proveedores": [
+                "NEWTOYS SA"
+            ]
+        },
+        {
+            "nombre": "DEA",
+            "proveedores": [
+                "DA ROSA MARIO CHRISTIAN"
+            ]
+        },
+        {
+            "nombre": "NUVIA",
+            "proveedores": [
+                "DA ROSA MARIO CHRISTIAN"
+            ]
+        },
+        {
+            "nombre": "FOSFOROS SUDAMERICANA",
+            "proveedores": [
+                "DA ROSA MARIO CHRISTIAN",
+                "ALONSO J. Y JOSE A. REDOLFI S.R.L."
+            ]
+        },
+        {
+            "nombre": "RANCHERA",
+            "proveedores": [
+                "DA ROSA MARIO CHRISTIAN"
+            ]
+        },
+        {
+            "nombre": "CATAR",
+            "proveedores": [
+                "CATAR S.R.L"
+            ]
+        },
+        {
+            "nombre": "RAFCA",
+            "proveedores": [
+                "RAFCA S.R.L."
+            ]
+        },
+        {
+            "nombre": "CORI FOOD",
+            "proveedores": [
+                "BRUNO BAROVERO"
+            ]
+        },
+        {
+            "nombre": "P&G PERFU",
+            "proveedores": [
+                "RAFCA S.R.L."
+            ]
+        },
+        {
+            "nombre": "MISTER TRAPO",
+            "proveedores": [
+                "ALONSO J. Y JOSE A. REDOLFI S.R.L."
+            ]
+        },
+        {
+            "nombre": "WASSINGTON S.A.C.I.F. E I.",
+            "proveedores": [
+                "ALONSO J. Y JOSE A. REDOLFI S.R.L."
+            ]
+        },
+        {
+            "nombre": "FAMILIA GULLO",
+            "proveedores": [
+                "TOSI LUIS PEDRO"
+            ]
+        },
+        {
+            "nombre": "DANKON",
+            "proveedores": [
+                "DANKON SRL"
+            ]
+        },
+        {
+            "nombre": "DECORMESA",
+            "proveedores": [
+                "DECORMESA SA"
+            ]
+        },
+        {
+            "nombre": "GESON",
+            "proveedores": [
+                "GESON SA"
+            ]
+        },
+        {
+            "nombre": "APA LA PAPA",
+            "proveedores": [
+                "KUUSAI SA"
+            ]
+        },
+        {
+            "nombre": "ENTRANCE",
+            "proveedores": [
+                "ENTRANCE SA"
+            ]
+        },
+        {
+            "nombre": "SPORT COM",
+            "proveedores": [
+                "MOLCO SPORT S.R.L."
+            ]
+        },
+        {
+            "nombre": "MOLINOS RIO DE LA PLATA",
+            "proveedores": [
+                "MOLINOS RIO DE LA PLATA SA"
+            ]
+        },
+        {
+            "nombre": "BEEPURE",
+            "proveedores": [
+                "NATURALMENTE ALIMENTOS S.A."
+            ]
+        },
+        {
+            "nombre": "CABRALES",
+            "proveedores": [
+                "CABRALES S.A."
+            ]
+        },
+        {
+            "nombre": "BAGLEY",
+            "proveedores": [
+                "JOSE IGNACIO PAROLA S.R.L."
+            ]
+        },
+        {
+            "nombre": "MAYBELLINE",
+            "proveedores": [
+                "DROGUERIA COFARSUR SACIF"
+            ]
+        },
+        {
+            "nombre": "MAYORISTA DE ALIMENTOS",
+            "proveedores": [
+                "MAYORISTA DISTRIBUIDORA MINORISTA SAS"
+            ]
+        },
+        {
+            "nombre": "LA 14",
+            "proveedores": [
+                "LA AGRÃCOLA SA",
+                "PARQUE SRL"
+            ]
+        },
+        {
+            "nombre": "DULCOR",
+            "proveedores": [
+                "MAYORISTA DE ALIMENTOS S.A."
+            ]
+        },
+        {
+            "nombre": "LEDESMA",
+            "proveedores": [
+                "MAYORISTA DISTRIBUIDORA MINORISTA SAS"
+            ]
+        },
+        {
+            "nombre": "CATENA",
+            "proveedores": [
+                "BODEGAS ESMERALDA SOCIEDAD ANONIMA"
+            ]
+        },
+        {
+            "nombre": "CAFES LA VIRGINIA S.A.",
+            "proveedores": [
+                "CAFES LA VIRGINIA S A",
+                "CORDEIRO Y CIA S R L"
+            ]
+        },
+        {
+            "nombre": "PEPSICO",
+            "proveedores": [
+                "GBA SUR LOGISTICA SA"
+            ]
+        },
+        {
+            "nombre": "PEÃ‘AFLOR",
+            "proveedores": [
+                "GBA SUR LOGISTICA SA"
+            ]
+        },
+        {
+            "nombre": "BIANCHI",
+            "proveedores": [
+                "VALENTIN BIANCHI S A C I F"
+            ]
+        },
+        {
+            "nombre": "BLONDIS",
+            "proveedores": [
+                "BLONDIS SRL"
+            ]
+        },
+        {
+            "nombre": "MAGICLICK",
+            "proveedores": [
+                "FLAMA SA"
+            ]
+        },
+        {
+            "nombre": "C DRINKS",
+            "proveedores": [
+                "CORDOBA DRINKS S.A."
+            ]
+        },
+        {
+            "nombre": "CHANGO",
+            "proveedores": [
+                "SEABOARD ENERGIAS RENOVABLES Y ALIMENTOS SRL"
+            ]
+        },
+        {
+            "nombre": "GRANGER",
+            "proveedores": [
+                "GRANGER SA"
+            ]
+        },
+        {
+            "nombre": "ALAMBRADO",
+            "proveedores": [
+                "LA AGRÃCOLA SA"
+            ]
+        },
+        {
+            "nombre": "MARS",
+            "proveedores": [
+                "BRUNO BAROVERO"
+            ]
+        },
+        {
+            "nombre": "SOUR PATCH",
+            "proveedores": [
+                "BRUNO BAROVERO"
+            ]
+        },
+        {
+            "nombre": "HUBBA BUBBA",
+            "proveedores": [
+                "BRUNO BAROVERO"
+            ]
+        },
+        {
+            "nombre": "HARIBO",
+            "proveedores": [
+                "BRUNO BAROVERO"
+            ]
+        },
+        {
+            "nombre": "TAKIS",
+            "proveedores": [
+                "BRUNO BAROVERO"
+            ]
+        },
+        {
+            "nombre": "CAPRICE",
+            "proveedores": [
+                "BRUNO BAROVERO"
+            ]
+        },
+        {
+            "nombre": "MENTOS",
+            "proveedores": [
+                "BRUNO BAROVERO"
+            ]
+        },
+        {
+            "nombre": "PUSH POP",
+            "proveedores": [
+                "BRUNO BAROVERO"
+            ]
+        },
+        {
+            "nombre": "JUAN VALDEZ",
+            "proveedores": [
+                "BRUNO BAROVERO"
+            ]
+        },
+        {
+            "nombre": "CHIMBOTE",
+            "proveedores": [
+                "BRUNO BAROVERO"
+            ]
+        },
+        {
+            "nombre": "ENTRE DOS",
+            "proveedores": [
+                "BRUNO BAROVERO"
+            ]
+        },
+        {
+            "nombre": "RASTA",
+            "proveedores": [
+                "BRUNO BAROVERO"
+            ]
+        },
+        {
+            "nombre": "CACHAFAZ",
+            "proveedores": [
+                "BRUNO BAROVERO"
+            ]
+        },
+        {
+            "nombre": "LINDT",
+            "proveedores": [
+                "BRUNO BAROVERO"
+            ]
+        },
+        {
+            "nombre": "T",
+            "proveedores": [
+                "NUEVA VILLA SRL"
+            ]
+        },
+        {
+            "nombre": "LAS PERDICES",
+            "proveedores": [
+                "MOSTO DISTRIBUCIONES S.A.",
+                "INDUSCUER S.A.S."
+            ]
+        },
+        {
+            "nombre": "ANDELUNA",
+            "proveedores": [
+                "MOSTO DISTRIBUCIONES S.A."
+            ]
+        },
+        {
+            "nombre": "ONE TWO FIT",
+            "proveedores": [
+                "ONE TWO FIT ALIMENTOS SAS"
+            ]
+        },
+        {
+            "nombre": "SPEED UNLIMITED",
+            "proveedores": [
+                "TRES H BEBIDAS SAS"
+            ]
+        },
+        {
+            "nombre": "SUPER VERDE SRL",
+            "proveedores": [
+                "SUPER VERDE SRL"
+            ]
+        },
+        {
+            "nombre": "CITRIC",
+            "proveedores": [
+                "VENDOR"
+            ]
+        },
+        {
+            "nombre": "CCU",
+            "proveedores": [
+                "CCU - CIA INDUSTRIAL CERVECERA SA"
+            ]
+        },
+        {
+            "nombre": "SELLO DE VINOS",
+            "proveedores": [
+                "CINCO RIOS ASOCIADOS SRL"
+            ]
+        },
+        {
+            "nombre": "VANOLI",
+            "proveedores": [
+                "MAYORISTA DISTRIBUIDORA MINORISTA SAS"
+            ]
+        },
+        {
+            "nombre": "LUIGI BOSCA",
+            "proveedores": [
+                "LEONCIO ARIZU S.A."
+            ]
+        },
+        {
+            "nombre": "COPPENTO",
+            "proveedores": [
+                "COPPENTO S.A.S"
+            ]
+        },
+        {
+            "nombre": "DOS HERMANOS",
+            "proveedores": [
+                "MAYORISTA DISTRIBUIDORA MINORISTA SAS"
+            ]
+        },
+        {
+            "nombre": "FAVINCO",
+            "proveedores": [
+                "SAN PABLO S.R.L."
+            ]
+        },
+        {
+            "nombre": "MOLINOS CAÃ‘UELAS",
+            "proveedores": [
+                "CHIALVO S.R.L.",
+                "AC LOGISTICA SRL"
+            ]
+        },
+        {
+            "nombre": "PUREZA",
+            "proveedores": [
+                "CHIALVO S.R.L."
+            ]
+        },
+        {
+            "nombre": "PRODEMAN",
+            "proveedores": [
+                "CHIALVO S.R.L."
+            ]
+        },
+        {
+            "nombre": "MANI KING",
+            "proveedores": [
+                "CHIALVO S.R.L."
+            ]
+        },
+        {
+            "nombre": "EL ABUELO",
+            "proveedores": [
+                "CCU - CIA INDUSTRIAL CERVECERA SA"
+            ]
+        },
+        {
+            "nombre": "HEINEKEN",
+            "proveedores": [
+                "CCU - CIA INDUSTRIAL CERVECERA SA"
+            ]
+        },
+        {
+            "nombre": "MILLER",
+            "proveedores": [
+                "CCU - CIA INDUSTRIAL CERVECERA SA"
+            ]
+        },
+        {
+            "nombre": "AMSTEL",
+            "proveedores": [
+                "CCU - CIA INDUSTRIAL CERVECERA SA"
+            ]
+        },
+        {
+            "nombre": "IMPERIAL",
+            "proveedores": [
+                "CCU - CIA INDUSTRIAL CERVECERA SA"
+            ]
+        },
+        {
+            "nombre": "VERDEFLOR",
+            "proveedores": [
+                "FRAGUEIRO MAYORISTA S.A."
+            ]
+        },
+        {
+            "nombre": "NATURA",
+            "proveedores": [
+                "FRAGUEIRO MAYORISTA S.A."
+            ]
+        },
+        {
+            "nombre": "LAGO PUELO",
+            "proveedores": [
+                "CAROLINA BEATRIZ RODRIGUEZ"
+            ]
+        },
+        {
+            "nombre": "ESCORIHUELA",
+            "proveedores": [
+                "S.A. ESTABLECIMIENTOS VITINICOLAS ESCORIHUELA"
+            ]
+        },
+        {
+            "nombre": "HENNESY",
+            "proveedores": [
+                "MOSTO DISTRIBUCIONES S.A."
+            ]
+        },
+        {
+            "nombre": "SWIFT",
+            "proveedores": [
+                "KLOR CONSTANZA"
+            ]
+        },
+        {
+            "nombre": "SANTIAGO GRAFFIGNA",
+            "proveedores": [
+                "CCU - CIA INDUSTRIAL CERVECERA SA"
+            ]
+        },
+        {
+            "nombre": "FRUIT DE LAIT",
+            "proveedores": [
+                "FRUIT DE LAIT S.A."
+            ]
+        },
+        {
+            "nombre": "MASALE CAYA",
+            "proveedores": [
+                "DIZAIN DOST"
+            ]
+        },
+        {
+            "nombre": "AGOFA CHOCOLATES",
+            "proveedores": [
+                "DOMINGUEZ GLADIS INES"
+            ]
+        },
+        {
+            "nombre": "TASK",
+            "proveedores": [
+                "SAN PABLO S.R.L."
+            ]
+        },
+        {
+            "nombre": "DON RAMON",
+            "proveedores": [
+                "ALBINA S.A"
+            ]
+        },
+        {
+            "nombre": "TREGAR",
+            "proveedores": [
+                "GARCIA HERMANOS AGROINDUSTRIAL SRL"
+            ]
+        },
+        {
+            "nombre": "PALADINI",
+            "proveedores": [
+                "PALADINI S.A."
+            ]
+        },
+        {
+            "nombre": "DLR CONGELADOS",
+            "proveedores": [
+                "DE LOS RIOS NICOLAS"
+            ]
+        },
+        {
+            "nombre": "VENEZIANA",
+            "proveedores": [
+                "PANIFICADORA VENEZIANA S.A."
+            ]
+        },
+        {
+            "nombre": "NUEVO MUNICH",
+            "proveedores": [
+                "FRIGORIFICO NUEVO MUNICH S.R.L."
+            ]
+        },
+        {
+            "nombre": "MAGNUM S.A",
+            "proveedores": [
+                "MAGNUM S.A."
+            ]
+        },
+        {
+            "nombre": "CARNAVE",
+            "proveedores": [
+                "GRANJAS CARNAVE S.A."
+            ]
+        },
+        {
+            "nombre": "VILLA ELIAS PATAGONIA",
+            "proveedores": [
+                "VILLA ELIAS PATAGONIA SRL"
+            ]
+        },
+        {
+            "nombre": "REDOLFI",
+            "proveedores": [
+                "ALONSO J. Y JOSE A. REDOLFI S.R.L."
+            ]
+        },
+        {
+            "nombre": "MONTHELADO",
+            "proveedores": [
+                "MONTHELADO S.A."
+            ]
+        }
+    ]
+}

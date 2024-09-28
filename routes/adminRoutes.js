@@ -60,6 +60,10 @@ router.post('/admin/nota/:id/imagenes', isAuthenticated, isAdmin, upload.single(
 
 router.post('/nota/:id/imagenes/:imagenId/eliminar', adminController.deleteNotaImagen);
 
+// Nueva ruta para la nueva vista
+router.get('/admin/nueva', adminController.showNuevaVista);
+
+
 //Revisar igual
 // Ruta para mostrar el formulario de subida
 router.get('/buyer', compradorController.showBuyerDashboard);
@@ -71,6 +75,7 @@ router.post('/buyer/upload', upload.single('file'), compradorController.processE
 // Rutas para el panel de carga
 router.get('/cargar', adminController.showCargarPage);
 router.post('/cargar', upload.single('excel'), adminController.processExcel);
+
 
 
 module.exports = router;
