@@ -3,29 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Historial de Cambios</title>
+  <title>Historial de Facturas</title>
+  <link rel="stylesheet" href="/css/facturas.css">
 </head>
 <body>
-  <h1>Historial de Cambios para la Factura <%= numeroFactura %></h1>
-  <table>
+  <h1>Historial de Facturas</h1>
+
+  <table class="facturas-historial-table">
     <thead>
       <tr>
-        <th>Campo Modificado</th>
-        <th>Valor Antiguo</th>
-        <th>Valor Nuevo</th>
-        <th>Fecha</th>
+        <th>Número</th>
+        <th>CUIT</th>
+        <th>Razón Social</th>
+        <th>Fecha de Emisión</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <% historial.forEach(cambio => { %>
+      <% if (facturasHistorial && facturasHistorial.length > 0) { %>
+        <% facturasHistorial.forEach(factura => { %>
+          <tr>
+            <td><%= factura.numero %></td>
+            <td><%= factura.cuit %></td>
+            <td><%= factura.razon_social %></td>
+            <td><%= new Date(factura.fecha_emision).toLocaleDateString() %></td>
+            <td>
+              <button onclick="verDetallesFactura('<%= factura.numero %>')">Ver Detalles</button>
+            </td>
+          </tr>
+        <% }) %>
+      <% } else { %>
         <tr>
-          <td><%= cambio.campo_modificado %></td>
-          <td><%= cambio.valor_antiguo %></td>
-          <td><%= cambio.valor_nuevo %></td>
-          <td><%= cambio.fecha %></td>
+          <td colspan="5">No hay facturas guardadas en el historial.</td>
         </tr>
-      <% }) %>
+      <% } %>
     </tbody>
   </table>
+
+  <!-- Botón para regresar a la página de facturas -->
+  <div class="volver-facturas">
+    <a href="/admin/factura" class="btn-volver">Volver a Consultar Facturas</a>
+  </div>
+
+  <!-- Modal para mostrar detalles de la factura -->
+  <div id="modalFacturaDetalles" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal()">&times;</span>
+      <h3>Detalles de la Factura</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID Producto</th>
+            <th>Producto</th>
+            <th>Presentación</th>
+            <th>Cantidad</th>
+            <th>Precio de Compra</th>
+          </tr>
+        </thead>
+        <tbody id="detalleProductos"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // Función para abrir el modal con detalles de la factura
+    function verDetallesFactura(numeroFactura) {
+      fetch(`/admin/factura/${numeroFactura}/detalles`)
+        .then(response => response.json())
+        .then(data => {
+          const tbody = document.getElementById('detalleProductos');
+          tbody.innerHTML = '';
+  
+          data.forEach(item => {
+            const row = `<tr>
+              <td>${item.id_producto}</td>
+              <td>${item.producto}</td>
+              <td>${item.presentacion}</td>
+              <td>${item.cantidad}</td>
+              <td>${item.precio_compra}</td>
+            </tr>`;
+            tbody.innerHTML += row;
+          });
+  
+          document.getElementById('modalFacturaDetalles').style.display = 'block';
+        })
+        .catch(error => console.error('Error al obtener detalles de la factura:', error));
+    }
+  
+    // Función para cerrar el modal
+    function cerrarModal() {
+      document.getElementById('modalFacturaDetalles').style.display = 'none';
+    }
+  </script>
+  
 </body>
 </html>

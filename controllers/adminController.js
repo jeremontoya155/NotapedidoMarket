@@ -766,3 +766,39 @@ exports.showHistorial = async (req, res) => {
     res.status(500).send('Error al obtener el historial');
   }
 };
+
+
+// Función para mostrar el historial de facturas guardadas
+exports.showHistorialFacturas = async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT DISTINCT numero, cuit, razon_social, fecha_emision 
+      FROM facturas 
+      ORDER BY fecha_emision DESC
+    `);
+    const facturasHistorial = result.rows;
+
+    res.render('historial', { facturasHistorial });
+  } catch (error) {
+    console.error('Error al obtener el historial de facturas:', error);
+    res.status(500).send('Error al obtener el historial de facturas');
+  }
+};
+
+exports.getFacturaDetalles = async (req, res) => {
+  const numeroFactura = req.params.numero;
+  try {
+    const productos = await pool.query(`
+      SELECT id_producto, producto, presentacion, cantidad, precio_compra
+      FROM facturas
+      WHERE numero = $1;
+    `, [numeroFactura]);
+
+    res.json(productos.rows); // Devolver datos en JSON para mostrar en el modal
+  } catch (error) {
+    console.error('Error al obtener detalles de la factura:', error);
+    res.status(500).json({ error: 'Error al obtener los detalles de la factura' });
+  }
+};
+
+
