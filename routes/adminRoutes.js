@@ -87,5 +87,6 @@ router.get('/factura', isAuthenticated, adminController.searchFactura);
 // Ruta para guardar la factura con los cambios en PostgreSQL
 router.post('/factura/guardar', adminController.guardarFacturaEnPostgres);
 
-
+// Ruta para mostrar el historial de cambios
+router.get('/factura/historial', adminController.showHistorial);
 module.exports = router;  

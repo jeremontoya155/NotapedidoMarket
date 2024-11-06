@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historial de Cambios</title>
+</head>
+<body>
+  <h1>Historial de Cambios para la Factura <%= numeroFactura %></h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Campo Modificado</th>
+        <th>Valor Antiguo</th>
+        <th>Valor Nuevo</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% historial.forEach(cambio => { %>
+        <tr>
+          <td><%= cambio.campo_modificado %></td>
+          <td><%= cambio.valor_antiguo %></td>
+          <td><%= cambio.valor_nuevo %></td>
+          <td><%= cambio.fecha %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

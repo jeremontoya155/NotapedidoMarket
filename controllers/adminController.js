@@ -749,3 +749,20 @@ exports.guardarFacturaEnPostgres = async (req, res) => {
     res.status(500).send('Error al guardar los cambios en PostgreSQL');
   }
 };
+
+
+exports.showHistorial = async (req, res) => {
+  try {
+    const { numeroFactura } = req.query;
+
+    const { rows } = await pool.query(
+      `SELECT * FROM historial_facturas WHERE numero = $1 ORDER BY fecha DESC`,
+      [numeroFactura]
+    );
+
+    res.render('historial', { historial: rows });
+  } catch (error) {
+    console.error('Error al obtener el historial:', error);
+    res.status(500).send('Error al obtener el historial');
+  }
+};
