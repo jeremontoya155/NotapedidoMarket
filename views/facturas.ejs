@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta de Facturas</title>
+  <link rel="stylesheet" href="/css/facturas.css">
+</head>
+<body>
+  <h1>Consulta de Facturas</h1>
+
+  <!-- Mensaje de éxito si el guardado fue exitoso -->
+  <% if (success) { %>
+    <div class="success-message">
+      La factura se ha guardado correctamente en la base de datos.
+    </div>
+  <% } %>
+
+  <!-- Formulario de búsqueda -->
+  <form action="/admin/factura" method="get" class="search-form">
+    <label for="numeroFactura">Número de Factura:</label>
+    <input type="text" id="numeroFactura" name="numeroFactura" required>
+    <button type="submit">Buscar</button>
+  </form>
+
+  <% if (error) { %>
+    <p class="error-message"><%= error %></p>
+  <% } %>
+
+  <% if (factura && factura.length > 0) { %>
+    <h2>Detalles de la Factura</h2>
+    <form action="/admin/factura/guardar" method="post" class="factura-form">
+      <input type="hidden" name="numeroFactura" value="<%= factura[0].Numero %>">
+      <table class="factura-table">
+        <thead>
+          <tr>
+            <th>Sucursal</th>
+            <th>Tipo</th>
+            <th>Letra</th>
+            <th>Punto de Venta</th>
+            <th>Número</th>
+            <th>Fecha Emisión</th>
+            <th>CUIT</th>
+            <th>Razón Social</th>
+            <th>ID Producto</th>
+            <th>Producto</th>
+            <th>Presentación</th>
+            <th>Cantidad</th>
+            <th>Precio de Compra</th>
+            <th>Bonificaciones</th>
+            <th>Tipo IVA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% factura.forEach((item, index) => { %>
+            <tr>
+              <td><%= item.Sucursal %></td>
+              <td><%= item.Tipo %></td>
+              <td><%= item.Letra %></td>
+              <td><%= item.PuntoVta %></td>
+              <td><%= item.Numero %></td>
+              <td><%= new Date(item.FechaEmision).toLocaleDateString() %></td>
+              <td><%= item.CUIT %></td>
+              <td><%= item.Razon %></td>
+              <td><%= item.IDProducto %></td>
+              <td><%= item.Producto %></td>
+              <td><%= item.Presentaci %></td>
+              <td><%= item.Cantidad %></td>
+              <td>
+                <input type="text" name="precio_compra_<%= index %>" value="<%= item.PrecioCompra %>">
+              </td>
+              <td><%= item.Bonificaciones %></td>
+              <td><%= item.idTipoIVA %></td>
+
+              <!-- Campos ocultos adicionales para asegurar que todos los datos se envíen -->
+              <input type="hidden" name="sucursal_<%= index %>" value="<%= item.Sucursal %>">
+              <input type="hidden" name="tipo_<%= index %>" value="<%= item.Tipo %>">
+              <input type="hidden" name="letra_<%= index %>" value="<%= item.Letra %>">
+              <input type="hidden" name="punto_vta_<%= index %>" value="<%= item.PuntoVta %>">
+              <input type="hidden" name="fecha_emision_<%= index %>" value="<%= item.FechaEmision %>">
+              <input type="hidden" name="cuit_<%= index %>" value="<%= item.CUIT %>">
+              <input type="hidden" name="razon_social_<%= index %>" value="<%= item.Razon %>">
+              <input type="hidden" name="id_producto_<%= index %>" value="<%= item.IDProducto %>">
+              <input type="hidden" name="presentacion_<%= index %>" value="<%= item.Presentaci %>">
+              <input type="hidden" name="cantidad_<%= index %>" value="<%= item.Cantidad %>">
+              <input type="hidden" name="bonificaciones_<%= index %>" value="<%= item.Bonificaciones %>">
+              <input type="hidden" name="tipo_iva_<%= index %>" value="<%= item.idTipoIVA %>">
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <button type="submit">Guardar Cambios</button>
+    </form>
+  <% } %>
+</body>
+</html>

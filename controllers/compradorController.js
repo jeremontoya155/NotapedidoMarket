@@ -1,7 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 const xlsx = require('xlsx');
-const pool = require('../db');
+const { pool } = require('../db');
+
 
 // Mostrar el formulario de subida en la vista del comprador
 exports.showBuyerDashboard = (req, res) => {

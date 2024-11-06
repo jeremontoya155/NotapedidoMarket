@@ -1,4 +1,5 @@
-const pool = require('../db'); // Configuración de la base de datos
+const { pool } = require('../db');
+// Configuración de la base de datos
 const session = require('express-session');
 
 // Renderiza la vista de login

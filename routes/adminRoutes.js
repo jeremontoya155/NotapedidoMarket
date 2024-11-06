@@ -78,4 +78,14 @@ router.post('/cargar', upload.single('excel'), adminController.processExcel);
 
 
 
-module.exports = router;
+// Ruta para mostrar la página de búsqueda de facturas
+router.get('/facturas', isAuthenticated, adminController.showFacturasPage);
+
+// Ruta para consultar una factura por número y luego guardarla en PostgreSQL
+router.get('/factura', isAuthenticated, adminController.searchFactura);
+
+// Ruta para guardar la factura con los cambios en PostgreSQL
+router.post('/factura/guardar', adminController.guardarFacturaEnPostgres);
+
+
+module.exports = router;  

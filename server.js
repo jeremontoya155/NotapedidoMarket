@@ -7,6 +7,8 @@ const cloudinary = require('cloudinary').v2; // Integración de Cloudinary
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(express.urlencoded({ extended: true }));
+
 // Configurar Cloudinary con las variables de entorno
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -18,10 +20,7 @@ cloudinary.config({
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
-// Configuración de la base de datos
-const pool = new pg.Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+const { pool,plexPool } = require('./db');
 
 // Configuración de sesiones
 app.use(session({

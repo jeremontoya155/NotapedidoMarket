@@ -1,9 +1,10 @@
-const pool = require('../db');
+
 const path = require('path');
 const PDFDocument = require('pdfkit');
 const multer = require('multer');
 const fs = require('fs');
 const xlsx = require('xlsx');
+const { pool, plexPool } = require('../db');
 
 const cloudinary = require('cloudinary').v2;
 require('dotenv').config();
@@ -636,5 +637,115 @@ function isValidDate(dateString) {
   const date = new Date(dateString);
   return !isNaN(date.getTime());
 }
+// Mostrar la página de búsqueda de facturas sin insertar en PostgreSQL automáticamente
+// Mostrar la página de búsqueda de facturas sin insertar en PostgreSQL automáticamente
+exports.showFacturasPage = (req, res) => {
+  const success = req.query.success === 'true';
+  res.render('facturas', { factura: null, error: null, success });
+};
 
+// Función de búsqueda de factura en MySQL
+exports.searchFactura = async (req, res) => {
+  const { numeroFactura } = req.query;
 
+  try {
+    if (!numeroFactura) {
+      return res.render('facturas', { factura: null, error: 'Por favor, ingrese un número de factura.', success: false });
+    }
+
+    // Consulta en la base de datos MySQL usando plexPool
+    const [rows] = await plexPool.query(`
+      SELECT comprascabecera.Sucursal, comprascabecera.Tipo, comprascabecera.Letra,
+             comprascabecera.PuntoVta, comprascabecera.Numero, comprascabecera.FechaEmision, 
+             comprascabecera.CUIT, proveedores.Razon,
+             stocklotes.IDProducto, medicamentos.Producto, medicamentos.Presentaci, stocklotes.Cantidad,
+             stocklotes.PrecioCompra, stocklotes.Bonificaciones, medicamentos.idTipoIVA
+      FROM stocklotes
+      LEFT JOIN medicamentos ON stocklotes.IDProducto = medicamentos.CodPlex
+      LEFT JOIN comprascabecera ON stocklotes.IDComprobante = comprascabecera.IDComprobante
+      LEFT JOIN proveedores ON comprascabecera.CUIT = proveedores.Cuit
+      WHERE comprascabecera.Numero = ? AND comprascabecera.Sucursal = 33
+    `, [numeroFactura]);
+
+    if (rows.length === 0) {
+      return res.render('facturas', { factura: null, error: 'No se encontró la factura con el número proporcionado.', success: false });
+    }
+
+    // Renderiza la vista con los detalles de la factura sin guardarla automáticamente
+    res.render('facturas', { factura: rows, error: null, success: false });
+  } catch (error) {
+    console.error('Error al buscar la factura:', error);
+    res.status(500).send('Error al buscar la factura');
+  }
+};
+
+// Función para guardar la factura en PostgreSQL con precios modificados
+exports.guardarFacturaEnPostgres = async (req, res) => {
+  const numeroFactura = req.body.numeroFactura;
+  const productos = [];
+
+  // Recopilar todos los datos de cada producto en el formulario
+  Object.keys(req.body).forEach(key => {
+    if (key.startsWith('precio_compra_')) {
+      const index = key.split('_')[2];
+      productos.push({
+        sucursal: req.body[`sucursal_${index}`],
+        tipo: req.body[`tipo_${index}`],
+        letra: req.body[`letra_${index}`],
+        puntoVta: req.body[`punto_vta_${index}`],
+        numero: numeroFactura,
+        fechaEmision: new Date(req.body[`fecha_emision_${index}`]).toISOString().split('T')[0], // Convertir fecha a 'YYYY-MM-DD'
+        cuit: req.body[`cuit_${index}`],
+        razonSocial: req.body[`razon_social_${index}`],
+        idProducto: req.body[`id_producto_${index}`],
+        producto: req.body[`producto_${index}`],
+        presentacion: req.body[`presentacion_${index}`],
+        cantidad: parseInt(req.body[`cantidad_${index}`]) || null, // Convertir cantidad a integer o null
+        precioCompra: req.body[`precio_compra_${index}`] ? parseFloat(req.body[`precio_compra_${index}`]) : null, // Convertir a float o null
+        bonificaciones: req.body[`bonificaciones_${index}`] ? parseFloat(req.body[`bonificaciones_${index}`]) : null, // Convertir a float o null
+        tipoIva: parseInt(req.body[`tipo_iva_${index}`]) || null // Convertir tipo IVA a integer o null
+      });
+    }
+  });
+
+  try {
+    // Inserción o actualización de cada producto en la base de datos
+    for (const producto of productos) {
+      await pool.query(
+        `
+        INSERT INTO facturas (
+          sucursal, tipo, letra, punto_vta, numero, fecha_emision, cuit, razon_social,
+          id_producto, producto, presentacion, cantidad, precio_compra, bonificaciones, tipo_iva
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+        ON CONFLICT (numero, id_producto) DO UPDATE
+        SET 
+          sucursal = EXCLUDED.sucursal,
+          tipo = EXCLUDED.tipo,
+          letra = EXCLUDED.letra,
+          punto_vta = EXCLUDED.punto_vta,
+          fecha_emision = EXCLUDED.fecha_emision,
+          cuit = EXCLUDED.cuit,
+          razon_social = EXCLUDED.razon_social,
+          producto = EXCLUDED.producto,
+          presentacion = EXCLUDED.presentacion,
+          cantidad = EXCLUDED.cantidad,
+          precio_compra = EXCLUDED.precio_compra,
+          bonificaciones = EXCLUDED.bonificaciones,
+          tipo_iva = EXCLUDED.tipo_iva
+      `,
+        [
+          producto.sucursal, producto.tipo, producto.letra, producto.puntoVta, producto.numero,
+          producto.fechaEmision, producto.cuit, producto.razonSocial, producto.idProducto,
+          producto.producto, producto.presentacion, producto.cantidad, producto.precioCompra,
+          producto.bonificaciones, producto.tipoIva
+        ]
+      );
+    }
+
+    console.log('Factura guardada con éxito en PostgreSQL');
+    res.redirect('/admin/facturas?success=true');
+  } catch (error) {
+    console.error('Error al guardar los cambios en PostgreSQL:', error);
+    res.status(500).send('Error al guardar los cambios en PostgreSQL');
+  }
+};
