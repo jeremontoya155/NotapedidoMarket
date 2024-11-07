@@ -680,6 +680,7 @@ exports.searchFactura = async (req, res) => {
 };
 
 // Función para guardar la factura en PostgreSQL con precios modificados
+// Función para guardar la factura en PostgreSQL con precios modificados
 exports.guardarFacturaEnPostgres = async (req, res) => {
   const numeroFactura = req.body.numeroFactura;
   const productos = [];
@@ -698,7 +699,7 @@ exports.guardarFacturaEnPostgres = async (req, res) => {
         cuit: req.body[`cuit_${index}`],
         razonSocial: req.body[`razon_social_${index}`],
         idProducto: req.body[`id_producto_${index}`],
-        producto: req.body[`producto_${index}`],
+        producto: req.body[`producto_${index}`], // Asegúrate de que este campo se esté llenando correctamente
         presentacion: req.body[`presentacion_${index}`],
         cantidad: parseInt(req.body[`cantidad_${index}`]) || null, // Convertir cantidad a integer o null
         precioCompra: req.body[`precio_compra_${index}`] ? parseFloat(req.body[`precio_compra_${index}`]) : null, // Convertir a float o null
@@ -732,7 +733,7 @@ exports.guardarFacturaEnPostgres = async (req, res) => {
           precio_compra = EXCLUDED.precio_compra,
           bonificaciones = EXCLUDED.bonificaciones,
           tipo_iva = EXCLUDED.tipo_iva
-      `,
+        `,
         [
           producto.sucursal, producto.tipo, producto.letra, producto.puntoVta, producto.numero,
           producto.fechaEmision, producto.cuit, producto.razonSocial, producto.idProducto,
@@ -740,6 +741,8 @@ exports.guardarFacturaEnPostgres = async (req, res) => {
           producto.bonificaciones, producto.tipoIva
         ]
       );
+      console.log('Producto a guardar:', producto.producto);
+
     }
 
     console.log('Factura guardada con éxito en PostgreSQL');
