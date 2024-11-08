@@ -805,3 +805,60 @@ exports.getFacturaDetalles = async (req, res) => {
 };
 
 
+exports.agregarProductoAFactura = async (req, res) => {
+  console.log(req.body); // Esto debería mostrar el contenido de req.body
+
+  const { numeroFactura, id_producto, producto, presentacion, cantidad, precio_compra } = req.body;
+
+  if (!numeroFactura) {
+    return res.status(400).json({ success: false, error: 'Número de factura no proporcionado' });
+  }
+
+  try {
+    await pool.query(
+      `INSERT INTO facturas (numero, id_producto, producto, presentacion, cantidad, precio_compra) 
+       VALUES ($1, $2, $3, $4, $5, $6)`,
+      [numeroFactura, id_producto, producto, presentacion, cantidad, precio_compra]
+    );
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Error al agregar el producto a la factura:', error);
+    res.status(500).json({ success: false, error: 'Error al agregar el producto a la factura' });
+  }
+};
+
+
+
+// Editar un producto existente en la factura
+exports.editarProductoEnFactura = async (req, res) => {
+  const { numeroFactura, idProducto } = req.params;
+  const { producto, presentacion, cantidad, precio_compra } = req.body;
+
+  try {
+    await pool.query(
+      `UPDATE facturas SET producto = $1, presentacion = $2, cantidad = $3, precio_compra = $4
+       WHERE numero = $5 AND id_producto = $6`,
+      [producto, presentacion, cantidad, precio_compra, numeroFactura, idProducto]
+    );
+    res.redirect(`/admin/factura/historial`);
+  } catch (error) {
+    console.error('Error al editar el producto en la factura:', error);
+    res.status(500).json({ success: false, error: 'Error al editar el producto en la factura' });
+  }
+};
+
+// Eliminar un producto de la factura
+exports.eliminarProductoDeFactura = async (req, res) => {
+  const { numeroFactura, idProducto } = req.params;
+
+  try {
+    await pool.query(
+      `DELETE FROM facturas WHERE numero = $1 AND id_producto = $2`,
+      [numeroFactura, idProducto]
+    );
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Error al eliminar el producto de la factura:', error);
+    res.status(500).json({ success: false, error: 'Error al eliminar el producto de la factura' });
+  }
+};

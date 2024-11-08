@@ -7,7 +7,10 @@ const cloudinary = require('cloudinary').v2; // Integración de Cloudinary
 const app = express();
 const port = process.env.PORT || 3000;
 
+
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 
 // Configurar Cloudinary con las variables de entorno
 cloudinary.config({

@@ -28,7 +28,7 @@
             <td><%= factura.razon_social %></td>
             <td><%= new Date(factura.fecha_emision).toLocaleDateString() %></td>
             <td>
-              <button onclick="verDetallesFactura('<%= factura.numero %>')">Ver Detalles</button>
+              <button onclick="verDetallesFactura('<%= factura.numero %>')">Ver/Editar Productos</button>
             </td>
           </tr>
         <% }) %>
@@ -40,16 +40,11 @@
     </tbody>
   </table>
 
-  <!-- Botón para regresar a la página de facturas -->
-  <div class="volver-facturas">
-    <a href="/admin/factura" class="btn-volver">Volver a Consultar Facturas</a>
-  </div>
-
-  <!-- Modal para mostrar detalles de la factura -->
+  <!-- Modal para mostrar y editar productos de la factura -->
   <div id="modalFacturaDetalles" class="modal" style="display: none;">
     <div class="modal-content">
       <span class="close" onclick="cerrarModal()">&times;</span>
-      <h3>Detalles de la Factura</h3>
+      <h3>Productos de la Factura</h3>
       <table>
         <thead>
           <tr>
@@ -58,16 +53,32 @@
             <th>Presentación</th>
             <th>Cantidad</th>
             <th>Precio de Compra</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody id="detalleProductos"></tbody>
       </table>
+
+    <!-- Formulario para agregar un nuevo producto -->
+<h4>Agregar Nuevo Producto</h4>
+<form id="formAgregarProducto" method="POST">
+  <!-- Campo oculto para enviar el número de factura -->
+  <input type="hidden" name="numeroFactura" id="numeroFactura"> <!-- Aquí debe estar el nombre "numeroFactura" -->
+  <input type="text" name="id_producto" placeholder="ID Producto" required>
+  <input type="text" name="producto" placeholder="Producto" required>
+  <input type="text" name="presentacion" placeholder="Presentación" required>
+  <input type="number" name="cantidad" placeholder="Cantidad" required>
+  <input type="number" step="0.01" name="precio_compra" placeholder="Precio de Compra" required>
+  <button type="submit">Agregar Producto</button>
+</form>
+
     </div>
   </div>
 
   <script>
-    // Función para abrir el modal con detalles de la factura
+    // Función para abrir el modal y cargar productos de la factura
     function verDetallesFactura(numeroFactura) {
+      document.getElementById('numeroFactura').value = numeroFactura; // Asigna el número de factura al formulario
       fetch(`/admin/factura/${numeroFactura}/detalles`)
         .then(response => response.json())
         .then(data => {
@@ -76,11 +87,17 @@
   
           data.forEach(item => {
             const row = `<tr>
-              <td>${item.id_producto}</td>
-              <td>${item.producto}</td>
-              <td>${item.presentacion}</td>
-              <td>${item.cantidad}</td>
-              <td>${item.precio_compra}</td>
+              <form action="/admin/factura/${numeroFactura}/producto/${item.id_producto}/editar" method="POST">
+                <td><input type="text" name="id_producto" value="${item.id_producto}" readonly></td>
+                <td><input type="text" name="producto" value="${item.producto}" required></td>
+                <td><input type="text" name="presentacion" value="${item.presentacion}" required></td>
+                <td><input type="number" name="cantidad" value="${item.cantidad}" required></td>
+                <td><input type="number" step="0.01" name="precio_compra" value="${item.precio_compra}" required></td>
+                <td>
+                  <button type="submit">Guardar</button>
+                  <button type="button" onclick="eliminarProducto('${numeroFactura}', '${item.id_producto}')">Eliminar</button>
+                </td>
+              </form>
             </tr>`;
             tbody.innerHTML += row;
           });
@@ -89,12 +106,64 @@
         })
         .catch(error => console.error('Error al obtener detalles de la factura:', error));
     }
-  
+
     // Función para cerrar el modal
     function cerrarModal() {
       document.getElementById('modalFacturaDetalles').style.display = 'none';
     }
-  </script>
+
+document.getElementById('formAgregarProducto').onsubmit = function(event) {
+  event.preventDefault();
   
+  const numeroFactura = document.getElementById('numeroFactura').value;
+  const id_producto = this.id_producto.value;
+  const producto = this.producto.value;
+  const presentacion = this.presentacion.value;
+  const cantidad = this.cantidad.value;
+  const precio_compra = this.precio_compra.value;
+
+  fetch(`/admin/factura/agregarProducto`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      numeroFactura,
+      id_producto,
+      producto,
+      presentacion,
+      cantidad,
+      precio_compra,
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert('Producto agregado exitosamente.');
+      verDetallesFactura(numeroFactura); // Refresca los detalles de la factura
+    } else {
+      alert('Error al agregar el producto.');
+    }
+  })
+  .catch(error => console.error('Error al agregar el producto:', error));
+}
+
+    // Función para eliminar un producto
+    function eliminarProducto(numeroFactura, idProducto) {
+      fetch(`/admin/factura/${numeroFactura}/producto/${idProducto}/eliminar`, {
+        method: 'DELETE'
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('Producto eliminado exitosamente.');
+          verDetallesFactura(numeroFactura); // Refresca los detalles de la factura
+        } else {
+          alert('Error al eliminar el producto.');
+        }
+      })
+      .catch(error => console.error('Error al eliminar el producto:', error));
+    }
+  </script>
 </body>
 </html>

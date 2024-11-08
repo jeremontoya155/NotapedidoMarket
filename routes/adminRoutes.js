@@ -94,4 +94,15 @@ router.get('/factura/:numero/detalles', adminController.getFacturaDetalles);
 
 
 router.get('/historial', adminController.showHistorialFacturas);
+
+// Ruta para agregar un producto a una factura
+router.post('/factura/agregarProducto', adminController.agregarProductoAFactura);
+
+// Ruta para editar un producto en una factura
+router.post('/factura/:numeroFactura/producto/:idProducto/editar', adminController.editarProductoEnFactura);
+
+// Ruta para eliminar un producto de una factura
+router.delete('/factura/:numeroFactura/producto/:idProducto/eliminar', adminController.eliminarProductoDeFactura);
+
+
 module.exports = router;  
