@@ -3,32 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>Consulta de Facturas</title>
   <link rel="stylesheet" href="/css/facturas.css">
 </head>
 <body>
-  <h1>Consulta de Facturas</h1>
-
-  <!-- Mensaje de éxito si el guardado fue exitoso -->
-  <% if (success) { %>
-    <div class="success-message">
-      La factura se ha guardado correctamente en la base de datos.
+  <div class="nav">
+    <div class="nav-toggle">
+      <i class="fas fa-bars"></i>
     </div>
+    <div class="nav-menu">
+      <a href="/admin" class="nuevaNotaBoton"><i class="fas fa-home"></i> Home</a>
+      <a href="/admin/cargar" class="nuevaNotaBoton">
+        <i class="fas fa-sticky-note"></i> Cargar Nota de Pedido
+      </a>
+      <a href="/admin/nueva" class="nuevaNotaBoton">
+        <i class="fas fa-newspaper"></i> Listado De Proveedores
+      </a>
+      <a href="/admin/facturas" class="nuevaNotaBoton">
+        <i class="fas fa-newspaper"></i> Facturas
+      </a>
+       <!-- Botón para ir al historial de facturas -->
+       <a href="/admin/historial" class="nuevaNotaBoton">        <i class="fas fa-newspaper"></i> Historial de Facturas</a>
+
+    </div>
+    <!-- Formulario de búsqueda -->
+    <div class="filtro">
+      <% if (success) { %>
+        <div class="success-message">
+          La factura se ha guardado correctamente en la base de datos.
+        </div>
+      <% } %>
+      <form action="/admin/factura" method="get" class="search-form">
+        <!-- <label for="numeroFactura">Número de Factura:</label> -->
+        <input type="text" id="numeroFactura" name="numeroFactura" placeholder="Ingrese Número de factura" required>
+        <button type="submit">
+          <i class="fas fa-search"></i>
+          Buscar
+        </button>
+      </form>
+      <% if (error) { %>
+        <p class="error-message"><%= error %></p>
+      <% } %>
+    </div>
+    <a href="/admin/logout" class="logoutBtn">
+      Cerrar Sesión <i class="fas fa-sign-out-alt"></i>
+    </a>
+  </div>
+
+<div class="bodyFacturas">
+  <!-- Mensaje de éxito si el guardado fue exitoso -->
+  <% if (!factura){%>
+    <div class="notFound">Ingrese un número de factura</div>
   <% } %>
-
-  <!-- Formulario de búsqueda -->
-  <form action="/admin/factura" method="get" class="search-form">
-    <label for="numeroFactura">Número de Factura:</label>
-    <input type="text" id="numeroFactura" name="numeroFactura" required>
-    <button type="submit">Buscar</button>
-  </form>
-
-  <% if (error) { %>
-    <p class="error-message"><%= error %></p>
-  <% } %>
-
   <% if (factura && factura.length > 0) { %>
-    <h2>Detalles de la Factura</h2>
+    <h2 class="titulo">Detalles de la Factura</h2>
     <form action="/admin/factura/guardar" method="post" class="factura-form">
       <input type="hidden" name="numeroFactura" value="<%= factura[0].Numero %>">
       <table class="factura-table">
@@ -90,13 +119,21 @@
           <% }) %>
         </tbody>
       </table>
-      <button type="submit">Guardar Cambios</button>
+      <button type="submit" class="guardarCambios">Guardar Cambios</button>
     </form>
   <% } %>
+</div>
 
-  <!-- Botón para ir al historial de facturas -->
-  <div class="volver-historial">
-    <a href="/admin/historial" class="btn-historial">Ir al Historial de Facturas</a>
-  </div>
+ 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('show');
+        });
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,452 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #999999;
+    color: #333;
+    margin: 0;
+    width:100%;
+}
+/* Estilos para el navegador */
+.nav {
+    background-color: #007c98;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+/* Estilos para el botón de toggle del menú */
+.nav-toggle {
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Estilos para el menú desplegable */
+.nav-menu {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    background-color: #007c98;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1;
+    display: none;
+}
+
+.nav-menu.show {
+    display: block;
+}
+
+.nav-menu a.nuevaNotaBoton {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    background-color: rgba(0,0,0,.2);
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu a.nuevaNotaBoton:hover {
+    background-color: #333;
+}
+
+/* Estilos para el título */
+.nav h1 {
+    color: #fff;
+    margin: 0;
+    font-size: 2em;
+    text-align: center;
+}
+
+/* Estilos para el botón de cierre de sesión */
+.nav a.logoutBtn {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #dc3545;
+    transition: background-color 0.3s ease;
+}
+
+.nav a.logoutBtn:hover {
+    background-color: #c82333;
+}
+
+.bodyFacturas{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    flex-flow: column wrap;
+    width:100%;
+    margin-top:1em;
+}
+.bodyFacturas .titulo{
+    color: #ffffffd6;
+    text-shadow: 0 2px 5px #000;
+    font-size: 2em;
+    margin:0;
+
+}
+.filtro {
+    width: 650px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filtro input {
+    width: 550px;
+    padding: 12px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.filtro input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    background-color: #fff;
+}
+
+.filtro input::placeholder {
+    color: #adb5bd;
+}
+
+.filtro button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background-color: #007bff;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filtro button:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+.filtro button:active {
+    transform: translateY(1px);
+}
+
+/* Estilos para los mensajes */
+.success-message {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    padding: 12px 20px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    animation: slideDown 0.5s ease-out, fadeOut 4s forwards;
+    z-index: 100;
+}
+
+.error-message {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    padding: 12px 20px;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    animation: slideUp 0.3s ease-out;
+}
+
+/* Animaciones */
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0%, 70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Media query para responsividad */
+@media (max-width: 768px) {
+.filtro {
+    width: 95%;
+}
+
+.filtro input {
+    width: calc(100% - 100px);
+}
+
+.filtro button {
+    padding: 12px 15px;
+}
+}
+/* Error message styling */
+p {
+    color: red;
+    font-size: 1em;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    max-width: 1000px;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+}
+
+table th {
+    background-color: #4a90e2;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+table td {
+    border-bottom: 1px solid #f1f1f1;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table input[type="text"] {
+    width: 100%;
+    padding: 6px;
+    font-size: 0.9em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+
+
+.bodyFacturas button {
+    padding: 12px 25px;
+    margin-top:1em;
+    border: none;
+    border-radius: 25px;
+    background-color: #007bff;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bodyFacturas button:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+.bodyFacturas button:active {
+    transform: translateY(1px);
+}
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-body{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column wrap;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.close-button {
+  font-size: 24px;
+  font-weight: bold;
+  color: #aaa;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.invoice-table th,
+.invoice-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.invoice-table th {
+  background-color: #4a90e2;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.invoice-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.invoice-table input[type="text"],
+.invoice-table input[type="number"] {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.invoice-table input[type="text"]:focus,
+.invoice-table input[type="number"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+  background-color: #fff;
+}
+
+.form-title {
+  margin-top: 24px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.product-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 16px;
+  margin-top: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-button {
+  grid-column: span 3;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}

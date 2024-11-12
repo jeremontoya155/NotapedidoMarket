@@ -10,25 +10,26 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
-<div class="nav">
-  <a href="/admin/cargar" class="nuevaNotaBoton">
-    <i class="fas fa-sticky-note"></i> Cargar Nota de Pedido
-  </a>
-
-  <!-- Aquí se agrega el nuevo botón -->
-  <a href="/admin/nueva" class="nuevaNotaBoton">
-    <i class="fas fa-newspaper"></i> Listado De Proveedores
-  </a>
-
-   <!-- Aquí se agrega el nuevo botón -->
-   <a href="/admin/facturas" class="nuevaNotaBoton">
-    <i class="fas fa-newspaper"></i> Facturas
-  </a>
-
-  <h1>Notas de Pedido</h1>
-  <a href="/admin/logout" class="logoutBtn">Cerrar Sesión <i class="fas fa-sign-out-alt"></i></a>
-
-</div>
+  <div class="nav">
+    <div class="nav-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="nav-menu">
+      <a href="/admin/cargar" class="nuevaNotaBoton">
+        <i class="fas fa-sticky-note"></i> Cargar Nota de Pedido
+      </a>
+      <a href="/admin/nueva" class="nuevaNotaBoton">
+        <i class="fas fa-newspaper"></i> Listado De Proveedores
+      </a>
+      <a href="/admin/facturas" class="nuevaNotaBoton">
+        <i class="fas fa-newspaper"></i> Facturas
+      </a>
+    </div>
+    <h1>Notas de Pedido</h1>
+    <a href="/admin/logout" class="logoutBtn">
+      Cerrar Sesión <i class="fas fa-sign-out-alt"></i>
+    </a>
+  </div>
 
 <div class="adminBody">
 
@@ -40,6 +41,7 @@
       alert(error);
       window.location.replace('/admin');
     }
+    
   </script>
 
   <!-- Formulario para filtrar por laboratorio, estado y operador -->
@@ -179,6 +181,14 @@
 </script>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('show');
+        });
+    });
   // Función para alternar los estados
   function toggleEstadoFiltro() {
     let estadoActual = params.get('estado') || '';

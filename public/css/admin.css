@@ -242,7 +242,7 @@ table td:hover {
     flex-basis: 100%;
   }
 }
-
+/* 
 
 .nav{
   width:100%;
@@ -277,8 +277,77 @@ table td:hover {
   background-color: rgba(255, 0, 0, .6);
   font-size: 1.02em;
 
+} */
+/* Estilos para el navegador */
+.nav {
+  background-color: #007c98;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
+/* Estilos para el botón de toggle del menú */
+.nav-toggle {
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* Estilos para el menú desplegable */
+.nav-menu {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  background-color: #007c98;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1;
+  display: none;
+}
+
+.nav-menu.show {
+  display: block;
+}
+
+.nav-menu a.nuevaNotaBoton {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  background-color: rgba(0,0,0,.2);
+  transition: background-color 0.3s ease;
+}
+
+.nav-menu a.nuevaNotaBoton:hover {
+  background-color: #333;
+}
+
+/* Estilos para el título */
+.nav h1 {
+  color: #fff;
+  margin: 0;
+  font-size: 2em;
+  text-align: center;
+}
+
+/* Estilos para el botón de cierre de sesión */
+.nav a.logoutBtn {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: #dc3545;
+  transition: background-color 0.3s ease;
+}
+
+.nav a.logoutBtn:hover {
+  background-color: #c82333;
+}
 
 .acciones{
   min-width: 210px;

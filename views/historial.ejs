@@ -4,48 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Historial de Facturas</title>
-  <link rel="stylesheet" href="/css/facturas.css">
+  <link rel="stylesheet" href="/css/historial.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+  <div class="nav">
+    <div class="nav-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="nav-menu">
+      <a href="/admin" class="nuevaNotaBoton"><i class="fas fa-home"></i> Home</a>
+      <a href="/admin/cargar" class="nuevaNotaBoton">
+        <i class="fas fa-sticky-note"></i> Cargar Nota de Pedido
+      </a>
+      <a href="/admin/nueva" class="nuevaNotaBoton">
+        <i class="fas fa-newspaper"></i> Listado De Proveedores
+      </a>
+      <a href="/admin/facturas" class="nuevaNotaBoton">
+        <i class="fas fa-newspaper"></i> Facturas
+      </a>
+    </div>
+    <h1>Notas de Pedido</h1>
+    <a href="/admin/logout" class="logoutBtn">
+      Cerrar Sesión <i class="fas fa-sign-out-alt"></i>
+    </a>
+  </div>
   <h1>Historial de Facturas</h1>
+  <div class="bodyFacturas">
 
-  <table class="facturas-historial-table">
-    <thead>
-      <tr>
-        <th>Número</th>
-        <th>CUIT</th>
-        <th>Razón Social</th>
-        <th>Fecha de Emisión</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% if (facturasHistorial && facturasHistorial.length > 0) { %>
-        <% facturasHistorial.forEach(factura => { %>
-          <tr>
-            <td><%= factura.numero %></td>
-            <td><%= factura.cuit %></td>
-            <td><%= factura.razon_social %></td>
-            <td><%= new Date(factura.fecha_emision).toLocaleDateString() %></td>
-            <td>
-              <button onclick="verDetallesFactura('<%= factura.numero %>')">Ver/Editar Productos</button>
-            </td>
-          </tr>
-        <% }) %>
-      <% } else { %>
+    <table class="facturas-historial-table">
+      <thead>
         <tr>
-          <td colspan="5">No hay facturas guardadas en el historial.</td>
+          <th>Número</th>
+          <th>CUIT</th>
+          <th>Razón Social</th>
+          <th>Fecha de Emisión</th>
+          <th>Acciones</th>
         </tr>
-      <% } %>
-    </tbody>
-  </table>
-
-  <!-- Modal para mostrar y editar productos de la factura -->
-  <div id="modalFacturaDetalles" class="modal" style="display: none;">
-    <div class="modal-content">
-      <span class="close" onclick="cerrarModal()">&times;</span>
-      <h3>Productos de la Factura</h3>
-      <table>
+      </thead>
+      <tbody>
+        <% if (facturasHistorial && facturasHistorial.length > 0) { %>
+          <% facturasHistorial.forEach(factura => { %>
+            <tr>
+              <td><%= factura.numero %></td>
+              <td><%= factura.cuit %></td>
+              <td><%= factura.razon_social %></td>
+              <td><%= new Date(factura.fecha_emision).toLocaleDateString() %></td>
+              <td>
+                <button onclick="verDetallesFactura('<%= factura.numero %>')">Ver/Editar Productos</button>
+              </td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="5">No hay facturas guardadas en el historial.</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+<!-- Modal para mostrar y editar productos de la factura -->
+<div id="modalFacturaDetalles" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title">Productos de la Factura</h3>
+      <button class="close-button" onclick="cerrarModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <table class="invoice-table">
         <thead>
           <tr>
             <th>ID Producto</th>
@@ -59,22 +85,31 @@
         <tbody id="detalleProductos"></tbody>
       </table>
 
-    <!-- Formulario para agregar un nuevo producto -->
-<h4>Agregar Nuevo Producto</h4>
-<form id="formAgregarProducto" method="POST">
-  <!-- Campo oculto para enviar el número de factura -->
-  <input type="hidden" name="numeroFactura" id="numeroFactura"> <!-- Aquí debe estar el nombre "numeroFactura" -->
-  <input type="text" name="id_producto" placeholder="ID Producto" required>
-  <input type="text" name="producto" placeholder="Producto" required>
-  <input type="text" name="presentacion" placeholder="Presentación" required>
-  <input type="number" name="cantidad" placeholder="Cantidad" required>
-  <input type="number" step="0.01" name="precio_compra" placeholder="Precio de Compra" required>
-  <button type="submit">Agregar Producto</button>
-</form>
-
+      <!-- Formulario para agregar un nuevo producto -->
+      <h4 class="form-title">Agregar Nuevo Producto</h4>
+      <form id="formAgregarProducto" method="POST" class="product-form">
+        <!-- Campo oculto para enviar el número de factura -->
+        <input type="hidden" name="numeroFactura" id="numeroFactura">
+        <div class="form-group">
+          <input id="productoInput" type="text" name="id_producto" placeholder="ID Producto" required>
+        </div>
+        <div class="form-group">
+          <input id="presentacionInput" type="text" name="producto" placeholder="Producto" required>
+        </div>
+        <div class="form-group">
+          <input type="text" name="presentacion" placeholder="Presentación" required>
+        </div>
+        <div class="form-group">
+          <input type="number" name="cantidad" placeholder="Cantidad" required>
+        </div>
+        <div class="form-group">
+          <input type="number" step="0.01" name="precio_compra" placeholder="Precio de Compra" required>
+        </div>
+        <button type="submit" class="submit-button">Agregar Producto</button>
+      </form>
     </div>
   </div>
-
+</div>
   <script>
     // Función para abrir el modal y cargar productos de la factura
     function verDetallesFactura(numeroFactura) {
@@ -164,6 +199,15 @@ document.getElementById('formAgregarProducto').onsubmit = function(event) {
       })
       .catch(error => console.error('Error al eliminar el producto:', error));
     }
+     
+    document.addEventListener('DOMContentLoaded', function() {
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('show');
+        });
+    });
   </script>
 </body>
 </html>
