@@ -685,7 +685,7 @@ exports.guardarFacturaEnPostgres = async (req, res) => {
   const numeroFactura = req.body.numeroFactura;
   const productos = [];
 
-  // Recopilar todos los datos de cada producto en el formulario
+  // Recopilación de datos del formulario
   Object.keys(req.body).forEach(key => {
     if (key.startsWith('precio_compra_')) {
       const index = key.split('_')[2];
@@ -695,22 +695,22 @@ exports.guardarFacturaEnPostgres = async (req, res) => {
         letra: req.body[`letra_${index}`],
         puntoVta: req.body[`punto_vta_${index}`],
         numero: numeroFactura,
-        fechaEmision: new Date(req.body[`fecha_emision_${index}`]).toISOString().split('T')[0], // Convertir fecha a 'YYYY-MM-DD'
+        fechaEmision: new Date(req.body[`fecha_emision_${index}`]).toISOString().split('T')[0],
         cuit: req.body[`cuit_${index}`],
         razonSocial: req.body[`razon_social_${index}`],
         idProducto: req.body[`id_producto_${index}`],
-        producto: req.body[`producto_${index}`], // Asegúrate de que este campo se esté llenando correctamente
+        producto: req.body[`producto_${index}`],
         presentacion: req.body[`presentacion_${index}`],
-        cantidad: parseInt(req.body[`cantidad_${index}`]) || null, // Convertir cantidad a integer o null
-        precioCompra: req.body[`precio_compra_${index}`] ? parseFloat(req.body[`precio_compra_${index}`]) : null, // Convertir a float o null
-        bonificaciones: req.body[`bonificaciones_${index}`] ? parseFloat(req.body[`bonificaciones_${index}`]) : null, // Convertir a float o null
-        tipoIva: parseInt(req.body[`tipo_iva_${index}`]) || null // Convertir tipo IVA a integer o null
+        cantidad: parseInt(req.body[`cantidad_${index}`]) || null,
+        precioCompra: req.body[`precio_compra_${index}`] ? parseFloat(req.body[`precio_compra_${index}`]) : null,
+        bonificaciones: req.body[`bonificaciones_${index}`] ? parseFloat(req.body[`bonificaciones_${index}`]) : null,
+        tipoIva: parseInt(req.body[`tipo_iva_${index}`]) || null
       });
     }
   });
 
   try {
-    // Inserción o actualización de cada producto en la base de datos
+    // Inserción o actualización de cada producto en la base de datos PostgreSQL
     for (const producto of productos) {
       await pool.query(
         `
@@ -731,7 +731,7 @@ exports.guardarFacturaEnPostgres = async (req, res) => {
           presentacion = EXCLUDED.presentacion,
           cantidad = EXCLUDED.cantidad,
           precio_compra = EXCLUDED.precio_compra,
-          bonificaciones = EXCLUDED.bonificaciones,
+          bonificaciones = EXCLUDED.bonificaciones, 
           tipo_iva = EXCLUDED.tipo_iva
         `,
         [
@@ -741,8 +741,6 @@ exports.guardarFacturaEnPostgres = async (req, res) => {
           producto.bonificaciones, producto.tipoIva
         ]
       );
-      console.log('Producto a guardar:', producto.producto);
-
     }
 
     console.log('Factura guardada con éxito en PostgreSQL');
@@ -792,7 +790,7 @@ exports.getFacturaDetalles = async (req, res) => {
   const numeroFactura = req.params.numero;
   try {
     const productos = await pool.query(`
-      SELECT id_producto, producto, presentacion, cantidad, precio_compra
+      SELECT id_producto, producto, presentacion, cantidad, precio_compra, bonificaciones
       FROM facturas
       WHERE numero = $1;
     `, [numeroFactura]);
@@ -806,20 +804,31 @@ exports.getFacturaDetalles = async (req, res) => {
 
 
 exports.agregarProductoAFactura = async (req, res) => {
-  console.log(req.body); // Esto debería mostrar el contenido de req.body
-
   const { numeroFactura, id_producto, producto, presentacion, cantidad, precio_compra } = req.body;
 
-  if (!numeroFactura) {
-    return res.status(400).json({ success: false, error: 'Número de factura no proporcionado' });
-  }
-
   try {
+    // Consulta para obtener la información de la factura
+    const { rows: facturaData } = await pool.query(`
+      SELECT cuit, razon_social, fecha_emision 
+      FROM facturas 
+      WHERE numero = $1
+      LIMIT 1;
+    `, [numeroFactura]);
+
+    if (facturaData.length === 0) {
+      return res.status(404).json({ success: false, error: 'Factura no encontrada' });
+    }
+
+    // Obtener la información de la factura
+    const { cuit, razon_social, fecha_emision } = facturaData[0];
+
+    // Insertar el nuevo producto en la tabla de facturas, incluyendo datos de la factura principal
     await pool.query(
-      `INSERT INTO facturas (numero, id_producto, producto, presentacion, cantidad, precio_compra) 
-       VALUES ($1, $2, $3, $4, $5, $6)`,
-      [numeroFactura, id_producto, producto, presentacion, cantidad, precio_compra]
+      `INSERT INTO facturas (numero, id_producto, producto, presentacion, cantidad, precio_compra, cuit, razon_social, fecha_emision) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+      [numeroFactura, id_producto, producto, presentacion, cantidad, precio_compra, cuit, razon_social, fecha_emision]
     );
+
     res.json({ success: true });
   } catch (error) {
     console.error('Error al agregar el producto a la factura:', error);

@@ -98,10 +98,12 @@
               <td>
                 <input type="text" name="precio_compra_<%= index %>" value="<%= item.PrecioCompra %>">
               </td>
-              <td><%= item.Bonificaciones %></td>
+              <td>
+                <input type="text" name="bonificaciones_<%= index %>" value="<%= item.Bonificaciones %>"> <!-- Campo editable para bonificaciones -->
+              </td>
               <td><%= item.idTipoIVA %></td>
-
-              <!-- Campos ocultos adicionales para asegurar que todos los datos se envíen -->
+        
+              <!-- Campos ocultos adicionales -->
               <input type="hidden" name="sucursal_<%= index %>" value="<%= item.Sucursal %>">
               <input type="hidden" name="tipo_<%= index %>" value="<%= item.Tipo %>">
               <input type="hidden" name="letra_<%= index %>" value="<%= item.Letra %>">
@@ -113,11 +115,11 @@
               <input type="hidden" name="id_producto_<%= index %>" value="<%= item.IDProducto %>">
               <input type="hidden" name="presentacion_<%= index %>" value="<%= item.Presentaci %>">
               <input type="hidden" name="cantidad_<%= index %>" value="<%= item.Cantidad %>">
-              <input type="hidden" name="bonificaciones_<%= index %>" value="<%= item.Bonificaciones %>">
               <input type="hidden" name="tipo_iva_<%= index %>" value="<%= item.idTipoIVA %>">
             </tr>
           <% }) %>
         </tbody>
+        
       </table>
       <button type="submit" class="guardarCambios">Guardar Cambios</button>
     </form>
