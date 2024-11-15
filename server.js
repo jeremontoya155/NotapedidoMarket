@@ -3,6 +3,8 @@ const express = require('express');
 const session = require('express-session');
 const pg = require('pg');
 const path = require('path');
+const bodyParser = require('body-parser');
+
 const cloudinary = require('cloudinary').v2; // Integración de Cloudinary
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,6 +20,12 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
+
+app.use(bodyParser.urlencoded({
+  extended: true,
+  parameterLimit: 100000, // Incrementa el límite según tus necesidades
+  limit: '50mb' // También puedes aumentar el tamaño máximo permitido
+}));
 
 // Sirve la carpeta 'uploads' de forma pública (puedes quitar esto si solo usas Cloudinary)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
